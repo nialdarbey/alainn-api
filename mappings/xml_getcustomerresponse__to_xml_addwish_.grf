@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Graph author="nialdarbey" created="Wed Apr 09 23:32:58 GMT-03:00 2014" description="Xml&lt;getCustomerResponse&gt; To Xml&lt;addWish&gt;" guiVersion="3.4.3.P" id="1397151144172" licenseCode="Unlicensed" licenseType="Unknown" modified="Wed Apr 09 23:32:58 GMT-03:00 2014" modifiedBy="nialdarbey" name="Xml_getCustomerResponse__To_Xml_addWish_" revision="1.0" showComponentDetails="false">
+<Global>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="XML WRITER" guiX="900" guiY="20" id="EXT_XML_WRITER0" type="EXT_XML_WRITER">
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="XML READER" guiX="20" guiY="20" id="XML_READER0" type="XML_READER">
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+</Node>
+</Phase>
+</Graph>

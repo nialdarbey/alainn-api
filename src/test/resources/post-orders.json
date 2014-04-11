@@ -1,0 +1,13 @@
+{
+    "pickupLocation": "Buenos Aires",
+    "items": [
+        {
+            "sku": "xyz",
+            "quantity": 3
+        },
+        {
+            "sku": "abc",
+            "quantity": 1
+        }
+    ]
+}

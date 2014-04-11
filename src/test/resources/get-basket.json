@@ -1,0 +1,16 @@
+{
+    "items": [
+        {
+            "sku": "sp100v",
+            "name": "Spice Bomb",
+            "price": 23,
+            "quantity": 2
+        },
+        {
+            "sku": "sp100v",
+            "name": "Spice Bomb",
+            "price": 23,
+            "quantity": 2
+        }
+    ]
+}

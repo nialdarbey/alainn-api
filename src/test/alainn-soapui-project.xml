@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="alainn" resourceRoot="" soapui-version="4.5.2" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="PointOfSaleSoap" type="wsdl" bindingName="{http://www.alainn.com/SOA/service/PointOfSale/1.0}PointOfSaleSoap" soapVersion="1_1" anonymous="optional" definition="http://localhost:8081/pointOfSaleService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8081/pointOfSaleService?wsdl"><con:part><con:url>http://localhost:8081/pointOfSaleService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PointOfSale" targetNamespace="http://www.alainn.com/SOA/service/PointOfSale/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.alainn.com/SOA/service/PointOfSale/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mes="http://www.alainn.com/SOA/message/1.0">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="http://localhost:8081/pointOfSaleService?xsd=SOA-Message-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="processSaleResponse">
+    <wsdl:part element="mes:processSaleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="processSale">
+    <wsdl:part element="mes:processSale" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PointOfSale">
+    <wsdl:operation name="processSale">
+      <wsdl:input message="tns:processSale"></wsdl:input>
+      <wsdl:output message="tns:processSaleResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PointOfSaleSoap" type="tns:PointOfSale">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="processSale">
+      <soap:operation soapAction="http://http://www.alainn.com/SOA/service/PointOfSale/1.0/processSale"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PointOfSaleService">
+    <wsdl:port binding="tns:PointOfSaleSoap" name="PointOfSalePort">
+      <soap:address location="http://localhost:8081/pointOfSaleService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8081/pointOfSaleService?xsd=SOA-Message-1.0.xsd</con:url><con:content><![CDATA[<schema elementFormDefault="unqualified" targetNamespace="http://www.alainn.com/SOA/message/1.0" xmlns:tns="http://www.alainn.com/SOA/message/1.0" xmlns:mod="http://www.alainn.com/SOA/model/1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://www.alainn.com/SOA/model/1.0" schemaLocation="http://localhost:8081/pointOfSaleService?xsd=SOA-Model-1.0.xsd"/>
+  <element name="processOrder">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processOrderResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:OrderId"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processRegistration">
+    <complexType>
+      <sequence>
+        <element ref="mod:Customer"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processRegistrationResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:CustomerRegistrationStatus"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="checkRegistrationEmail">
+    <complexType>
+      <sequence>
+        <element ref="mod:Email"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="checkRegistrationEmailResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:EmailAvailability"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="addToBasket">
+    <complexType>
+      <sequence>
+        <element ref="mod:Sku"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="addToBasketResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:ItemSku"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="removeFromBasket">
+    <complexType>
+      <sequence>
+        <element ref="mod:Sku"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="removeFromBasketResponse"></element>
+  <element name="saveOrder">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="saveOrderResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:OrderId"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getOrderDetails">
+    <complexType>
+      <sequence>
+        <element ref="mod:OrderId"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getOrderDetailsResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processSale">
+    <complexType>
+      <sequence>
+        <element ref="mod:Sale"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processSaleResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:SaleId"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="saveSale">
+    <complexType>
+      <sequence>
+        <element ref="mod:Sale"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="saveSaleResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:SaleId"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="addWish">
+    <complexType>
+      <sequence>
+        <element ref="mod:Sku"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="addWishResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:ItemSku"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="removeWish">
+    <complexType>
+      <sequence>
+        <element ref="mod:Sku"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="removeWishResponse"></element>
+  <element name="getItems"></element>
+  <element name="getItemsResponse">
+    <complexType>
+      <sequence>
+        <element maxOccurs="unbounded" ref="mod:Item"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getItem">
+    <complexType>
+      <sequence>
+        <element ref="mod:ItemId"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getItemResponse">
+    <complexType>
+      <sequence>
+        <element maxOccurs="unbounded" ref="mod:ItemSku"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="modifySKUStockCountBySale">
+    <complexType>
+      <sequence>
+        <element ref="mod:Sale"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="modifySKUStockCountBySaleResponse"></element>
+  <element name="modifySKUStockCountByOrder">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="modifySKUStockCountByOrderResponse"></element>
+  <element name="getLoyaltyPoints">
+    <complexType>
+      <sequence>
+        <element ref="mod:Email"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getLoyaltyPointsResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:Customer"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="addLoyaltyPoints">
+    <complexType>
+      <sequence>
+        <element ref="mod:CustomerLoyaltyPoints"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="addLoyaltyPointsResponse"></element>
+  <element name="getMobileTokens">
+    <complexType>
+      <sequence>
+        <element ref="mod:Email"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getMoibleTokensResponse">
+    <complexType>
+      <sequence>
+        <element name="tokens" type="mod:mobileTokensType"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="addMobileToken">
+    <complexType>
+      <sequence>
+        <element ref="mod:MobileToken"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="addMobileTokenResponse"></element>
+  <element name="calculateDiscount">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="calculateDiscountResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:Discount"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="distributeOrder">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="distributeOrderResponse"></element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8081/pointOfSaleService?xsd=SOA-Model-1.0.xsd</con:url><con:content><![CDATA[<schema elementFormDefault="unqualified" targetNamespace="http://www.alainn.com/SOA/model/1.0" xmlns:tns="http://www.alainn.com/SOA/model/1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="Customer" type="tns:customerType"/>
+  <element name="Item" type="tns:itemType"/>
+  <element name="ItemId" type="long"/>
+  <element name="ItemSku" type="tns:skuType"/>
+  <element name="Order" type="tns:orderType"/>
+  <element name="OrderId" type="long"/>
+  <element name="Sale" type="tns:saleType"/>
+  <element name="SaleId" type="long"/>
+  <element name="Sku" type="string"/>
+  <element name="Email" type="string"/>
+  <element name="CustomerRegistrationStatus" type="tns:customerRegistrationStatusType"/>
+  <element name="EmailAvailability" type="tns:emailAvailabilityType"/>
+  <element name="CustomerLoyaltyPoints" type="integer"/>
+  <element name="MobileToken" type="string"/>
+  <element name="Discount" type="float"/>
+  <complexType name="customerType">
+    <sequence>
+      <element name="firstName" type="string"/>
+      <element name="lastName" type="string"/>
+      <element name="email" type="string"/>
+      <element name="mobilePhoneNumber" type="string"/>
+      <element name="loyaltyPoints" type="integer"/>
+      <element name="mobileTokens" type="tns:mobileTokensType"/>
+      <element name="notificationPreferences">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" name="preference">
+              <simpleType>
+                <restriction base="string">
+                  <enumeration value="Email"/>
+                  <enumeration value="Sms"/>
+                  <enumeration value="Web"/>
+                  <enumeration value="Mobile Push"/>
+                </restriction>
+              </simpleType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="itemType">
+    <sequence>
+      <element name="id" type="long"/>
+      <element name="name" type="string"/>
+      <element name="summary" type="string"/>
+      <element name="description" type="string"/>
+      <element name="skus">
+        <complexType>
+          <sequence>
+            <element name="sku" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="type">
+        <simpleType>
+          <restriction base="string">
+            <enumeration value="Makeup"/>
+            <enumeration value="Perfume"/>
+            <enumeration value="Creams"/>
+          </restriction>
+        </simpleType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="skuType">
+    <sequence>
+      <element name="sku" type="string"/>
+      <element name="price" type="float"/>
+      <element name="quantityInStock" type="integer"/>
+      <element name="characteristics">
+        <complexType>
+          <sequence>
+            <element name="characteristic">
+              <complexType>
+                <simpleContent>
+                  <extension base="string">
+                    <attribute name="name" type="string"/>
+                  </extension>
+                </simpleContent>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="itemsType">
+    <sequence>
+      <element maxOccurs="unbounded" name="item">
+        <complexType>
+          <sequence>
+            <element name="sku" type="string"/>
+            <element name="quantity" type="integer"/>
+            <element minOccurs="0" name="status">
+              <simpleType>
+                <restriction base="string">
+                  <enumeration value="Pending"/>
+                  <enumeration value="Ready for Distribution"/>
+                </restriction>
+              </simpleType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="orderType">
+    <sequence>
+      <element minOccurs="0" name="id" type="long"/>
+      <element name="customer" type="string"/>
+      <element name="total" type="float"/>
+      <element minOccurs="0" name="discount" type="float"/>
+      <element name="pickupLocation" type="string"/>
+      <element minOccurs="0" name="pickupDate" type="date"/>
+      <element name="items" type="tns:itemsType"/>
+    </sequence>
+  </complexType>
+  <complexType name="saleType">
+    <sequence>
+      <element minOccurs="0" name="id" type="long"/>
+      <element name="customer" type="string"/>
+      <element name="total" type="float"/>
+      <element minOccurs="0" name="discount" type="float"/>
+      <element minOccurs="0" name="date" type="date"/>
+      <element name="items" type="tns:itemsType"/>
+    </sequence>
+  </complexType>
+  <simpleType name="customerRegistrationStatusType">
+    <restriction base="string">
+      <enumeration value="Pending"/>
+      <enumeration value="Confirmed"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="emailAvailabilityType">
+    <restriction base="string">
+      <enumeration value="Available"/>
+      <enumeration value="Taken"/>
+    </restriction>
+  </simpleType>
+  <complexType name="mobileTokensType">
+    <sequence>
+      <element maxOccurs="unbounded" name="token" type="string"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8081/pointOfSaleService</con:endpoint><con:endpoint>http://Nial-Darbey.local:8088/mockPointOfSaleSoap</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://http://www.alainn.com/SOA/service/PointOfSale/1.0/processSale" name="processSale" bindingOperationName="processSale" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://Nial-Darbey.local:8088/mockPointOfSaleSoap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.alainn.com/SOA/message/1.0" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:processSale>
+         <ns1:Sale>
+            <!--Optional:-->
+            <id>?</id>
+            <customer>?</customer>
+            <total>?</total>
+            <!--Optional:-->
+            <discount>?</discount>
+            <!--Optional:-->
+            <date>?</date>
+            <items>
+               <!--1 or more repetitions:-->
+               <item>
+                  <sku>?</sku>
+                  <quantity>?</quantity>
+                  <!--Optional:-->
+                  <status>?</status>
+               </item>
+            </items>
+         </ns1:Sale>
+      </ns:processSale>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://http://www.alainn.com/SOA/service/PointOfSale/1.0/processSale"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/mockPointOfSaleSoap" host="Nial-Darbey.local" name="PointOfSaleSoap MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="processSale" interface="PointOfSaleSoap" operation="processSale"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.alainn.com/SOA/message/1.0" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:processSaleResponse>
+         <ns1:SaleId>1233</ns1:SaleId>
+      </ns:processSaleResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://http://www.alainn.com/SOA/service/PointOfSale/1.0/processSale"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

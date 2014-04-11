@@ -1,0 +1,14 @@
+{
+    "wishes": [
+        {
+            "sku": "xyz",
+            "name": "Channel No.5",
+            "summary": "Great"
+        },
+        {
+            "sku": "abc",
+            "name": "Spice Bomb",
+            "summary": "Great"
+        }
+    ]
+}

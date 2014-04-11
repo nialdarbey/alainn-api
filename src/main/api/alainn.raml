@@ -1,0 +1,702 @@
+#%RAML 0.8
+---
+title: Álainn Cosmetics API
+version: v1.0
+#baseUri: http://alainn-cosmetics.cloudhub.io/api/{version}
+baseUri: http://mocksvc.mulesoft.com/mocks/17349175-529d-4d99-ba77-306d349fd8a2/api/{version}
+schemas:
+  - item: &item-schema |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "name" : { "type" : "string" },
+          "summary" : { "type" : "string" },
+          "description" : { "type" : "string" },
+          "type" : { "type" : "string" },
+          "skus" : {
+            "type" : "array",
+            "items" : {
+              "price" : {
+                "type" : "object",
+                "properties" : {
+                  "currency" : { "type" : "string" },
+                  "value" : { "type" : "integer" }
+                }
+              },  
+              "stockQuantity" : { "type" : "number" },
+              "characteristics" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : { "type" : "string" },
+                    "value" : { "type" : "string" }
+                  }
+                }
+              }
+            }
+          }
+          
+        }    
+      }
+  - items: &items-schema |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "id" : { "type" : "long" },
+                  "type" : { "type" : "string" },
+                  "name" : { "type" : "string" },
+                  "summary" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - reviews: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "count" : { "type" : "integer" },
+          "reviews" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "id" : { "type" : "string" },
+                  "author" : { "type" : "string" },
+                  "review" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - top-products: *items-schema
+  - top-brands: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "count" : { "type" : "integer" },
+          "brands" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "id" : { "type" : "string" },
+                  "name" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - recommendations: *items-schema
+  - promotions: *items-schema
+  - promotion: *item-schema  
+  - wish-list: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "wishes" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "sku" : { "type" : "string" },
+                  "name" : { "type" : "string" },
+                  "summary" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - wish-list-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "sku" : { "type" : "string" }
+        }
+      }
+  - basket: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "name" : { "type" : "string" },
+                "price" : { "type" : "number" },
+                "quantity" : { "type" : "integer" }
+              }
+             }
+          }
+        }
+      }
+  - basket-item: | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "sku" : { "type" : "string" },
+          "name" : { "type" : "string" },
+          "quantity" : { "type" : "integer" }
+        }
+      }
+  - order: | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "discount" : { "type" : "number" },
+          "pickupLocation" : { "type" : "string" },
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "name" : { "type" : "string" },
+                "price" : { "type" : "number" },
+                "quantity" : { "type" : "integer" },
+                "status" : { "type" : "string" }
+              }
+             }
+          }
+        }
+      }
+  - orders: | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "pickupLocation" : { "type" : "string" }
+        }
+      }
+  - order-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "pickupLocation" : { "type" : "string" },
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "quantity" : { "type" : "integer" }
+              }
+             }
+          }
+        }
+      }
+  - sale: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "discount" : { "type" : "number" },
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "name" : { "type" : "string" },
+                "price" : { "type" : "number" },
+                "quantity" : { "type" : "integer" }
+              }
+            }
+          }
+        }
+      }
+  - sales: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" }
+        }
+      }
+  - sale-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "quantity" : { "type" : "integer" }
+              }
+             }
+          }
+        }
+      }
+  - registration-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "firstName" : { "type" : "string" },
+          "lastName" : { "type" : "string" },
+          "mobileNumber" : { "type" : "string" },
+          "notificationPreferences": {
+            "type" : "array",
+            "items" : { "type" : "string" }
+          }
+        }
+      }
+  - mobile-token-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "token" : { "type" : "string" }
+        }
+      }
+  - mobile-tokens: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "tokens" : { 
+            "type" : "array",
+            "items" : { "type" : "string" } 
+          }
+        }
+      }
+  - my-profile: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "x-user-id" : { "type" : "string" },
+          "firstName" : { "type" : "string" },
+          "lastName" : { "type" : "string" },
+          "notificationPreferences" : { 
+            "type" : "array",
+            "items" : { "type" : "string" } 
+          }
+        }
+      }
+documentation:
+  - title: Introduction
+    content: |
+      API to act as main point of entry to multi-channel software so that the customer gets a consistent experience across all channels. 
+      
+      * A
+      * B
+      * C
+traits:
+  - searchable:
+      queryParameters:
+        q:
+          displayName: Search criteria
+          description: Filter on collection
+          type: string
+          required: false
+          example: q=type:blushers
+  - secured:
+      headers:
+        x-user-id:
+          type: string
+          required: true
+          example: 4322234
+resourceTypes: 
+  - document:
+      get:
+        is: [secured]
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<schema>>
+  - read-only-collection:
+      type: { document : { schema : <<resourcePathName>> } }
+  - collection:
+      type: read-only-collection
+      post:
+        is: [secured]
+        body:
+          application/json:
+            schema: <<resourcePathName | !singularize>>-request  # e.g. order
+        responses:
+          201:
+            description: Created!
+            headers:
+              Location:
+                description: uri of new resource
+                type: string
+                required: true  
+  - controller:
+      post:
+        responses:
+          204:
+            description: Done!
+  - member:
+      type: { document : { schema : <<resourcePathName | !singularize >> } }
+      put?:
+        body:
+          application/json:
+            schema: <<resourcePathName>>
+        responses:
+          204:
+            description: Modified
+      patch?:
+        body:
+          application/json:
+            schema: <<resourcePathName | !singularize>>
+      delete?:
+        responses:
+          204:
+            description: Deleted
+/orders:
+  type: collection
+  description: Orders both pending and fulfilled
+  post:
+    body:
+      application/json:
+        example: |
+         {
+            "pickupLocation" : "Buenos Aires",
+            "items" : [
+              {
+                "sku" : "xyz",
+                "quantity" : 3
+              },
+              {
+                "sku" : "abc",
+                "quantity" : 1
+              }
+            ]
+          }
+  /{order}: 
+    type: member
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "date" : 1243214,
+                  "total" : 123.02,
+                  "discount" : 12.00,
+                  "pickupLocation" : "Buenos Aires",
+                  "items" : [
+                    {
+                      "sku" : "abc",
+                      "name" : "",
+                      "price" : 1.0,
+                      "quantity" : 2,
+                      "status" : "Delivered"
+                    },
+                    {
+                      "sku" : "xyz",
+                      "name" : "",
+                      "price" : 5.0,
+                      "quantity" : 2,
+                      "status" : "Delivered"
+                    }
+                  ]
+                }
+    delete:
+      description: Cancel order
+    patch:
+      description: 'Modify part of Order: quantity of items, delivery address'  
+/basket:
+  type: collection
+  description: All items ready for purchase
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "items" : [
+                  {
+                    "sku" : "sp100v",
+                    "name" : "Spice Bomb",
+                    "price" : 23.0,
+                    "quantity" : 2
+                  },
+                  {
+                    "sku" : "sp100v",
+                    "name" : "Spice Bomb",
+                    "price" : 23.0,
+                    "quantity" : 2
+                  }
+                ]
+              }
+  post:
+    body:
+      application/json:
+        schema: basket-item
+        example: |
+          {
+            "sku" : "abc",
+            "quantity" : 2
+          }
+  /{item}:
+    type: member
+    put:
+      description: Modify quantity
+      body:
+        application/json:
+          schema: basket-item
+          example: |
+            {
+              "sku" : "abc",
+              "name" : "",
+              "quantity" : 2
+            }
+    delete: 
+      description: Remove from basket
+/sales:
+  type: collection
+  description: Sales made at POS
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "items" : [
+              {
+                "sku" : "xyz",
+                "quantity" : 3
+              },
+              {
+                "sku" : "abc",
+                "quantity" : 1
+              }
+            ]
+          }
+  /{sale}:
+    type: member
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "date" : "2012-04-23",
+                  "total" : 102.23,
+                  "discount" : 2.77
+                  "items" : [
+                    {
+                      "sku" : "abc",
+                      "name" : "Channel No.5",
+                      "price" : 25.00,
+                      "quantity" : 2
+                    },
+                    {
+                      "sku" : "axxxbc",
+                      "name" : "Channel No.5",
+                      "price" : 27.50,
+                      "quantity" : 2
+                    }
+                  ]
+                }
+/wish-list:
+  type: collection
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "sku" : "ex2323xx"
+          }
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "wishes" : [
+                  {
+                    "sku" : "xyz",
+                    "name" : "Channel No.5",
+                    "summary" : "Great"
+                  },
+                  {
+                    "sku" : "abc",
+                    "name" : "Spice Bomb",
+                    "summary" : "Great"
+                  }
+                ]
+              }
+  /{wish}:
+    delete:
+      description: Remove from wish list
+/items:
+  type: read-only-collection
+  description: List of all items on sale
+  get:
+    queryParameters:
+      name:
+        type: string
+        required: false
+        example: Channel No.5
+      type:
+        type: string
+        required: false
+        example: Creams
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {  
+                "items" : [
+                  {
+                    "id" : 12341324,
+                    "type" : "Creams",
+                    "name" : "Dove",
+                    "summary" : "Soap! Just plain old soap!"
+                  },
+                  {
+                    "id" : 43535,
+                    "type" : "Perfumes",
+                    "name" : "Channel No.5",
+                    "summary" : "Smelly"
+                  }
+                ]
+              }
+  /{item}:
+    get:
+      is: [searchable]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "name" : "",
+                  "summary" : "",
+                  "description" : "",
+                  "type": "",
+                  "skus" : [
+                    {
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "characteristics" : [
+                        { "name" : "size", "value" : "large" },
+                        { "name" : "color", "value" : "blue" }
+                      ]
+                    },
+                    {
+                      "price" : 2.00,
+                      "stockQuantity" : 10,
+                      "characteristics" : [
+                        { "name" : "size", "value" : "small" },
+                        { "name" : "color", "value" : "red" },
+                        { "name" : "promotion", "value" : "Christmas" }
+                      ]
+                    }
+                  ]
+                }
+    /reviews:
+      type: read-only-collection
+      description: Third party reviews for this item
+/registrations/{email}:
+  type: controller
+  post:
+    body:
+      application/json:
+        schema: registration-request
+        example: |
+          {
+            "firstName" : "Nial",
+            "lastName" : "Darbey",
+            "mobileNumber" : "134123423",
+            "notificationPreferences" : [
+              "email", "sms", "web", "mobile-push"
+            ]
+          }
+  head:
+    responses:
+      200:
+        description: Email found, therefore not available
+      404:
+        description: Email not found, therefore available
+  /mobile-tokens:
+    type: collection
+    post:
+      body:
+        application/json:
+          example: |
+            {
+              "token" : "1234214"
+            }
+/top-products: &top-products
+  type: read-only-collection
+  get:
+    is: [searchable]
+  /{product}:
+    type: { document : { schema : item } }
+    /add-to-default-wish-list:
+      type: controller
+    /reviews:
+      type: read-only-collection
+/top-brands:
+  type: read-only-collection
+  description: x
+  get:
+    is: [searchable]
+  /{brand}/top-products: *top-products
+/recommendations:
+  type: read-only-collection
+  description: Recommended Products based on previous purchases
+/promotions:
+  type: read-only-collection
+  get:
+    is: [searchable]
+  /{promotion}:
+    type: { document : { schema : promotion } }
+
+/my-profile:
+  get:
+    headers:
+      email:
+        type: string
+        required: true
+        example: nial.darbey@mulesoft.com
+    responses:
+      200:
+        body:
+          application/json:
+            schema: my-profile
+            example: |
+              {
+                "x-user-id" : "1",
+                "firstName" : "Nial",
+                "lastName" : "Darbey",
+                "notificationPreferences" : [ "email", "mobile-push" ]
+              }
+  

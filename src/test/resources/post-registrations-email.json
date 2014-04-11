@@ -1,0 +1,11 @@
+{
+    "firstName": "Nial",
+    "lastName": "Darbey",
+    "mobileNumber": "134123423",
+    "notificationPreferences": [
+        "email",
+        "sms",
+        "web",
+        "mobile-push"
+    ]
+}

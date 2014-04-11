@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:mod="http://www.alainn.com/SOA/model/1.0" xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.alainn.com/SOA/message/1.0" xmlns:tns="http://www.alainn.com/SOA/message/1.0"
+	elementFormDefault="unqualified">
+	<import namespace="http://www.alainn.com/SOA/model/1.0"
+		schemaLocation="SOA-Model-1.0.xsd" />
+
+	<element name="getCustomer">
+		<complexType>
+			<choice>
+				<element ref="mod:Email" />
+				<element ref="mod:CustomerToken" />
+			</choice>
+		</complexType>
+	</element>
+	<element name="getCustomerResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+			</sequence>
+		</complexType>
+	</element>
+
+
+	<element name="processOrder">
+		<complexType>
+			<sequence>
+				<element ref="mod:Order" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="processOrderResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:OrderId" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="processRegistration">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="processRegistrationResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:CustomerRegistrationStatus" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="checkRegistrationEmail">
+		<complexType>
+			<sequence>
+				<element ref="mod:Email" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="checkRegistrationEmailResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:EmailAvailability" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="getBasket">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+			</sequence>
+		</complexType>
+	</element>
+
+
+	<element name="getBasketResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:BasketItem" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="addToBasket">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<element ref="mod:BasketItem" />
+			</sequence>
+		</complexType>
+	</element>
+
+
+
+	<element name="addToBasketResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:ItemSku" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="removeFromBasket">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<element ref="mod:Sku" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="removeFromBasketResponse">
+	</element>
+
+
+	<element name="saveOrder">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<element ref="mod:Order" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="saveOrderResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:OrderId" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="getOrderDetails">
+		<complexType>
+			<sequence>
+				<element ref="mod:OrderId" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="getOrderDetailsResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:Order" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="processSale">
+		<complexType>
+			<sequence>
+				<element ref="mod:Sale" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="processSaleResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:SaleId" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="saveSale">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<element ref="mod:Sale" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="saveSaleResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:SaleId" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="addWish">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<element ref="mod:Sku" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="addWishResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:ItemSku" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="removeWish">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<element ref="mod:Sku" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="removeWishResponse">
+	</element>
+
+	<element name="getWishList">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="getWishListResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:ItemSku" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="getItems">
+		<complexType>
+			<sequence>
+				<element ref="mod:ItemSearchCriteria" minOccurs="0" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="getItemsResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:Item" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="getItem">
+		<complexType>
+			<sequence>
+				<element ref="mod:ItemId" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="getItemResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:ItemSku" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="modifySKUStockCountBySale">
+		<complexType>
+			<sequence>
+				<element ref="mod:Sale" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="modifySKUStockCountBySaleResponse">
+
+	</element>
+	<element name="modifySKUStockCountByOrder">
+		<complexType>
+			<sequence>
+				<element ref="mod:Order" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="modifySKUStockCountByOrderResponse">
+
+	</element>
+
+	<element name="addLoyaltyPoints">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<element ref="mod:CustomerLoyaltyPoints" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="addLoyaltyPointsResponse">
+
+	</element>
+
+	<element name="addMobileToken">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<element ref="mod:MobileToken" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="addMobileTokenResponse">
+
+	</element>
+	<element name="calculateDiscount">
+		<complexType>
+			<sequence>
+				<element ref="mod:Customer" />
+				<choice>
+					<element ref="mod:Order" />
+					<element ref="mod:Sale" />
+				</choice>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="calculateDiscountResponse">
+		<complexType>
+			<sequence>
+				<element ref="mod:Discount" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="distributeOrder">
+		<complexType>
+			<sequence>
+				<element ref="mod:Order" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="distributeOrderResponse">
+
+	</element>
+</schema>

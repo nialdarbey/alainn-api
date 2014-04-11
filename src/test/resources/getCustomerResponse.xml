@@ -1,0 +1,22 @@
+<ns:getCustomerResponse xmlns:ns="http://www.alainn.com/SOA/message/1.0"
+	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+	<ns1:Customer>
+		<id>1</id>
+		<token>sadf23432</token>
+		<firstName>Nial</firstName>
+		<lastName>Darbey</lastName>
+		<email>nial.darbey@mulesoft.com</email>
+		<mobilePhoneNumber>1234123432</mobilePhoneNumber>
+		<loyaltyPoints>23</loyaltyPoints>
+		<mobileTokens>
+			<!--1 or more repetitions: -->
+			<token>123431241234324324f</token>
+			<token>123478ufhsdfa23424</token>
+		</mobileTokens>
+		<notificationPreferences>
+			<!--1 or more repetitions: -->
+			<preference>email</preference>
+			<preference>mobile-push</preference>
+		</notificationPreferences>
+	</ns1:Customer>
+</ns:getCustomerResponse>

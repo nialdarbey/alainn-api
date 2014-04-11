@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="nialdarbey" created="Thu Apr 10 15:34:18 ART 2014" description="Xml&lt;getItemsResponse&gt; To JSON" guiVersion="3.4.3.P" id="1397169942280" licenseCode="Unlicensed" licenseType="Unknown" modified="Thu Apr 10 15:34:18 ART 2014" modifiedBy="nialdarbey" name="Xml_getItemsResponse__To_JSON" preview-file="${Project_Home}/src/test/resources/getItemsResponse.xml" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getItemsResponse" _dataStructure="OBJECT" _id="__id" _type="Input" id="fc760b53-0f61-463b-a0aa-14d0b16e85a5">
+<Record fieldDelimiter="," name="getItemsResponse" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getItemsResponse/ns1:Item" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="fc760b53-0f61-463b-a0aa-14d0b16e85a5" _parent_id="__parent_id" _type="Input" id="2d15573c-4aca-4208-a7b5-9e701547a08c">
+<Record fieldDelimiter="," name="Item" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getItemsResponse/ns1:Item/id" containerType="SINGLE" label="id" name="id" type="long"/>
+<Field __index="1" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getItemsResponse/ns1:Item/name" containerType="SINGLE" label="name" name="name" type="string"/>
+<Field __index="2" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getItemsResponse/ns1:Item/summary" containerType="SINGLE" label="summary" name="summary" type="string"/>
+<Field __index="3" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getItemsResponse/ns1:Item/description" containerType="SINGLE" label="description" name="description" type="string"/>
+<Field __index="4" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getItemsResponse/ns1:Item/type" containerType="SINGLE" label="type" name="type" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object/items" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="398494d0-55f1-437a-9230-4fc140f6e118" _parent_id="__parent_id" _type="Output" id="015cf656-6229-409b-bace-f56e9f40a867">
+<Record fieldDelimiter="," name="items" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/items/id" containerType="SINGLE" label="id" name="id" type="number"/>
+<Field __index="1" __sourcePath="{}/object/items/type" containerType="SINGLE" label="type" name="type" type="string"/>
+<Field __index="2" __sourcePath="{}/object/items/name" containerType="SINGLE" label="name" name="name" type="string"/>
+<Field __index="3" __sourcePath="{}/object/items/summary" containerType="SINGLE" label="summary" name="summary" type="string"/>
+<Field __index="4" __sourcePath="{}/object/items/desciption" containerType="SINGLE" label="desciption" name="desciption" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="398494d0-55f1-437a-9230-4fc140f6e118">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" guiName="Foreach 'ns0:getItemsResponse' -&gt; 'object'" guiX="460" guiY="20" id="FOREACH_NS0_GET_ITEMS_RESPONSE_OBJECT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'ns1:Item' -&gt; 'items'" guiX="460" guiY="120" id="FOREACH_NS1_ITEM_ITEMS" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+output.__parent_id = input.__parent_id;
+//END -> DO NOT REMOVE
+output.id = input.id;
+output.name = input.name;
+output.summary = input.summary;
+output.type = input.type;
+output.desciption = input.description;]]></attr>
+</Node>
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="JSON WRITER" guiX="900" guiY="20" id="JSON_WRITER0" type="JSON_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <clover:collection clover:name="items">
+    <item clover:inPort="1" clover:key="__parent_id" clover:parentKey="__id">
+      <id>$1.id</id>
+      <type>$1.type</type>
+      <name>$1.name</name>
+      <summary>$1.summary</summary>
+      <desciption>$1.desciption</desciption>
+    </item>
+  </clover:collection>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[./src/test/resources/get-items.json]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="XML READER" guiX="20" guiY="20" id="XML_READER0" type="XML_READER">
+<attr name="xmlSchemaURL"><![CDATA[./src/main/resources/service/SOA-Message-1.0.xsd]]></attr>
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context namespacePaths="ns0=&quot;http://www.alainn.com/SOA/message/1.0&quot;" outPort="0" sequenceField="__id" xpath="/ns0:getItemsResponse">
+  <Context generatedKey="__parent_id" namespacePaths="ns1=&quot;http://www.alainn.com/SOA/model/1.0&quot;" outPort="1" parentKey="__id" sequenceField="__id" xpath="ns1:Item">
+    <Mapping cloverField="id" trim="true" xpath="id"/>
+    <Mapping cloverField="name" trim="true" xpath="name"/>
+    <Mapping cloverField="summary" trim="true" xpath="summary"/>
+    <Mapping cloverField="description" trim="true" xpath="description"/>
+    <Mapping cloverField="type" trim="true" xpath="type"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+<attr name="__rootGlobalElementName"><![CDATA[{http://www.alainn.com/SOA/message/1.0}getItemsResponse]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_NS0_GET_ITEMS_RESPONSE_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="398494d0-55f1-437a-9230-4fc140f6e118" outPort="Port 0 (out)" toNode="JSON_WRITER0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_NS1_ITEM_ITEMS:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="015cf656-6229-409b-bace-f56e9f40a867" outPort="Port 0 (out)" toNode="JSON_WRITER0:1"/>
+<Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="fc760b53-0f61-463b-a0aa-14d0b16e85a5" outPort="Port 0 (out)" toNode="FOREACH_NS0_GET_ITEMS_RESPONSE_OBJECT:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:1" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="2d15573c-4aca-4208-a7b5-9e701547a08c" outPort="Port 1 (out)" toNode="FOREACH_NS1_ITEM_ITEMS:0"/>
+</Phase>
+</Graph>
