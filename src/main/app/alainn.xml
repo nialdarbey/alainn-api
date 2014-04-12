@@ -50,42 +50,29 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
     <ws:consumer-config name="RegistrationServiceConsumer" wsdlLocation="service/RegistrationService.wsdl" service="RegistrationService" port="RegistrationPort" serviceAddress="${url.registrationService}" doc:name="Web Service Consumer" />
     <ws:consumer-config name="ItemServiceConsumer" wsdlLocation="service/ItemService.wsdl" service="ItemService" port="ItemPort" serviceAddress="${url.itemService}" doc:name="Web Service Consumer" />
     <ws:consumer-config name="OrderFulfillmentServiceConsumer" wsdlLocation="service/OrderFulfillmentService.wsdl" service="OrderFulfillmentService" port="OrderFulfillmentPort" serviceAddress="${url.orderFulfillmentService}" doc:name="Web Service Consumer" />
-    <data-mapper:config name="xml_getcustomerresponse__to_xml_getwishlist_" transformationGraphPath="xml_getcustomerresponse__to_xml_getwishlist_.grf" doc:name="xml_getcustomerresponse__to_xml_getwishlist_"/>
-    <data-mapper:config name="xml_getcustomerresponse__to_xml_processorder_" transformationGraphPath="xml_getcustomerresponse__to_xml_processorder_.grf" doc:name="xml_getcustomerresponse__to_xml_processorder_"/>
-    <data-mapper:config name="xml_getcustomerresponse__to_xml_addtobasket_" transformationGraphPath="xml_getcustomerresponse__to_xml_addtobasket_.grf" doc:name="xml_getcustomerresponse__to_xml_addtobasket_"/>
-    <data-mapper:config name="xml_getcustomerresponse__to_xml_addwish_" transformationGraphPath="xml_getcustomerresponse__to_xml_addwish_.grf" doc:name="xml_getcustomerresponse__to_xml_addwish_"/>
-    <data-mapper:config name="xml_getcustomerresponse__to_xml_removefrombasket_" transformationGraphPath="xml_getcustomerresponse__to_xml_removefrombasket_.grf" doc:name="xml_getcustomerresponse__to_xml_removefrombasket_"/>
-    <data-mapper:config name="xml_getcustomerresponse__to_xml_removewish_" transformationGraphPath="xml_getcustomerresponse__to_xml_removewish_.grf" doc:name="xml_getcustomerresponse__to_xml_removewish_"/>
-    <data-mapper:config name="xml_processorderresponse__to_json" transformationGraphPath="xml_processorderresponse__to_json.grf" doc:name="xml_processorderresponse__to_json"/>
     <data-mapper:config name="xml_getitemsresponse__to_json" transformationGraphPath="xml_getitemsresponse__to_json.grf" doc:name="xml_getitemsresponse__to_json"/>
+    <data-mapper:config name="xml_getitemresponse__to_json" transformationGraphPath="xml_getitemresponse__to_json.grf" doc:name="xml_getitemresponse__to_json"/>
+    <data-mapper:config name="json_to_xml_processorder_" transformationGraphPath="json_to_xml_processorder_.grf" doc:name="json_to_xml_processorder_"/>
+    <data-mapper:config name="xml_getcustomerresponse__to_json" transformationGraphPath="xml_getcustomerresponse__to_json.grf" doc:name="xml_getcustomerresponse__to_json"/>
+    <data-mapper:config name="xml_getwishlistresponse__to_json" transformationGraphPath="xml_getwishlistresponse__to_json.grf" doc:name="xml_getwishlistresponse__to_json"/>
+    <data-mapper:config name="xml_getbasketresponse__to_json" transformationGraphPath="xml_getbasketresponse__to_json.grf" doc:name="xml_getbasketresponse__to_json"/>
     <flow name="alainn-main" doc:name="alainn-main">
         <http:inbound-endpoint address="http://localhost:8081/api" doc:name="HTTP" />
         <apikit:router config-ref="alainn-config" doc:name="APIkit Router" />
         <exception-strategy ref="alainn-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy" />
     </flow>
     <flow name="delete:/basket/{item}:alainn-config" doc:name="delete:/basket/{item}:alainn-config">
-        <parse-template location="template/getCustomer.xml" doc:name="getCustomer.xml"/>
-        <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
-        <data-mapper:transform config-ref="xml_getcustomerresponse__to_xml_removefrombasket_" doc:name="Xml&lt;getCustomerResponse&gt; To Xml&lt;removeFromBasket&gt;">
-            <data-mapper:input-arguments>
-                <data-mapper:input-argument key="sku">#[item]</data-mapper:input-argument>
-            </data-mapper:input-arguments>
-        </data-mapper:transform>
+        <parse-template location="template/removeFromBasket.xml" doc:name="removeFromBasket.xml"/>
         <ws:consumer config-ref="BasketServiceConsumer" doc:name="remove From Basket" operation="removeFromBasket" />
     </flow>
     <flow name="delete:/wish-list/{wish}:alainn-config" doc:name="delete:/wish-list/{wish}:alainn-config">
-        <parse-template location="template/getCustomer.xml" doc:name="getCustomer.xml"/>
-        <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
-        <data-mapper:transform config-ref="xml_getcustomerresponse__to_xml_removewish_" doc:name="Xml&lt;getCustomerResponse&gt; To Xml&lt;removeWish&gt;">
-            <data-mapper:input-arguments>
-                <data-mapper:input-argument key="sku">#[wish]</data-mapper:input-argument>
-            </data-mapper:input-arguments>
-        </data-mapper:transform>
+        <parse-template location="template/removeWish.xml" doc:name="removeWish.xml"/>
         <ws:consumer config-ref="WishListServiceConsumer" doc:name="remove Wish" operation="removeWish" />
     </flow>
     <flow name="head:/registrations/{email}:alainn-config" doc:name="head:/registrations/{email}:alainn-config">
+        <parse-template location="template/checkRegistrationEmail.xml" doc:name="checkRegistrationEmail.xml"/>
         <ws:consumer config-ref="RegistrationServiceConsumer" doc:name="check Registration Email" operation="checkRegistrationEmail" />
-        <expression-transformer expression="#[xpath('/mes:checkRegistrationEmail/mod:EmailAvailability/text()').text == 'Available']" doc:name="Available?"/>
+        <expression-transformer expression="#[xpath('/mes:checkRegistrationEmailResponse/mod:EmailAvailability/text()').text == 'Available']" doc:name="Available?"/>
         <scripting:component doc:name=" if Available then throw NotFoundException">
             <scripting:script engine="Groovy"><![CDATA[if (payload == true) {
 	throw new org.mule.module.apikit.exception.NotFoundException();
@@ -93,32 +80,35 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         </scripting:component>
     </flow>
     <flow name="get:/wish-list:alainn-config" doc:name="get:/wish-list:alainn-config">
-        <parse-template location="template/getCustomer.xml" doc:name="getCustomer.xml"/>
-        <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
-        <data-mapper:transform config-ref="xml_getcustomerresponse__to_xml_getwishlist_" doc:name="Xml&lt;getCustomerResponse&gt; To Xml&lt;getWishList&gt;"/>
+        <parse-template location="template/getWishList.xml" doc:name="getWishList.xml"/>
         <ws:consumer config-ref="WishListServiceConsumer" doc:name="get Wish List" operation="getWishList" />
+        <data-mapper:transform config-ref="xml_getwishlistresponse__to_json" returnClass="java.lang.String" doc:name="Xml&lt;getWishListResponse&gt; To JSON"/>
     </flow>
     <flow name="get:/items:alainn-config" doc:name="get:/items:alainn-config">
+        <parse-template location="template/getItems.xml" doc:name="getItems.xml"/>
         <ws:consumer config-ref="ItemServiceConsumer" doc:name="get Items" operation="getItems" />
-        <data-mapper:transform config-ref="xml_getitemsresponse__to_json" doc:name="Xml&lt;getItemsResponse&gt; To JSON"/>
+        <data-mapper:transform config-ref="xml_getitemsresponse__to_json" doc:name="Xml&lt;getItemsResponse&gt; To JSON" returnClass="java.lang.String"/>
     </flow>
     <flow name="get:/basket/{item}:alainn-config" doc:name="get:/basket/{item}:alainn-config">
         <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
     </flow>
     <flow name="get:/items/{item}:alainn-config" doc:name="get:/items/{item}:alainn-config">
+        <parse-template location="template/getItem.xml" doc:name="getItem.xml"/>
         <ws:consumer config-ref="ItemServiceConsumer" doc:name="get Item" operation="getItem" />
+        <data-mapper:transform config-ref="xml_getitemresponse__to_json" doc:name="Xml&lt;getItemResponse&gt; To JSON" returnClass="java.lang.String"/>
     </flow>
     <flow name="post:/orders:alainn-config" doc:name="post:/orders:alainn-config">
-        <parse-template location="template/getCustomer.xml" doc:name="getCustomer.xml"/>
-        <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
-        <data-mapper:transform config-ref="xml_getcustomerresponse__to_xml_processorder_" doc:name="Xml&lt;getCustomerResponse&gt; To Xml&lt;processOrder&gt;"/>
+        <enricher target="flowVars.customer" doc:name="Message Enricher">
+            <processor-chain doc:name="Processor Chain">
+                <parse-template location="template/getCustomerById.xml" doc:name="getCustomerById.xml"/>
+                <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
+            </processor-chain>
+        </enricher>
+        <data-mapper:transform config-ref="json_to_xml_processorder_" doc:name="JSON To Xml&lt;Order&gt;"/>
+        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="Order2ProcessOrder.xsl" doc:name="XSLT"/>
         <ws:consumer config-ref="OrderFulfillmentServiceConsumer" doc:name="process Order" operation="processOrder" />
-        <data-mapper:transform config-ref="xml_processorderresponse__to_json" doc:name="Xml&lt;processOrderResponse&gt; To JSON"/>
     </flow>
     <flow name="post:/basket:alainn-config" doc:name="post:/basket:alainn-config">
-        <parse-template location="template/getCustomer.xml" doc:name="getCustomer.xml"/>
-        <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
-        <data-mapper:transform config-ref="xml_getcustomerresponse__to_xml_addtobasket_" doc:name="Xml&lt;getCustomerResponse&gt; To Xml&lt;addToBasket&gt;"/>
         <ws:consumer config-ref="BasketServiceConsumer" doc:name="add to Basket" operation="addToBasket" />
     </flow>
     <flow name="post:/sales:alainn-config" doc:name="post:/sales:alainn-config">
@@ -128,16 +118,18 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         <set-property propertyName="Location" value="#[apiUrl + '/sales/' + xpath('/mes:processSaleResponse/mod:SaleId/text()').text]" doc:name="Location" />
     </flow>
     <flow name="post:/wish-list:alainn-config" doc:name="post:/wish-list:alainn-config">
-        <parse-template location="template/getCustomer.xml" doc:name="getCustomer.xml"/>
-        <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
-        <data-mapper:transform config-ref="xml_getcustomerresponse__to_xml_addwish_" doc:name="Xml&lt;getCustomerResponse&gt; To Xml&lt;addWish&gt;"/>
         <ws:consumer config-ref="WishListServiceConsumer" doc:name="add Wish" operation="addWish" />
     </flow>
     <flow name="post:/registrations/{email}:alainn-config" doc:name="post:/registrations/{email}:alainn-config">
         <ws:consumer config-ref="RegistrationServiceConsumer" doc:name="process Registration" operation="processRegistration" />
     </flow>
     <flow name="post:/registrations/{email}/mobile-tokens:alainn-config" doc:name="post:/registrations/{email}/mobile-tokens:alainn-config">
-        <parse-template location="template/getCustomer.xml" doc:name="getCustomer.xml"/>
+        <enricher target="flowVars.customer" doc:name="Message Enricher">
+            <processor-chain doc:name="Processor Chain">
+                <parse-template location="template/getCustomerById.xml" doc:name="getCustomerById.xml"/>
+                <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="CustomerServiceConsumer"/>
+            </processor-chain>
+        </enricher>
         <ws:consumer config-ref="CustomerServiceConsumer" doc:name="add Mobile Token" operation="addMobileToken" />
     </flow>
     <flow name="get:/items/{item}/reviews:alainn-config" doc:name="get:/items/{item}/reviews:alainn-config">
@@ -174,7 +166,8 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
     </flow>
     <flow name="get:/basket:alainn-config" doc:name="get:/basket:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
+        <ws:consumer config-ref="BasketServiceConsumer" operation="getBasket" doc:name="get Basket"/>
+        <data-mapper:transform config-ref="xml_getbasketresponse__to_json" returnClass="java.lang.String" doc:name="Xml&lt;getBasketResponse&gt; To JSON"/>
     </flow>
     <flow name="get:/top-products:alainn-config" doc:name="get:/top-products:alainn-config">
         <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
@@ -207,6 +200,8 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
     </flow>
     <flow name="get:/my-profile:alainn-config" doc:name="get:/my-profile:alainn-config">
-        <set-payload value="{&#xA;  &quot;x-user-id&quot; : &quot;1&quot;,&#xA;  &quot;firstName&quot; : &quot;Nial&quot;,&#xA;  &quot;lastName&quot; : &quot;Darbey&quot;,&#xA;  &quot;notificationPreferences&quot; : [ &quot;email&quot;, &quot;mobile-push&quot; ]&#xA;}" doc:name="Set Payload"/>
+        <parse-template location="template/getCustomerByEmail.xml" doc:name="getCustomerByEmail.xml"/>
+        <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
+        <data-mapper:transform config-ref="xml_getcustomerresponse__to_json" doc:name="Xml&lt;getCustomerResponse&gt; To JSON" returnClass="java.lang.String"/>
     </flow>
 </mule>

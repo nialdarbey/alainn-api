@@ -1,0 +1,9 @@
+<ns:getItems xmlns:ns="http://www.alainn.com/SOA/message/1.0"
+	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+	<!--Optional: -->
+	<ns1:ItemSearchCriteria>
+		<!--You may enter the following 2 items in any order -->
+		#[t = message.inboundProperties.type; t == '' ? '' : '<type>' + t + '</type>']
+		#[n = message.inboundProperties.name; n == '' ? '' : '<name>' + n + '</name>']
+	</ns1:ItemSearchCriteria>
+</ns:getItems>

@@ -1,0 +1,29 @@
+<ns:getItemResponse xmlns:ns="http://www.alainn.com/SOA/message/1.0"
+	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+	<ns1:Item>
+		<id>1</id>
+		<name>Soap</name>
+		<summary>Soap</summary>
+		<description>Soap</description>
+		<type>Creams</type>
+	</ns1:Item>
+	<!--1 or more repetitions: -->
+	<ns1:ItemSku>
+		<sku>14wrklsdf</sku>
+		<price>100.00</price>
+		<quantityInStock>23</quantityInStock>
+		<characteristics>
+			<characteristic name="size">Big</characteristic>
+			<characteristic name="color">Red</characteristic>
+		</characteristics>
+	</ns1:ItemSku>
+	<ns1:ItemSku>
+		<sku>14wrklsdf</sku>
+		<price>100.00</price>
+		<quantityInStock>23</quantityInStock>
+		<characteristics>
+			<characteristic name="size">Big</characteristic>
+			<characteristic name="color">Red</characteristic>
+		</characteristics>
+	</ns1:ItemSku>
+</ns:getItemResponse>

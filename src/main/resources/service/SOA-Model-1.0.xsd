@@ -4,17 +4,17 @@
 
 	<element name="Customer" type="tns:customerType" />
 	<element name="Item" type="tns:itemType" />
-	<element name="ItemId" type="long" />
 	<element name="ItemSku" type="tns:skuType" />
+	<element name="ItemId" type="long" />
 	<element name="ItemSearchCriteria" type="tns:itemSearchCriteriaType" />
 	<element name="Order" type="tns:orderType" />
 	<element name="OrderId" type="long" />
 	<element name="Sale" type="tns:saleType" />
 	<element name="SaleId" type="long" />
-	<element name="BasketItem" type="tns:basketItemType" />
+	<element name="BasketItem" type="tns:transactedSkuType" />
 	<element name="Sku" type="string" />
 	<element name="Email" type="string" />
-	<element name="CustomerToken" type="string" />
+	<element name="CustomerId" type="string" />
 	<element name="CustomerRegistrationStatus" type="tns:customerRegistrationStatusType" />
 	<element name="EmailAvailability" type="tns:emailAvailabilityType" />
 	<element name="CustomerLoyaltyPoints" type="integer" />
@@ -24,7 +24,6 @@
 	<complexType name="customerType">
 		<sequence>
 			<element name="id" type="string" />
-			<element name="token" type="string" />
 			<element name="firstName" type="string" />
 			<element name="lastName" type="string" />
 			<element name="email" type="string" />
@@ -49,7 +48,7 @@
 			</element>
 		</sequence>
 	</complexType>
-	
+
 	<complexType name="itemSearchCriteriaType">
 		<all>
 			<element name="type" type="string" />
@@ -76,7 +75,7 @@
 			<element name="characteristics">
 				<complexType>
 					<sequence>
-						<element name="characteristic">
+						<element name="characteristic" maxOccurs="unbounded">
 							<complexType>
 								<simpleContent>
 									<extension base="string">
@@ -88,28 +87,35 @@
 					</sequence>
 				</complexType>
 			</element>
+			<element name="itemInfo" type="tns:itemType" minOccurs="0" />
 		</sequence>
 	</complexType>
 
-	<complexType name="itemsType">
-		<sequence>
-			<element name="item" maxOccurs="unbounded">
-				<complexType>
-					<sequence>
-						<element name="sku" type="string" />
-						<element name="quantity" type="integer" />
-						<element name="status" minOccurs="0">
-							<simpleType>
-								<restriction base="string">
-									<enumeration value="Pending" />
-									<enumeration value="Ready for Distribution" />
-								</restriction>
-							</simpleType>
-						</element>
-					</sequence>
-				</complexType>
-			</element>
-		</sequence>
+	<complexType name="transactedSkuType">
+		<complexContent>
+			<extension base="tns:skuType">
+				<sequence>
+					<element name="transactionQuantity" type="integer" />
+ 				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="orderSkuType">
+		<complexContent>
+			<extension base="tns:transactedSkuType">
+				<sequence>
+					<element name="status" minOccurs="0">
+						<simpleType>
+							<restriction base="string">
+								<enumeration value="Pending" />
+								<enumeration value="Ready for Distribution" />
+							</restriction>
+						</simpleType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
 	</complexType>
 
 	<complexType name="orderType">
@@ -119,7 +125,13 @@
 			<element name="discount" type="float" minOccurs="0" />
 			<element name="pickupLocation" type="string" />
 			<element name="pickupDate" type="date" minOccurs="0" />
-			<element name="items" type="tns:itemsType" />
+			<element name="items">
+				<complexType>
+					<sequence>
+						<element name="item" type="tns:orderSkuType" maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
 		</sequence>
 	</complexType>
 
@@ -129,10 +141,16 @@
 			<element name="total" type="float" />
 			<element name="discount" type="float" minOccurs="0" />
 			<element name="date" type="date" minOccurs="0" />
-			<element name="items" type="tns:itemsType" />
+			<element name="items">
+				<complexType>
+					<sequence>
+						<element name="item" type="tns:transactedSkuType"
+							maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
 		</sequence>
 	</complexType>
-
 
 	<simpleType name="customerRegistrationStatusType">
 		<restriction base="string">
@@ -154,10 +172,6 @@
 		</sequence>
 	</complexType>
 
-	<complexType name="basketItemType">
-		<sequence>
-			<element name="sku" type="string" />
-			<element name="quantity" type="integer" />
-		</sequence>
-	</complexType>
+
+
 </schema>

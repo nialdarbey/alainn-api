@@ -1,0 +1,39 @@
+<ns:getWishListResponse xmlns:ns="http://www.alainn.com/SOA/message/1.0" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+	<!--1 or more repetitions: -->
+	         <ns1:ItemSku>
+            <sku>1324fdad</sku>
+            <price>23.05</price>
+            <quantityInStock>10</quantityInStock>
+            <characteristics>
+               <!--1 or more repetitions:-->
+               <characteristic name="Size">Large</characteristic>
+               <characteristic name="Color">Red</characteristic>
+            </characteristics>
+            <!--Optional:-->
+            <itemInfo>
+               <id>234</id>
+               <name>Channel No.5</name>
+               <summary>?</summary>
+               <description>Really</description>
+               <type>Perfumes</type>
+            </itemInfo>
+         </ns1:ItemSku>
+         <ns1:ItemSku>
+            <sku>1324fdad</sku>
+            <price>23.05</price>
+            <quantityInStock>10</quantityInStock>
+            <characteristics>
+               <!--1 or more repetitions:-->
+               <characteristic name="Size">Large</characteristic>
+               <characteristic name="Color">Red</characteristic>
+            </characteristics>
+            <!--Optional:-->
+            <itemInfo>
+               <id>234</id>
+               <name>Channel No.5</name>
+               <summary>?</summary>
+               <description>Really</description>
+               <type>Perfumes</type>
+            </itemInfo>
+         </ns1:ItemSku>
+</ns:getWishListResponse>

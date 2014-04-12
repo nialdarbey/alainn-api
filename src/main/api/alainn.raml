@@ -17,6 +17,7 @@ schemas:
           "skus" : {
             "type" : "array",
             "items" : {
+              "sku" : { "type" : "string" },
               "price" : {
                 "type" : "object",
                 "properties" : {
@@ -53,7 +54,8 @@ schemas:
                   "id" : { "type" : "long" },
                   "type" : { "type" : "string" },
                   "name" : { "type" : "string" },
-                  "summary" : { "type" : "string" }
+                  "summary" : { "type" : "string" },
+                  "description" : { "type" : "string" }
               }
             }
           }
@@ -359,6 +361,7 @@ resourceTypes:
   - member:
       type: { document : { schema : <<resourcePathName | !singularize >> } }
       put?:
+        is: [secured]
         body:
           application/json:
             schema: <<resourcePathName>>
@@ -366,10 +369,12 @@ resourceTypes:
           204:
             description: Modified
       patch?:
+        is: [secured]
         body:
           application/json:
             schema: <<resourcePathName | !singularize>>
       delete?:
+        is: [secured]
         responses:
           204:
             description: Deleted
@@ -578,13 +583,15 @@ resourceTypes:
                     "id" : 12341324,
                     "type" : "Creams",
                     "name" : "Dove",
-                    "summary" : "Soap! Just plain old soap!"
+                    "summary" : "Soap! Just plain old soap!",
+                    "description" : "Soap! Just plain old soap!"
                   },
                   {
                     "id" : 43535,
                     "type" : "Perfumes",
                     "name" : "Channel No.5",
-                    "summary" : "Smelly"
+                    "summary" : "Smelly",
+                    "description" : "Smelly"
                   }
                 ]
               }
@@ -603,6 +610,7 @@ resourceTypes:
                   "type": "",
                   "skus" : [
                     {
+                      "sku" : "12344",
                       "price" : 1.00,
                       "stockQuantity" : 1,
                       "characteristics" : [
@@ -611,6 +619,7 @@ resourceTypes:
                       ]
                     },
                     {
+                      "sku" : "12344",
                       "price" : 2.00,
                       "stockQuantity" : 10,
                       "characteristics" : [
