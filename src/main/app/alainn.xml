@@ -56,6 +56,8 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
     <data-mapper:config name="xml_getcustomerresponse__to_json" transformationGraphPath="xml_getcustomerresponse__to_json.grf" doc:name="xml_getcustomerresponse__to_json"/>
     <data-mapper:config name="xml_getwishlistresponse__to_json" transformationGraphPath="xml_getwishlistresponse__to_json.grf" doc:name="xml_getwishlistresponse__to_json"/>
     <data-mapper:config name="xml_getbasketresponse__to_json" transformationGraphPath="xml_getbasketresponse__to_json.grf" doc:name="xml_getbasketresponse__to_json"/>
+    <data-mapper:config name="json_to_xml_1" transformationGraphPath="json_to_xml_1.grf" doc:name="json_to_xml_1"/>
+    <data-mapper:config name="json_to_xml_2" transformationGraphPath="json_to_xml_2.grf" doc:name="json_to_xml_2"/>
     <flow name="alainn-main" doc:name="alainn-main">
         <http:inbound-endpoint address="http://localhost:8081/api" doc:name="HTTP" />
         <apikit:router config-ref="alainn-config" doc:name="APIkit Router" />
@@ -98,6 +100,7 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         <data-mapper:transform config-ref="xml_getitemresponse__to_json" doc:name="Xml&lt;getItemResponse&gt; To JSON" returnClass="java.lang.String"/>
     </flow>
     <flow name="post:/orders:alainn-config" doc:name="post:/orders:alainn-config">
+        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
         <enricher target="flowVars.customer" doc:name="Message Enricher">
             <processor-chain doc:name="Processor Chain">
                 <parse-template location="template/getCustomerById.xml" doc:name="getCustomerById.xml"/>
@@ -107,30 +110,43 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         <data-mapper:transform config-ref="json_to_xml_processorder_" doc:name="JSON To Xml&lt;Order&gt;"/>
         <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="Order2ProcessOrder.xsl" doc:name="XSLT"/>
         <ws:consumer config-ref="OrderFulfillmentServiceConsumer" doc:name="process Order" operation="processOrder" />
+        <set-property propertyName="Location" value="#[flowVars.apiUrl + '/orders/' + xpath('/mes:processOrderResponse/mod:OrderId/text()').text]" doc:name="Location"/>
     </flow>
     <flow name="post:/basket:alainn-config" doc:name="post:/basket:alainn-config">
+        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
         <ws:consumer config-ref="BasketServiceConsumer" doc:name="add to Basket" operation="addToBasket" />
+        <set-property propertyName="Location" value="#[apiUrl + '/basket']" doc:name="Location"/>
     </flow>
     <flow name="post:/sales:alainn-config" doc:name="post:/sales:alainn-config">
         <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
-        <data-mapper:transform config-ref="json_to_xml_processsale_" doc:name="JSON To Xml&lt;processSale&gt;" />
+        <enricher target="flowVars.customer" doc:name="Message Enricher">
+            <processor-chain doc:name="Processor Chain">
+                <parse-template location="template/getCustomerById.xml" doc:name="getCustomerById.xml"/>
+                <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
+            </processor-chain>
+        </enricher>
+        <data-mapper:transform config-ref="json_to_xml_2" doc:name="JSON To XML"/>
+        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="Sale2ProcessSale.xsl" doc:name="XSLT"/>
         <ws:consumer config-ref="PointOfSaleServiceConsumer" doc:name="process Sale" operation="processSale" />
         <set-property propertyName="Location" value="#[apiUrl + '/sales/' + xpath('/mes:processSaleResponse/mod:SaleId/text()').text]" doc:name="Location" />
     </flow>
     <flow name="post:/wish-list:alainn-config" doc:name="post:/wish-list:alainn-config">
+        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
         <ws:consumer config-ref="WishListServiceConsumer" doc:name="add Wish" operation="addWish" />
     </flow>
     <flow name="post:/registrations/{email}:alainn-config" doc:name="post:/registrations/{email}:alainn-config">
+        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
         <ws:consumer config-ref="RegistrationServiceConsumer" doc:name="process Registration" operation="processRegistration" />
     </flow>
-    <flow name="post:/registrations/{email}/mobile-tokens:alainn-config" doc:name="post:/registrations/{email}/mobile-tokens:alainn-config">
-        <enricher target="flowVars.customer" doc:name="Message Enricher">
-            <processor-chain doc:name="Processor Chain">
-                <parse-template location="template/getCustomerById.xml" doc:name="getCustomerById.xml"/>
-                <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="CustomerServiceConsumer"/>
-            </processor-chain>
-        </enricher>
+    <flow name="post:/mobile-tokens:alainn-config" doc:name="post:/mobile-tokens:alainn-config">
+        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
+        <data-mapper:transform doc:name="JSON To XML" config-ref="json_to_xml_1">
+            <data-mapper:input-arguments>
+                <data-mapper:input-argument key="customerId">#[message.inboundProperties.'x-user-id']</data-mapper:input-argument>
+            </data-mapper:input-arguments>
+        </data-mapper:transform>
         <ws:consumer config-ref="CustomerServiceConsumer" doc:name="add Mobile Token" operation="addMobileToken" />
+        <set-property propertyName="Location" value="#[apiUrl + '/mobile-tokens']" doc:name="Location"/>
     </flow>
     <flow name="get:/items/{item}/reviews:alainn-config" doc:name="get:/items/{item}/reviews:alainn-config">
         <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />

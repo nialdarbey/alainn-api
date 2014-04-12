@@ -1,0 +1,40 @@
+{
+    "name": "",
+    "summary": "",
+    "description": "",
+    "type": "",
+    "skus": [
+        {
+            "price": 1,
+            "stockQuantity": 1,
+            "characteristics": [
+                {
+                    "name": "size",
+                    "value": "large"
+                },
+                {
+                    "name": "color",
+                    "value": "blue"
+                }
+            ]
+        },
+        {
+            "price": 2,
+            "stockQuantity": 10,
+            "characteristics": [
+                {
+                    "name": "size",
+                    "value": "small"
+                },
+                {
+                    "name": "color",
+                    "value": "red"
+                },
+                {
+                    "name": "promotion",
+                    "value": "Christmas"
+                }
+            ]
+        }
+    ]
+}

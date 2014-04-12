@@ -1,19 +1,655 @@
-<?xml version="1.0" ?><org.mule.tooling.metadata.cache.MetadataCache><version>3.5.0.02</version><projectMetadataCache><entry><string>xml_getbasketresponse__to_json</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Basket/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+<?xml version="1.0" ?><org.mule.tooling.metadata.cache.MetadataCache><version>3.5.0.02</version><projectMetadataCache><entry><string>json_to_xml_1</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties><org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty></org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;schema xmlns:mod="http://www.alainn.com/SOA/model/1.0" xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.alainn.com/SOA/message/1.0" xmlns:tns="http://www.alainn.com/SOA/message/1.0"
+	elementFormDefault="unqualified"&gt;
+	&lt;import namespace="http://www.alainn.com/SOA/model/1.0"
+		schemaLocation="SOA-Model-1.0.xsd" /&gt;
+
+	&lt;element name="getCustomer"&gt;
+		&lt;complexType&gt;
+			&lt;choice&gt;
+				&lt;element ref="mod:Email" /&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+			&lt;/choice&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="getCustomerResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+
+	&lt;element name="processOrder"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="processOrderResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:OrderId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="processRegistration"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="processRegistrationResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerRegistrationStatus" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="checkRegistrationEmail"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Email" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="checkRegistrationEmailResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:EmailAvailability" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getBasket"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+
+	&lt;element name="getBasketResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:BasketItem" maxOccurs="unbounded" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="addToBasket"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:BasketItem" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+
+
+	&lt;element name="addToBasketResponse"&gt;
+	&lt;/element&gt;
+
+	&lt;element name="removeFromBasket"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Sku" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="removeFromBasketResponse"&gt;
+	&lt;/element&gt;
+
+
+	&lt;element name="saveOrder"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="saveOrderResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:OrderId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getOrderDetails"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getOrderDetailsResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="processSale"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+				&lt;element ref="mod:Sale" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="processSaleResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:SaleId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="saveSale"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Sale" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="saveSaleResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:SaleId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="addWish"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Sku" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="addWishResponse"&gt;
+	&lt;/element&gt;
+	&lt;element name="removeWish"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Sku" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="removeWishResponse"&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getWishList"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getWishListResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:ItemSku" maxOccurs="unbounded" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getItems"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:ItemSearchCriteria" minOccurs="0" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="getItemsResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Item" maxOccurs="unbounded" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="getItem"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:ItemId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="getItemResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Item" /&gt;
+				&lt;element ref="mod:ItemSku" maxOccurs="unbounded" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="modifySKUStockCountBySale"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Sale" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="modifySKUStockCountBySaleResponse"&gt;
+
+	&lt;/element&gt;
+	&lt;element name="modifySKUStockCountByOrder"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="modifySKUStockCountByOrderResponse"&gt;
+
+	&lt;/element&gt;
+
+	&lt;element name="addLoyaltyPoints"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:CustomerLoyaltyPoints" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="addLoyaltyPointsResponse"&gt;
+
+	&lt;/element&gt;
+
+	&lt;element name="addMobileToken"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:MobileToken" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="addMobileTokenResponse"&gt;
+
+	&lt;/element&gt;
+	&lt;element name="calculateDiscount"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+				&lt;choice&gt;
+					&lt;element ref="mod:Order" /&gt;
+					&lt;element ref="mod:Sale" /&gt;
+				&lt;/choice&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="calculateDiscountResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Discount" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="distributeOrder"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="distributeOrderResponse"&gt;
+
+	&lt;/element&gt;
+&lt;/schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>addMobileToken</localPart><prefix></prefix></rootElement><encoding>UTF-8</encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>json_to_xml_2</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties><org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty></org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;schema xmlns:mod="http://www.alainn.com/SOA/model/1.0" xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.alainn.com/SOA/message/1.0" xmlns:tns="http://www.alainn.com/SOA/message/1.0"
+	elementFormDefault="unqualified"&gt;
+	&lt;import namespace="http://www.alainn.com/SOA/model/1.0"
+		schemaLocation="SOA-Model-1.0.xsd" /&gt;
+
+	&lt;element name="getCustomer"&gt;
+		&lt;complexType&gt;
+			&lt;choice&gt;
+				&lt;element ref="mod:Email" /&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+			&lt;/choice&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="getCustomerResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+
+	&lt;element name="processOrder"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="processOrderResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:OrderId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="processRegistration"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="processRegistrationResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerRegistrationStatus" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="checkRegistrationEmail"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Email" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="checkRegistrationEmailResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:EmailAvailability" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getBasket"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+
+	&lt;element name="getBasketResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:BasketItem" maxOccurs="unbounded" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="addToBasket"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:BasketItem" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+
+
+	&lt;element name="addToBasketResponse"&gt;
+	&lt;/element&gt;
+
+	&lt;element name="removeFromBasket"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Sku" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="removeFromBasketResponse"&gt;
+	&lt;/element&gt;
+
+
+	&lt;element name="saveOrder"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="saveOrderResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:OrderId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getOrderDetails"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getOrderDetailsResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="processSale"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+				&lt;element ref="mod:Sale" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="processSaleResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:SaleId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="saveSale"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Sale" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="saveSaleResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:SaleId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="addWish"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Sku" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="addWishResponse"&gt;
+	&lt;/element&gt;
+	&lt;element name="removeWish"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:Sku" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="removeWishResponse"&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getWishList"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getWishListResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:ItemSku" maxOccurs="unbounded" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+
+	&lt;element name="getItems"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:ItemSearchCriteria" minOccurs="0" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="getItemsResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Item" maxOccurs="unbounded" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="getItem"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:ItemId" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="getItemResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Item" /&gt;
+				&lt;element ref="mod:ItemSku" maxOccurs="unbounded" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="modifySKUStockCountBySale"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Sale" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="modifySKUStockCountBySaleResponse"&gt;
+
+	&lt;/element&gt;
+	&lt;element name="modifySKUStockCountByOrder"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="modifySKUStockCountByOrderResponse"&gt;
+
+	&lt;/element&gt;
+
+	&lt;element name="addLoyaltyPoints"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:CustomerLoyaltyPoints" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="addLoyaltyPointsResponse"&gt;
+
+	&lt;/element&gt;
+
+	&lt;element name="addMobileToken"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:CustomerId" /&gt;
+				&lt;element ref="mod:MobileToken" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="addMobileTokenResponse"&gt;
+
+	&lt;/element&gt;
+	&lt;element name="calculateDiscount"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Customer" /&gt;
+				&lt;choice&gt;
+					&lt;element ref="mod:Order" /&gt;
+					&lt;element ref="mod:Sale" /&gt;
+				&lt;/choice&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="calculateDiscountResponse"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Discount" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="distributeOrder"&gt;
+		&lt;complexType&gt;
+			&lt;sequence&gt;
+				&lt;element ref="mod:Order" /&gt;
+			&lt;/sequence&gt;
+		&lt;/complexType&gt;
+	&lt;/element&gt;
+	&lt;element name="distributeOrderResponse"&gt;
+
+	&lt;/element&gt;
+&lt;/schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/model/1.0</namespaceURI><localPart>Sale</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/output/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>xml_getbasketresponse__to_json</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Basket/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getBasketResponse</localPart><prefix></prefix></rootElement><encoding>US-ASCII</encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>RegistrationServiceConsumer</string><map><entry><string>checkRegistrationEmail</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Registration/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getBasketResponse</localPart><prefix></prefix></rootElement><encoding>US-ASCII</encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>RegistrationServiceConsumer</string><map><entry><string>checkRegistrationEmail</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Registration/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>checkRegistrationEmail</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>checkRegistrationEmailResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>ItemServiceConsumer</string><map><entry><string>getItem</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Item/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>checkRegistrationEmail</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>checkRegistrationEmailResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>ItemServiceConsumer</string><map><entry><string>getItem</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Item/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getItem</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getItemResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry><entry><string>getItems</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Item/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getItem</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getItemResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry><entry><string>getItems</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Item/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getItems</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getItemsResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>xml_getwishlistresponse__to_json</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/WishList/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getItems</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getItemsResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>BasketServiceConsumer</string><map><entry><string>removeFromBasket</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Basket/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getWishListResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>BasketServiceConsumer</string><map><entry><string>removeFromBasket</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Basket/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>removeFromBasket</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>removeFromBasketResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry><entry><string>getBasket</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getBasket</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel" reference="../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload"></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>xml_getwishlistresponse__to_json</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/WishList/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>removeFromBasket</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>removeFromBasketResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry><entry><string>getBasket</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getBasket</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel" reference="../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload"></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>json_to_xml_processsale_</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/PointOfSale/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getWishListResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>json_to_xml_processsale_</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/PointOfSale/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>processSale</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>xml_getitemresponse__to_json</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel" reference="../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/output/payload"></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>PointOfSaleServiceConsumer</string><map><entry><string>processSale</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel" reference="../../../../../../../../entry[6]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/output/payload"></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../../../../../../../entry[6]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/output/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>processSaleResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>WishListServiceConsumer</string><map><entry><string>getWishList</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../../../../../../../entry[4]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getWishList</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel" reference="../../../../../../../../entry[4]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload"></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry><entry><string>removeWish</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/WishList/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>processSale</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>xml_getitemresponse__to_json</string><map><entry><string>http://www.mulesoft.org/schema/mule/ee/data-mapper/transform</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel" reference="../../../../../../../../entry[5]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/output/payload"></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>PointOfSaleServiceConsumer</string><map><entry><string>processSale</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel" reference="../../../../../../../../entry[8]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/output/payload"></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../../../../../../../entry[8]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/output/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>processSaleResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>WishListServiceConsumer</string><map><entry><string>getWishList</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../../../../../../../entry[7]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getWishList</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel" reference="../../../../../../../../entry[7]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload"></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry><entry><string>removeWish</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/WishList/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>removeWish</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>removeWishResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>CustomerServiceConsumer</string><map><entry><string>getCustomer</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Customer/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>removeWish</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>removeWishResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry><entry><string>CustomerServiceConsumer</string><map><entry><string>getCustomer</string><map><entry><string>__default__</string><org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry><input class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas><string>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mes="http://www.alainn.com/SOA/message/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.alainn.com/SOA/service/Customer/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"&gt;
 			&lt;xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd"/&gt;
-		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getCustomer</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getCustomerResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry></projectMetadataCache></org.mule.tooling.metadata.cache.MetadataCache>
+		&lt;/xsd:schema&gt;</string></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getCustomer</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></input><output class="org.mule.common.metadata.DefaultMetaData"><payload class="org.mule.common.metadata.DefaultXmlMetaDataModel"><dataType>XML</dataType><metaDataModelPropertiesManager><properties></properties></metaDataModelPropertiesManager><fields></fields><schemas reference="../../../input/payload/schemas"></schemas><rootElement><namespaceURI>http://www.alainn.com/SOA/message/1.0</namespaceURI><localPart>getCustomerResponse</localPart><prefix></prefix></rootElement><encoding reference="../../../../../../../../../entry[3]/map/entry/map/entry/org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry/input/payload/encoding"></encoding></payload><properties><entry><org.mule.common.metadata.MetaDataPropertyScope>FLOW</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>INBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>OUTBOUND</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry><entry><org.mule.common.metadata.MetaDataPropertyScope>SESSION</org.mule.common.metadata.MetaDataPropertyScope><org.mule.common.metadata.MetaDataProperties><fields></fields></org.mule.common.metadata.MetaDataProperties></entry></properties></output></org.mule.tooling.metadata.cache.MetadataCache_-DefaultMetadataCacheEntry></entry></map></entry></map></entry></projectMetadataCache></org.mule.tooling.metadata.cache.MetadataCache>

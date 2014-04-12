@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="nialdarbey" created="Sat Apr 12 11:46:43 ART 2014" description="Xml&lt;getBasketResponse&gt; To JSON" guiVersion="3.4.3.P" id="1397333827429" licenseCode="Unlicensed" licenseType="Unknown" modified="Sat Apr 12 11:46:43 ART 2014" modifiedBy="nialdarbey" name="Xml_getBasketResponse__To_JSON" preview-file="${Project_Home}/src/test/resources/getBasketResponse.xml" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __schemaType="{http://www.alainn.com/SOA/model/1.0}transactedSkuType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="91199089-dbdf-461e-9e4b-1d1d750fb707" _parent_id="__parent_id" _type="Input" id="e7ff301f-06eb-4241-9489-1914a346dd99">
+<Record fieldDelimiter="," name="BasketItem" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __schemaType="{http://www.alainn.com/SOA/model/1.0}transactedSkuType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/sku" containerType="SINGLE" label="sku" name="sku" type="string"/>
+<Field __index="1" __schemaType="{http://www.alainn.com/SOA/model/1.0}transactedSkuType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/price" containerType="SINGLE" label="price" name="price" type="number"/>
+<Field __index="2" __schemaType="{http://www.alainn.com/SOA/model/1.0}transactedSkuType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/quantityInStock" containerType="SINGLE" label="quantityInStock" name="quantityInStock" type="integer"/>
+<Field __index="5" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/itemInfo/id" containerType="SINGLE" label="id" name="id" type="long"/>
+<Field __index="6" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/itemInfo/name" containerType="SINGLE" label="name" name="name" type="string"/>
+<Field __index="7" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/itemInfo/summary" containerType="SINGLE" label="summary" name="summary" type="string"/>
+<Field __index="8" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/itemInfo/description" containerType="SINGLE" label="description" name="description" type="string"/>
+<Field __index="9" __schemaType="{http://www.alainn.com/SOA/model/1.0}itemType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/itemInfo/type" containerType="SINGLE" label="type" name="type" type="string"/>
+<Field __index="10" __schemaType="{http://www.alainn.com/SOA/model/1.0}transactedSkuType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/transactionQuantity" containerType="SINGLE" label="transactionQuantity" name="transactionQuantity" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __index="3" __referenceCounter="0" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/characteristics/characteristic" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="e7ff301f-06eb-4241-9489-1914a346dd99" _parent_id="__parent_id" _type="Input" id="feaf881d-ebac-4822-8b76-73e9b647cf52">
+<Record fieldDelimiter="," name="characteristic" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="3" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/characteristics/characteristic/@name" containerType="SINGLE" label="name" name="name" type="string"/>
+<Field __index="4" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse/ns1:BasketItem/characteristics/characteristic/@text()" containerType="SINGLE" label="text()" name="text" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getBasketResponse" _dataStructure="OBJECT" _id="__id" _type="Input" id="91199089-dbdf-461e-9e4b-1d1d750fb707">
+<Record fieldDelimiter="," name="getBasketResponse" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object/items" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="431f6a7a-30e9-448c-a24b-73dcb9d92e77" _parent_id="__parent_id" _type="Output" id="492ec782-ef5c-47f3-b1fc-d05b547c4945">
+<Record fieldDelimiter="," name="items" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" label="__parent_id" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" label="__id" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/items/sku" containerType="SINGLE" label="sku" name="sku" type="string"/>
+<Field __index="1" __sourcePath="{}/object/items/name" containerType="SINGLE" label="name" name="name" type="string"/>
+<Field __index="2" __sourcePath="{}/object/items/price" containerType="SINGLE" label="price" name="price" type="number"/>
+<Field __index="3" __sourcePath="{}/object/items/quantity" containerType="SINGLE" label="quantity" name="quantity" type="number"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="431f6a7a-30e9-448c-a24b-73dcb9d92e77">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" label="__id" name="__id" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" guiName="Foreach 'ns0:getBasketResponse' -&gt; 'object'" guiX="460" guiY="20" id="FOREACH_NS0_GET_BASKET_RESPONSE_OBJECT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'ns1:BasketItem' -&gt; 'items'" guiX="460" guiY="120" id="FOREACH_NS1_BASKET_ITEM_ITEMS" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+output.__parent_id = input.__parent_id;
+//END -> DO NOT REMOVE
+output.sku = input.sku;
+output.price = input.price;
+output.name = input.name;
+output.quantity = input.transactionQuantity;]]></attr>
+</Node>
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="JSON WRITER" guiX="900" guiY="20" id="JSON_WRITER0" type="JSON_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <clover:collection clover:name="items">
+    <item clover:inPort="1" clover:key="__parent_id" clover:parentKey="__id">
+      <sku>$1.sku</sku>
+      <name>$1.name</name>
+      <price>$1.price</price>
+      <quantity>$1.quantity</quantity>
+    </item>
+  </clover:collection>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[./src/test/resources/get-basket.json]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="XML READER" guiX="20" guiY="20" id="XML_READER0" type="XML_READER">
+<attr name="xmlSchemaURL"><![CDATA[./src/main/resources/service/SOA-Message-1.0.xsd]]></attr>
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context namespacePaths="ns0=&quot;http://www.alainn.com/SOA/message/1.0&quot;" outPort="0" sequenceField="__id" xpath="/ns0:getBasketResponse">
+  <Context generatedKey="__parent_id" namespacePaths="ns1=&quot;http://www.alainn.com/SOA/model/1.0&quot;" outPort="1" parentKey="__id" sequenceField="__id" xpath="ns1:BasketItem">
+    <Mapping cloverField="sku" trim="true" xpath="sku"/>
+    <Mapping cloverField="price" trim="true" xpath="price"/>
+    <Mapping cloverField="quantityInStock" trim="true" xpath="quantityInStock"/>
+    <Mapping cloverField="id" trim="true" xpath="itemInfo/id"/>
+    <Mapping cloverField="name" trim="true" xpath="itemInfo/name"/>
+    <Mapping cloverField="summary" trim="true" xpath="itemInfo/summary"/>
+    <Mapping cloverField="description" trim="true" xpath="itemInfo/description"/>
+    <Mapping cloverField="type" trim="true" xpath="itemInfo/type"/>
+    <Mapping cloverField="transactionQuantity" trim="true" xpath="transactionQuantity"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+<attr name="__rootGlobalElementName"><![CDATA[{http://www.alainn.com/SOA/message/1.0}getBasketResponse]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_NS0_GET_BASKET_RESPONSE_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="431f6a7a-30e9-448c-a24b-73dcb9d92e77" outPort="Port 0 (out)" toNode="JSON_WRITER0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_NS1_BASKET_ITEM_ITEMS:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="492ec782-ef5c-47f3-b1fc-d05b547c4945" outPort="Port 0 (out)" toNode="JSON_WRITER0:1"/>
+<Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="91199089-dbdf-461e-9e4b-1d1d750fb707" outPort="Port 0 (out)" toNode="FOREACH_NS0_GET_BASKET_RESPONSE_OBJECT:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:1" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="e7ff301f-06eb-4241-9489-1914a346dd99" outPort="Port 1 (out)" toNode="FOREACH_NS1_BASKET_ITEM_ITEMS:0"/>
+</Phase>
+</Graph>

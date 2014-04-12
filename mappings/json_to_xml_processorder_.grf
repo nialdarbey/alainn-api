@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="nialdarbey" created="Thu Apr 10 22:38:14 ART 2014" description="JSON To Xml&lt;processOrder&gt;" guiVersion="3.4.3.P" id="1397228641852" licenseCode="Unlicensed" licenseType="Unknown" modified="Thu Apr 10 22:38:14 ART 2014" modifiedBy="nialdarbey" name="JSON_To_Xml_processOrder_" preview-file="${Project_Home}/src/test/resources/post-orders.json" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="5" __referenceCounter="1" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/items/item" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="0b62629b-46e5-447c-aeec-b965d30c6cba" _parent_id="__parent_id" _type="Output" id="a4adee3b-d817-47aa-8ae4-6df550541880">
+<Record fieldDelimiter="," name="item" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="5" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/items/item/sku" containerType="SINGLE" label="sku" name="sku" type="string"/>
+<Field __index="6" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/items/item/quantity" containerType="SINGLE" label="quantity" name="quantity" type="integer"/>
+<Field __index="7" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/items/item/status" containerType="SINGLE" label="status" name="status" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="1" __referenceCounter="1" __sourcePath="{}/object/items" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="1744db48-b052-43a6-9e0b-5885b4a7b65c" _parent_id="__parent_id" _type="Input" id="3667e177-43ea-4ba3-93f3-198861e1f273">
+<Record fieldDelimiter="," name="items" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" label="__parent_id" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" label="__id" name="__id" type="string"/>
+<Field __index="1" __sourcePath="{}/object/items/sku" containerType="SINGLE" label="sku" name="sku" type="string"/>
+<Field __index="2" __sourcePath="{}/object/items/quantity" containerType="SINGLE" label="quantity" name="quantity" type="number"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="1744db48-b052-43a6-9e0b-5885b4a7b65c">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" label="__id" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/pickupLocation" containerType="SINGLE" label="pickupLocation" name="pickupLocation" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __schemaType="{http://www.alainn.com/SOA/model/1.0}orderType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order" _dataStructure="OBJECT" _id="__id" _type="Output" id="0b62629b-46e5-447c-aeec-b965d30c6cba">
+<Record fieldDelimiter="," name="Order" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __schemaType="{http://www.alainn.com/SOA/model/1.0}orderType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/id" containerType="SINGLE" label="id" name="id" type="long"/>
+<Field __index="1" __schemaType="{http://www.alainn.com/SOA/model/1.0}orderType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/total" containerType="SINGLE" label="total" name="total" type="number"/>
+<Field __index="2" __schemaType="{http://www.alainn.com/SOA/model/1.0}orderType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/discount" containerType="SINGLE" label="discount" name="discount" type="number"/>
+<Field __index="3" __schemaType="{http://www.alainn.com/SOA/model/1.0}orderType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/pickupLocation" containerType="SINGLE" label="pickupLocation" name="pickupLocation" type="string"/>
+<Field __index="4" __schemaType="{http://www.alainn.com/SOA/model/1.0}orderType" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns0}/ns0:Order/pickupDate" containerType="SINGLE" label="pickupDate" name="pickupDate" type="date"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="XML WRITER" guiX="900" guiY="20" id="EXT_XML_WRITER0" type="EXT_XML_WRITER" xmlSchemaURL="./src/main/resources/service/SOA-Message-1.0.xsd">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:element clover:name="ns0:Order" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" xmlns:ns0="http://www.alainn.com/SOA/model/1.0" clover:inPort="0">
+  <id>$0.id</id>
+  <total>$0.total</total>
+  <discount>$0.discount</discount>
+  <pickupLocation>$0.pickupLocation</pickupLocation>
+  <pickupDate>$0.pickupDate</pickupDate>
+  <items>
+    <item clover:inPort="1" clover:key="__parent_id" clover:parentKey="__id">
+      <sku>$1.sku</sku>
+      <quantity>$1.quantity</quantity>
+      <status>$1.status</status>
+    </item>
+  </items>
+</clover:element>]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+<attr name="__rootGlobalElementName"><![CDATA[{http://www.alainn.com/SOA/model/1.0}Order]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'items' -&gt; 'item'" guiX="460" guiY="120" id="FOREACH_ITEMS_ITEM" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+output.__parent_id = input.__parent_id;
+//END -> DO NOT REMOVE
+output.sku = input.sku;
+output.quantity = (isnull(input.quantity) ? null : double2integer(input.quantity));
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'ns0:Order'" guiX="460" guiY="20" id="FOREACH_OBJECT_NS0_ORDER" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.pickupLocation = input.pickupLocation;
+]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="JSON READER" guiX="20" guiY="20" id="JSON_READER0" type="JSON_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context xpath="/root">
+  <Context outPort="0" sequenceField="__id" xpath="object">
+    <Mapping cloverField="pickupLocation" trim="true" xpath="pickupLocation"/>
+    <Context generatedKey="__parent_id" outPort="1" parentKey="__id" sequenceField="__id" xpath="items">
+      <Mapping cloverField="sku" trim="true" xpath="sku"/>
+      <Mapping cloverField="quantity" trim="true" xpath="quantity"/>
+    </Context>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[./src/test/resources/post-orders.json]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_ITEMS_ITEM:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="a4adee3b-d817-47aa-8ae4-6df550541880" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:1"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_NS0_ORDER:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="0b62629b-46e5-447c-aeec-b965d30c6cba" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
+<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="1744db48-b052-43a6-9e0b-5885b4a7b65c" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_NS0_ORDER:0"/>
+<Edge debugMode="true" fromNode="JSON_READER0:1" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="3667e177-43ea-4ba3-93f3-198861e1f273" outPort="Port 1 (out)" toNode="FOREACH_ITEMS_ITEM:0"/>
+</Phase>
+</Graph>

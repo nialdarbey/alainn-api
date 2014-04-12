@@ -654,15 +654,15 @@ resourceTypes:
         description: Email found, therefore not available
       404:
         description: Email not found, therefore available
-  /mobile-tokens:
-    type: collection
-    post:
-      body:
-        application/json:
-          example: |
-            {
-              "token" : "1234214"
-            }
+/mobile-tokens:
+  type: collection
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "token" : "1234214"
+          }
 /top-products: &top-products
   type: read-only-collection
   get:
