@@ -30,7 +30,7 @@
 	<wsdl:binding name="RegistrationSoap" type="tns:Registration">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="processRegistration">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Registration/1.0/processRegistration" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Registration/1.0/processRegistration" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
@@ -39,7 +39,7 @@
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="checkRegistrationEmail">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Registration/1.0/checkRegistrationEmail" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Registration/1.0/checkRegistrationEmail" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>

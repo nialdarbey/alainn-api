@@ -8,5 +8,6 @@
 	<classpathentry kind="src" output="target/test-classes" path="src/test/resources"/>
 	<classpathentry kind="src" path="src/main/api"/>
 	<classpathentry kind="con" path="MULE_LIB/APIkit"/>
+	<classpathentry kind="con" path="MULE_LIB/Salesforce"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

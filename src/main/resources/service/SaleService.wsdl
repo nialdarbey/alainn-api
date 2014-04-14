@@ -20,7 +20,7 @@
 	<wsdl:binding name="SaleSoap" type="tns:Sale">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="saveSale">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Sale/1.0/saveSale" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Sale/1.0/saveSale" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>

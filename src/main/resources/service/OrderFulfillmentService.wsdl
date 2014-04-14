@@ -20,7 +20,7 @@
 	<wsdl:binding name="OrderFulfillmentSoap" type="tns:OrderFulfillment">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="processOrder">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/OrderFulfillment/1.0/processOrder" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/OrderFulfillment/1.0/processOrder" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>

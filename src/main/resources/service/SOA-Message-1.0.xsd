@@ -239,7 +239,6 @@
 	<element name="getItemResponse">
 		<complexType>
 			<sequence>
-				<element ref="mod:Item" />
 				<element ref="mod:ItemSku" maxOccurs="unbounded" />
 			</sequence>
 		</complexType>

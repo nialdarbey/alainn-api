@@ -20,7 +20,7 @@
 	<wsdl:binding name="PointOfSaleSoap" type="tns:PointOfSale">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="processSale">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/PointOfSale/1.0/processSale" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/PointOfSale/1.0/processSale" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>

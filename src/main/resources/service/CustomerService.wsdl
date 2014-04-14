@@ -40,7 +40,7 @@
 	<wsdl:binding name="CustomerSoap" type="tns:Customer">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="getCustomer">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Customer/1.0/getCustomer" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Customer/1.0/getCustomer" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
@@ -49,7 +49,7 @@
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="addLoyaltyPoints">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Customer/1.0/addLoyaltyPoints" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Customer/1.0/addLoyaltyPoints" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
@@ -58,7 +58,7 @@
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="addMobileToken">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Customer/1.0/addMobileToken" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Customer/1.0/addMobileToken" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>

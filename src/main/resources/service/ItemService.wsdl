@@ -50,7 +50,7 @@
 	<wsdl:binding name="ItemSoap" type="tns:Item">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="getItems">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Item/1.0/getItems" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/getItems" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
@@ -59,7 +59,7 @@
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="getItem">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Item/1.0/getItem" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/getItem" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
@@ -68,7 +68,7 @@
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="modifySKUStockCountBySale">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Item/1.0/modifySKUStockCountBySale" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/modifySKUStockCountBySale" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
@@ -77,7 +77,7 @@
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="modifySKUStockCountByOrder">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Item/1.0/modifySKUStockCountByOrder" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/modifySKUStockCountByOrder" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>

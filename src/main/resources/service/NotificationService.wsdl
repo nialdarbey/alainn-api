@@ -20,7 +20,7 @@
 	<wsdl:binding name="NotificationSoap" type="tns:Notification">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="notifySKUItemMovement">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Notification/1.0/notifySKUItemMovement" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Notification/1.0/notifySKUItemMovement" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>

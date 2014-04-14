@@ -20,7 +20,7 @@
 	<wsdl:binding name="DiscountSoap" type="tns:Discount">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="calculateDiscount">
-			<soap:operation soapAction="http://http://www.alainn.com/SOA/service/Discount/1.0/calculateDiscount" />
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Discount/1.0/calculateDiscount" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>
