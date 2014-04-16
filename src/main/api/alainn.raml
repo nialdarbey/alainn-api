@@ -10,35 +10,63 @@ schemas:
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type" : "object",
         "properties" : {
-          "name" : { "type" : "string" },
-          "summary" : { "type" : "string" },
-          "description" : { "type" : "string" },
-          "type" : { "type" : "string" },
-          "skus" : {
+          "links" : {
             "type" : "array",
             "items" : {
-              "sku" : { "type" : "string" },
-              "price" : {
-                "type" : "object",
-                "properties" : {
-                  "currency" : { "type" : "string" },
-                  "value" : { "type" : "integer" }
-                }
-              },  
-              "stockQuantity" : { "type" : "number" },
-              "characteristics" : {
+              "type" : "object",
+              "properties" : {
+                "href" : { "type" : "string" },
+                "label" : { "type" : "string" },
+                "rel" : { "type" : "string" }
+              }
+            }
+          },
+          "id" : { "type" : "string" },
+          "name" : { "type" : "string" },
+          "summary" : { "type" : "string" },
+          "type" : { "type" : "string" },
+          "description" : { "type" : "string" },
+          "skus" : {
+            "type" : "object",
+            "properties" : {
+              "collection" : {
                 "type" : "array",
                 "items" : {
                   "type" : "object",
                   "properties" : {
+                    "links" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "href" : { "type" : "string" },
+                          "label" : { "type" : "string" },
+                          "rel" : { "type" : "string" }
+                        }
+                      }
+                    },
+                    "id" : { "type" : "long" },
+                    "type" : { "type" : "string" },
                     "name" : { "type" : "string" },
-                    "value" : { "type" : "string" }
+                    "summary" : { "type" : "string" },
+                    "sku" : { "type" : "string" },
+                    "price" : { "type" : "number" },  
+                    "stockQuantity" : { "type" : "integer" },
+                    "characteristics" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "name" : { "type" : "string" },
+                          "value" : { "type" : "string" }
+                        }
+                      }
+                    }
                   }
                 }
               }
             }
           }
-          
         }    
       }
   - items: &items-schema |
@@ -46,21 +74,38 @@ schemas:
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type" : "object",
         "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "type" : "object",
-              "properties" : {
-                  "id" : { "type" : "long" },
-                  "type" : { "type" : "string" },
-                  "name" : { "type" : "string" },
-                  "summary" : { "type" : "string" },
-                  "description" : { "type" : "string" }
+          "collection" : {
+            "type" : "object",
+            "properties" : {
+              "links" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "href" : { "type" : "string" },
+                    "label" : { "type" : "string" },
+                    "rel" : { "type" : "string" }
+                  }
+                }
+              },
+              "items" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                      "id" : { "type" : "long" },
+                      "type" : { "type" : "string" },
+                      "name" : { "type" : "string" },
+                      "summary" : { "type" : "string" }
+                  }
+                }
               }
             }
           }
         }    
       }
+  - pending-order: *item-schema
+  - pending-orders: *items-schema
   - reviews: |
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
@@ -80,7 +125,16 @@ schemas:
           }
         }    
       }
-  - top-products: *items-schema
+  - review-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "review" : { "type" : "string" }
+
+        }    
+      }
+  - top-items: *items-schema
   - top-brands: |
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
@@ -147,7 +201,7 @@ schemas:
           }
         }
       }
-  - basket-item: | 
+  - basket-item: &basket-item | 
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type" : "object",
@@ -155,6 +209,17 @@ schemas:
           "sku" : { "type" : "string" },
           "name" : { "type" : "string" },
           "quantity" : { "type" : "integer" }
+        }
+      }
+  - skus: *basket-item
+  - orders: | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "pickupLocation" : { "type" : "string" }
         }
       }
   - order: | 
@@ -166,11 +231,22 @@ schemas:
           "total" : { "type" : "number" },
           "discount" : { "type" : "number" },
           "pickupLocation" : { "type" : "string" },
-          "items" : {
+          "collection" : {
             "type" : "array",
             "items" : { 
               "type" : "object",
               "properties" : {
+                "links" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "href" : { "type" : "string" },
+                      "label" : { "type" : "string" },
+                      "rel" : { "type" : "string" }
+                    }
+                  }
+                },
                 "sku" : { "type" : "string" },
                 "name" : { "type" : "string" },
                 "price" : { "type" : "number" },
@@ -181,17 +257,7 @@ schemas:
           }
         }
       }
-  - orders: | 
-      {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type" : "object",
-        "properties" : {
-          "date" : { "type" : "date" },
-          "total" : { "type" : "number" },
-          "pickupLocation" : { "type" : "string" }
-        }
-      }
-  - order-request: |
+  - order-request: &order-request-schema |
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type" : "object",
@@ -209,6 +275,7 @@ schemas:
           }
         }
       }
+  - return-request: *order-request-schema
   - sale: |
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
@@ -313,20 +380,34 @@ documentation:
       * B
       * C
 traits:
-  - searchable:
-      queryParameters:
-        q:
-          displayName: Search criteria
-          description: Filter on collection
-          type: string
-          required: false
-          example: q=type:blushers
   - secured:
       headers:
         x-user-id:
           type: string
           required: true
           example: 4322234
+  - pageable:
+      queryParameters:
+        pageIndex:
+          type: integer
+          default: 0
+          example: 10
+          required: false
+        pageSize:
+          type: integer
+          default: 10
+          example: 20
+          required: false
+  - searchable:
+      queryParameters:
+        name:
+          type: string
+          required: false
+          example: Channel No.5
+        type:
+          type: string
+          required: false
+          example: Creams
 resourceTypes: 
   - document:
       get:
@@ -338,6 +419,8 @@ resourceTypes:
                 schema: <<schema>>
   - read-only-collection:
       type: { document : { schema : <<resourcePathName>> } }
+      get:
+        is: [pageable]
   - collection:
       type: read-only-collection
       post:
@@ -378,28 +461,46 @@ resourceTypes:
         responses:
           204:
             description: Deleted
-/orders:
-  type: collection
-  description: Orders both pending and fulfilled
-  post:
-    body:
-      application/json:
-        example: |
-         {
-            "pickupLocation" : "Buenos Aires",
-            "items" : [
+/items:
+  type: read-only-collection
+  description: List of all items on sale
+  get:
+    is: [searchable]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
               {
-                "sku" : "xyz",
-                "quantity" : 3
-              },
-              {
-                "sku" : "abc",
-                "quantity" : 1
+                "collection" : {
+                  "links" : [
+                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items" }
+                  ],
+                  "items" : [
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/897234234" }
+                      ],
+                      "id" : "897234234",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!"
+                    },
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/43535" }               
+                      ],
+                      "id" : "43535",
+                      "type" : "Perfumes",
+                      "name" : "Channel No.5",
+                      "summary" : "Smelly"
+                    }
+                  ]
+                }
               }
-            ]
-          }
-  /{order}: 
-    type: member
+  /{item}:
     get:
       responses:
         200:
@@ -407,31 +508,163 @@ resourceTypes:
             application/json:
               example: |
                 {
-                  "date" : 1243214,
-                  "total" : 123.02,
-                  "discount" : 12.00,
-                  "pickupLocation" : "Buenos Aires",
-                  "items" : [
+                  "links" : [
+                    { "rel" : "image", "href" : "" },
+                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354" }
+                  ],
+                  "id" : "475635812354",
+                  "type" : "Creams",
+                  "name" : "Dove",
+                  "description" : "Soap! Just plain old soap!",
+                  "skus" : [
                     {
-                      "sku" : "abc",
-                      "name" : "",
-                      "price" : 1.0,
-                      "quantity" : 2,
-                      "status" : "Delivered"
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354/skus/12344" },
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354" }
+                      ],
+                      "id" : "12343214",
+                      "summary" : "Great",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1
                     },
                     {
-                      "sku" : "xyz",
-                      "name" : "",
-                      "price" : 5.0,
-                      "quantity" : 2,
-                      "status" : "Delivered"
+                       "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354/skus/12343214" },
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354" }
+                      ],
+                      "id" : "12343214",
+                      "summary" : "Great",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1
+                    }
+                 ]
+                }
+    /reviews:
+      type: read-only-collection
+      description: Third party reviews for this item
+    /skus:
+      type: read-only-collection
+      get:
+        is: [searchable]
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "collection" : {
+                      "links" : [
+                        { "rel" : "next", "href" : "" },
+                        { "rel" : "prev", "href" : "" },
+                        { "rel" : "self", "href" : "" }
+                      ],
+                      "items" : [
+                        {
+                          "links" : [
+                            { "rel" : "image", "href" : "" },
+                            { "rel" : "self", "href" : "" },
+                            { "rel" : "parent", "label" :"General Info", "href" : "" }
+                          ],
+                          "id" : "12343214",
+                          "sku" : "12344",
+                          "price" : 1.00,
+                          "stockQuantity" : 1
+                        },
+                        {
+                          "links" : [
+                            { "rel" : "image", "href" : "" },
+                            { "rel" : "self", "href" : "" }
+                            { "rel" : "parent", "label" :"General Info", "href" : "" }                
+                          ],
+                          "id" : "12343214",
+                          "sku" : "12344",
+                          "price" : 2.00,
+                          "stockQuantity" : 10
+                        }
+                      ]
+                    }
+                  }
+      /{sku}:
+        get:
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "" },
+                        { "rel" : "parent", "href" : "" }
+                      ],
+                      "id" : "12343214",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "characteristics" : [
+                        { "name" : "size", "value" : "large" },
+                        { "name" : "color", "value" : "blue" }
+                      ]
+                    }
+/wish-list:
+  type: collection
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "sku" : "ex2323xx"
+          }
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "collection" : {
+                  "links" : [
+                    { "rel" : "next", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=60&pageSize=20" },
+                    { "rel" : "prev", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=20&pageSize=20" },
+                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=40&pageSize=20" }
+                  ],
+                  "items" : [
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list/111234214" }
+                      ],
+                      "id" : "111234214",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1
+                    },
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list/34223224" }     
+                      ],
+                      "id" : "34223224",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1
                     }
                   ]
                 }
+              }
+  /{wish}:
     delete:
-      description: Cancel order
-    patch:
-      description: 'Modify part of Order: quantity of items, delivery address'  
+      description: Remove from wish list
 /basket:
   type: collection
   description: All items ready for purchase
@@ -442,20 +675,45 @@ resourceTypes:
           application/json:
             example: |
               {
-                "items" : [
-                  {
-                    "sku" : "sp100v",
-                    "name" : "Spice Bomb",
-                    "price" : 23.0,
-                    "quantity" : 2
-                  },
-                  {
-                    "sku" : "sp100v",
-                    "name" : "Spice Bomb",
-                    "price" : 23.0,
-                    "quantity" : 2
-                  }
-                ]
+                "collection" : {
+                  "links" : [
+                    { "rel" : "next", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=20" },
+                    { "rel" : "prev", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=10" },
+                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
+                  ],
+                  "items" : [
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/12341324" },
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
+                      ],
+                      "id" : "12341324",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!"
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "quantity" : 2
+                    },
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/09878623" }
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }                
+                      ],
+                      "id" : "09878623",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!"
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "quantity" : 1
+                    }
+                  ]
+                }
               }
   post:
     body:
@@ -466,7 +724,27 @@ resourceTypes:
             "sku" : "abc",
             "quantity" : 2
           }
-  /{item}:
+  /checkout:
+    type: controller
+    description: Orders both pending and fulfilled
+    post:
+      body:
+        application/json:
+          example: &order-request-example |
+           {
+              "pickupLocation" : "Buenos Aires",
+              "items" : [
+                {
+                  "sku" : "xyz",
+                  "quantity" : 3
+                },
+                {
+                  "sku" : "abc",
+                  "quantity" : 1
+                }
+              ]
+            }
+  /{basketItem}:
     type: member
     put:
       description: Modify quantity
@@ -527,112 +805,6 @@ resourceTypes:
                     }
                   ]
                 }
-/wish-list:
-  type: collection
-  post:
-    body:
-      application/json:
-        example: |
-          {
-            "sku" : "ex2323xx"
-          }
-  get:
-    responses:
-      200:
-        body:
-          application/json:
-            example: |
-              {
-                "wishes" : [
-                  {
-                    "sku" : "xyz",
-                    "name" : "Channel No.5",
-                    "summary" : "Great"
-                  },
-                  {
-                    "sku" : "abc",
-                    "name" : "Spice Bomb",
-                    "summary" : "Great"
-                  }
-                ]
-              }
-  /{wish}:
-    delete:
-      description: Remove from wish list
-/items:
-  type: read-only-collection
-  description: List of all items on sale
-  get:
-    queryParameters:
-      name:
-        type: string
-        required: false
-        example: Channel No.5
-      type:
-        type: string
-        required: false
-        example: Creams
-    responses:
-      200:
-        body:
-          application/json:
-            example: |
-              {  
-                "items" : [
-                  {
-                    "id" : 12341324,
-                    "type" : "Creams",
-                    "name" : "Dove",
-                    "summary" : "Soap! Just plain old soap!",
-                    "description" : "Soap! Just plain old soap!"
-                  },
-                  {
-                    "id" : 43535,
-                    "type" : "Perfumes",
-                    "name" : "Channel No.5",
-                    "summary" : "Smelly",
-                    "description" : "Smelly"
-                  }
-                ]
-              }
-  /{item}:
-    get:
-      is: [searchable]
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
-                {
-                  "name" : "",
-                  "summary" : "",
-                  "description" : "",
-                  "type": "",
-                  "skus" : [
-                    {
-                      "sku" : "12344",
-                      "price" : 1.00,
-                      "stockQuantity" : 1,
-                      "characteristics" : [
-                        { "name" : "size", "value" : "large" },
-                        { "name" : "color", "value" : "blue" }
-                      ]
-                    },
-                    {
-                      "sku" : "12344",
-                      "price" : 2.00,
-                      "stockQuantity" : 10,
-                      "characteristics" : [
-                        { "name" : "size", "value" : "small" },
-                        { "name" : "color", "value" : "red" },
-                        { "name" : "promotion", "value" : "Christmas" }
-                      ]
-                    }
-                  ]
-                }
-    /reviews:
-      type: read-only-collection
-      description: Third party reviews for this item
 /registrations/{email}:
   type: controller
   post:
@@ -663,32 +835,6 @@ resourceTypes:
           {
             "token" : "1234214"
           }
-/top-products: &top-products
-  type: read-only-collection
-  get:
-    is: [searchable]
-  /{product}:
-    type: { document : { schema : item } }
-    /add-to-default-wish-list:
-      type: controller
-    /reviews:
-      type: read-only-collection
-/top-brands:
-  type: read-only-collection
-  description: x
-  get:
-    is: [searchable]
-  /{brand}/top-products: *top-products
-/recommendations:
-  type: read-only-collection
-  description: Recommended Products based on previous purchases
-/promotions:
-  type: read-only-collection
-  get:
-    is: [searchable]
-  /{promotion}:
-    type: { document : { schema : promotion } }
-
 /my-profile:
   get:
     headers:
@@ -708,4 +854,61 @@ resourceTypes:
                 "lastName" : "Darbey",
                 "notificationPreferences" : [ "email", "mobile-push" ]
               }
-  
+/orders:
+  type: read-only-collection
+/pending-orders:
+  type: read-only-collection
+  /{order}: 
+    type: member
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+    delete:
+      description: Cancel order
+    patch:
+      description: 'Modify part of Order: quantity of items, delivery address'  
+/top-items: &top-items
+  type: read-only-collection
+  get:
+    is: [searchable]
+  /{product}:
+    type: { document : { schema : item } }
+    /add-to-wish-list:
+      type: controller
+    /reviews:
+      type: collection
+/top-brands:
+  type: read-only-collection
+  description: x
+  get:
+    is: [searchable]
+  /{brand}/top-items: *top-items
+/recommendations:
+  type: read-only-collection
+  description: Recommended Products based on previous purchases
+/promotions:
+  type: read-only-collection
+  get:
+    is: [searchable]
+  /{promotion}:
+    type: { document : { schema : promotion } }
+/returns:
+  post:
+    is: [secured]
+    body:
+      application/json:
+        schema: return-request
+        example: *order-request-example
+    responses:
+      202:
+        description: Accepted
+        headers:
+          Location:
+            type: string
+            example: /returns/124243
+  /{return}:
+    type: { document: { schema: return-request } }
+    /fulfill:
+      type: controller

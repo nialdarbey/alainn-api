@@ -6,7 +6,6 @@
 	<element name="Item" type="tns:itemType" />
 	<element name="ItemSku" type="tns:skuType" />
 	<element name="ItemId" type="long" />
-	<element name="ItemSearchCriteria" type="tns:itemSearchCriteriaType" />
 	<element name="Order" type="tns:orderType" />
 	<element name="OrderId" type="long" />
 	<element name="Sale" type="tns:saleType" />
@@ -49,26 +48,27 @@
 		</sequence>
 	</complexType>
 
-	<complexType name="itemSearchCriteriaType">
-		<all>
+
+	<group name="basicItemInformation">
+		<sequence>
+			<element name="id" type="string" />
 			<element name="type" type="string" />
 			<element name="name" type="string" />
-		</all>
-	</complexType>
+			<element name="summary" type="string" />
+		</sequence>
+	</group>
 
 
 	<complexType name="itemType">
 		<sequence>
-			<element name="id" type="long" />
-			<element name="name" type="string" />
-			<element name="summary" type="string" />
+			<group ref="tns:basicItemInformation" />
 			<element name="description" type="string" />
-			<element name="type" type="string" />
 		</sequence>
 	</complexType>
 
 	<complexType name="skuType">
 		<sequence>
+			<group ref="tns:basicItemInformation" />
 			<element name="sku" type="string" />
 			<element name="price" type="float" />
 			<element name="quantityInStock" type="integer" />
@@ -87,7 +87,6 @@
 					</sequence>
 				</complexType>
 			</element>
-			<element name="itemInfo" type="tns:itemType" minOccurs="0" />
 		</sequence>
 	</complexType>
 
@@ -96,7 +95,7 @@
 			<extension base="tns:skuType">
 				<sequence>
 					<element name="transactionQuantity" type="integer" />
- 				</sequence>
+				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>

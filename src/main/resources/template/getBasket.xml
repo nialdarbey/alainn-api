@@ -1,8 +1,9 @@
-<ns:getWishList xmlns:ns="http://www.alainn.com/SOA/message/1.0"
+<ns:getBasket xmlns:ns="http://www.alainn.com/SOA/message/1.0"
 	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
 	<ns:PageInfo>
             <pageIndex>#[message.inboundProperties.pageIndex]</pageIndex>
             <pageSize>#[message.inboundProperties.pageSize]</pageSize>
          </ns:PageInfo>
-    <ns1:CustomerId>#[message.inboundProperties.'x-user-id']</ns1:CustomerId>
-</ns:getWishList>
+    <!--Optional: -->
+	<ns1:CustomerId>#[message.inboundProperties.'x-user-id']</ns1:CustomerId>
+</ns:getBasket>

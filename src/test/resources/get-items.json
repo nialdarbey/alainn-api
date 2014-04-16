@@ -1,18 +1,44 @@
-{  
-  "items" : [
-    {
-      "id" : 12341324,
-      "type" : "Creams",
-      "name" : "Dove",
-      "summary" : "Soap! Just plain old soap!",
-      "desciption" : "Soap"
-    },
-    {
-      "id" : 43535,
-      "type" : "Perfumes",
-      "name" : "Channel No.5",
-      "summary" : "Smelly",
-      "description" : "Smelly"
+{
+    "collection": {
+        "links": [
+            {
+                "rel": "self",
+                "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items"
+            }
+        ],
+        "items": [
+            {
+                "links": [
+                    {
+                        "rel": "image",
+                        "href": ""
+                    },
+                    {
+                        "rel": "self",
+                        "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/897234234"
+                    }
+                ],
+                "id": "897234234",
+                "type": "Creams",
+                "name": "Dove",
+                "summary": "Soap! Just plain old soap!"
+            },
+            {
+                "links": [
+                    {
+                        "rel": "image",
+                        "href": ""
+                    },
+                    {
+                        "rel": "self",
+                        "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/43535"
+                    }
+                ],
+                "id": "43535",
+                "type": "Perfumes",
+                "name": "Channel No.5",
+                "summary": "Smelly"
+            }
+        ]
     }
-  ]
 }

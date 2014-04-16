@@ -1,14 +1,37 @@
 {
-    "wishes": [
-        {
-            "sku": "xyz",
-            "name": "Channel No.5",
-            "summary": "Great"
-        },
-        {
-            "sku": "abc",
-            "name": "Spice Bomb",
-            "summary": "Great"
-        }
+  "collection" : {
+    "links" : [
+      { "rel" : "next", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=60&pageSize=20" },
+      { "rel" : "prev", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=20&pageSize=20" },
+      { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=40&pageSize=20" }
+    ],
+    "items" : [
+      {
+        "links" : [
+          { "rel" : "image", "href" : "" },
+          { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list/111234214" }
+        ],
+        "id" : "111234214",
+        "type" : "Creams",
+        "name" : "Dove",
+        "summary" : "Soap! Just plain old soap!",
+        "sku" : "12344",
+        "price" : 1.00,
+        "stockQuantity" : 1
+      },
+      {
+        "links" : [
+          { "rel" : "image", "href" : "" },
+          { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list/34223224" }     
+        ],
+        "id" : "34223224",
+        "type" : "Creams",
+        "name" : "Dove",
+        "summary" : "Soap! Just plain old soap!",
+        "sku" : "12344",
+        "price" : 1.00,
+        "stockQuantity" : 1
+      }
     ]
+  }
 }

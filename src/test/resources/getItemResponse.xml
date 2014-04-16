@@ -1,29 +1,41 @@
 <ns:getItemResponse xmlns:ns="http://www.alainn.com/SOA/message/1.0"
 	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
 	<ns1:Item>
-		<id>1</id>
-		<name>Soap</name>
-		<summary>Soap</summary>
-		<description>Soap</description>
-		<type>Creams</type>
+		<id>12341234</id>
+		<type>Soap</type>
+		<name>Lux</name>
+		<summary>Great</summary>
+		<description>Really great</description>
 	</ns1:Item>
 	<!--1 or more repetitions: -->
 	<ns1:ItemSku>
-		<sku>14wrklsdf</sku>
-		<price>100.00</price>
-		<quantityInStock>23</quantityInStock>
+		<id>123412342</id>
+		<type>Soap</type>
+		<name>Lux Grande</name>
+		<summary>Nice</summary>
+		<sku>1234124</sku>
+		<price>12.0</price>
+		<quantityInStock>200</quantityInStock>
 		<characteristics>
-			<characteristic name="size">Big</characteristic>
-			<characteristic name="color">Red</characteristic>
+			<!--1 or more repetitions: -->
+			<characteristic name="size">Large</characteristic>
+			<characteristic name="color">Yellow</characteristic>
+			
 		</characteristics>
 	</ns1:ItemSku>
 	<ns1:ItemSku>
-		<sku>14wrklsdf</sku>
-		<price>100.00</price>
-		<quantityInStock>23</quantityInStock>
+		<id>123412342</id>
+		<type>Soap</type>
+		<name>Lux Small</name>
+		<summary>Nice</summary>
+		<sku>1234124</sku>
+		<price>12.0</price>
+		<quantityInStock>100</quantityInStock>
 		<characteristics>
-			<characteristic name="size">Big</characteristic>
-			<characteristic name="color">Red</characteristic>
+			<!--1 or more repetitions: -->
+			<characteristic name="size">Small</characteristic>
+			<characteristic name="color">Blue</characteristic>
+			
 		</characteristics>
 	</ns1:ItemSku>
 </ns:getItemResponse>

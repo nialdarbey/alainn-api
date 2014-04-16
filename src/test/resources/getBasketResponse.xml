@@ -1,39 +1,50 @@
-<ns:getBasketResponse xmlns:ns="http://www.alainn.com/SOA/message/1.0" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+<ns:getBasketResponse xmlns:ns="http://www.alainn.com/SOA/message/1.0"
+	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+	<ns:PageInfo>
+		<pageIndex>10</pageIndex>
+		<pageSize>5</pageSize>
+	</ns:PageInfo>
 	<!--1 or more repetitions: -->
 	<ns1:BasketItem>
-		<sku>12344</sku>
-		<price>20.35</price>
-		<quantityInStock>5</quantityInStock>
+		<id>123412342</id>
+		<type>Soap</type>
+		<name>Lux Grande</name>
+		<summary>Nice</summary>
+		<sku>1234124</sku>
+		<price>12.0</price>
+		<quantityInStock>200</quantityInStock>
 		<characteristics>
 			<!--1 or more repetitions: -->
-			<characteristic name="Size">Large</characteristic>
+			<characteristic name="x">XXX</characteristic>
 		</characteristics>
-		<transactionQuantity>2</transactionQuantity>
-		<!--Optional: -->
-		<itemInfo>
-			<id>2</id>
-			<name>Channel No.5</name>
-			<summary>Great</summary>
-			<description>Nice</description>
-			<type>Perfumes</type>
-		</itemInfo>
+		<transactionQuantity>1234</transactionQuantity>
 	</ns1:BasketItem>
 	<ns1:BasketItem>
-		<sku>12344</sku>
-		<price>20.35</price>
-		<quantityInStock>5</quantityInStock>
+		<id>123412342</id>
+		<type>Soap</type>
+		<name>Lux Grande</name>
+		<summary>Nice</summary>
+		<sku>1234124</sku>
+		<price>12.0</price>
+		<quantityInStock>200</quantityInStock>
 		<characteristics>
 			<!--1 or more repetitions: -->
-			<characteristic name="Size">Large</characteristic>
+			<characteristic name="x">XXX</characteristic>
 		</characteristics>
-		<transactionQuantity>2</transactionQuantity>
-		<!--Optional: -->
-		<itemInfo>
-			<id>2</id>
-			<name>Channel No.5</name>
-			<summary>Great</summary>
-			<description>Nice</description>
-			<type>Perfumes</type>
-		</itemInfo>
+		<transactionQuantity>23</transactionQuantity>
+	</ns1:BasketItem>
+	<ns1:BasketItem>
+		<id>123412342</id>
+		<type>Soap</type>
+		<name>Lux Grande</name>
+		<summary>Nice</summary>
+		<sku>1234124</sku>
+		<price>12.0</price>
+		<quantityInStock>200</quantityInStock>
+		<characteristics>
+			<!--1 or more repetitions: -->
+			<characteristic name="x">XXX</characteristic>
+		</characteristics>
+		<transactionQuantity>234</transactionQuantity>
 	</ns1:BasketItem>
 </ns:getBasketResponse>

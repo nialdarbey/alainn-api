@@ -1,40 +1,60 @@
 {
-    "name": "",
-    "summary": "",
-    "description": "",
-    "type": "",
-    "skus": [
+    "links": [
         {
-            "price": 1,
-            "stockQuantity": 1,
-            "characteristics": [
-                {
-                    "name": "size",
-                    "value": "large"
-                },
-                {
-                    "name": "color",
-                    "value": "blue"
-                }
-            ]
+            "rel": "image",
+            "href": ""
         },
         {
-            "price": 2,
-            "stockQuantity": 10,
-            "characteristics": [
+            "rel": "self",
+            "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354"
+        }
+    ],
+    "id": "475635812354",
+    "type": "Creams",
+    "name": "Dove",
+    "description": "Soap! Just plain old soap!",
+    "skus": [
+        {
+            "links": [
                 {
-                    "name": "size",
-                    "value": "small"
+                    "rel": "image",
+                    "href": ""
                 },
                 {
-                    "name": "color",
-                    "value": "red"
+                    "rel": "self",
+                    "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354/skus/12344"
                 },
                 {
-                    "name": "promotion",
-                    "value": "Christmas"
+                    "rel": "parent",
+                    "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354"
                 }
-            ]
+            ],
+            "id": "12343214",
+            "summary": "Great",
+            "sku": "12344",
+            "price": 1,
+            "stockQuantity": 1
+        },
+        {
+            "links": [
+                {
+                    "rel": "image",
+                    "href": ""
+                },
+                {
+                    "rel": "self",
+                    "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354/skus/12343214"
+                },
+                {
+                    "rel": "parent",
+                    "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354"
+                }
+            ],
+            "id": "12343214",
+            "summary": "Great",
+            "sku": "12344",
+            "price": 1,
+            "stockQuantity": 1
         }
     ]
 }

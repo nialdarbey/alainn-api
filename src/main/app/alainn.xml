@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:jetty-ssl="http://www.mulesoft.org/schema/mule/jetty-ssl" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+<mule xmlns:cors="http://www.mulesoft.org/schema/mule/cors" xmlns:https="http://www.mulesoft.org/schema/mule/https"
+	xmlns:jetty-ssl="http://www.mulesoft.org/schema/mule/jetty-ssl" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/cors http://www.mulesoft.org/schema/mule/cors/current/mule-cors.xsd
 http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
@@ -59,11 +62,16 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
     <data-mapper:config name="xml_getbasketresponse__to_json" transformationGraphPath="xml_getbasketresponse__to_json.grf" doc:name="xml_getbasketresponse__to_json"/>
     <data-mapper:config name="json_to_xml_1" transformationGraphPath="json_to_xml_1.grf" doc:name="json_to_xml_1"/>
     <data-mapper:config name="json_to_xml_2" transformationGraphPath="json_to_xml_2.grf" doc:name="json_to_xml_2"/>
-    <http:connector name="HTTP_HTTPS" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
-    	<service-overrides sessionHandler="org.mule.session.NullSessionHandler"/>
-    </http:connector>
+    
+    <https:connector name="httpsConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP\HTTPS">
+        <!-- <service-overrides messageFactory="org.mule.transport.http.HttpMultipartMuleMessageFactory" /> -->
+        <service-overrides sessionHandler="org.mule.session.NullSessionHandler"/>
+        <https:tls-key-store path="keystore.jks" keyPassword="changeit" storePassword="changeit" />
+    </https:connector>
+    
     <flow name="alainn-main" doc:name="alainn-main">
-        <http:inbound-endpoint exchange-pattern="request-response" address="http://localhost:8081/api" connector-ref="HTTP_HTTPS" doc:name="HTTP"/>
+        <https:inbound-endpoint exchange-pattern="request-response" address="https://localhost:8081/api" connector-ref="httpsConnector" doc:name="HTTP"/>
+        <cors:validate publicResource="true" doc:name="Cors" />
         <apikit:router config-ref="alainn-config" doc:name="APIkit Router" />
         <exception-strategy ref="alainn-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy" />
     </flow>
