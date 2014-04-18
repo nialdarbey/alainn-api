@@ -71,13 +71,6 @@
             <property name="connector-ref"/>
         </properties>
     </global-element>
-    <global-element name="json_to_xml_processsale_" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#1">
-        <properties>
-            <property name="name" value="json_to_xml_processsale_"/>
-            <property name="transformationGraphPath" value="json_to_xml_processsale_.grf"/>
-            <property name="auxiliary;index" value="28"/>
-        </properties>
-    </global-element>
     <global-element name="Web Service Consumer" type="http://www.mulesoft.org/schema/mule/ws/consumer-config" entity-id="Web Service Consumer#2">
         <properties>
             <property name="wsdlLocation" value="service/BasketService.wsdl"/>
@@ -86,7 +79,7 @@
             <property name="name" value="BasketServiceConsumer"/>
             <property name="auxiliary;metauseMetaData" value="true"/>
             <property name="service" value="BasketService"/>
-            <property name="auxiliary;index" value="29"/>
+            <property name="auxiliary;index" value="28"/>
             <property name="serviceAddress" value="${url.basketService}"/>
             <property name="connector-ref"/>
         </properties>
@@ -99,7 +92,7 @@
             <property name="name" value="WishListServiceConsumer"/>
             <property name="auxiliary;metauseMetaData" value="true"/>
             <property name="service" value="WishListService"/>
-            <property name="auxiliary;index" value="30"/>
+            <property name="auxiliary;index" value="29"/>
             <property name="serviceAddress" value="${url.wishListService}"/>
             <property name="connector-ref"/>
         </properties>
@@ -112,7 +105,7 @@
             <property name="name" value="CustomerServiceConsumer"/>
             <property name="auxiliary;metauseMetaData"/>
             <property name="service" value="CustomerService"/>
-            <property name="auxiliary;index" value="31"/>
+            <property name="auxiliary;index" value="30"/>
             <property name="serviceAddress" value="${url.customerService}"/>
             <property name="connector-ref"/>
         </properties>
@@ -125,7 +118,7 @@
             <property name="name" value="RegistrationServiceConsumer"/>
             <property name="auxiliary;metauseMetaData"/>
             <property name="service" value="RegistrationService"/>
-            <property name="auxiliary;index" value="32"/>
+            <property name="auxiliary;index" value="31"/>
             <property name="serviceAddress" value="${url.registrationService}"/>
             <property name="connector-ref"/>
         </properties>
@@ -138,7 +131,7 @@
             <property name="name" value="ItemServiceConsumer"/>
             <property name="auxiliary;metauseMetaData" value="true"/>
             <property name="service" value="ItemService"/>
-            <property name="auxiliary;index" value="33"/>
+            <property name="auxiliary;index" value="32"/>
             <property name="serviceAddress" value="${url.itemService}"/>
             <property name="connector-ref"/>
         </properties>
@@ -151,9 +144,16 @@
             <property name="name" value="OrderFulfillmentServiceConsumer"/>
             <property name="auxiliary;metauseMetaData" value="true"/>
             <property name="service" value="OrderFulfillmentService"/>
-            <property name="auxiliary;index" value="34"/>
+            <property name="auxiliary;index" value="33"/>
             <property name="serviceAddress" value="${url.orderFulfillmentService}"/>
             <property name="connector-ref"/>
+        </properties>
+    </global-element>
+    <global-element name="json_to_xml_processsale_" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#1">
+        <properties>
+            <property name="name" value="json_to_xml_processsale_"/>
+            <property name="transformationGraphPath" value="json_to_xml_processsale_.grf"/>
+            <property name="auxiliary;index" value="34"/>
         </properties>
     </global-element>
     <global-element name="xml_getitemsresponse__to_json" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/config" entity-id="DataMapper#2">
@@ -251,7 +251,7 @@
             </property-collection>
         </properties>
     </global-element>
-    <flow SubFlow="false" name="alainn-main" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5ee273fa-c896-41a4-aabe-f4b2a97767f1">
+    <flow SubFlow="false" name="alainn-main" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="2c3c869e-1d21-4d94-b4c4-4cc6575633c8">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -311,7 +311,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="delete:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="edc20f57-c5d6-4f06-9d21-ac085f270057">
+    <flow SubFlow="false" name="delete:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="882c8838-b937-4328-b8ec-1f7bd8c8b2bf">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -340,7 +340,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="delete:/wish-list/{wish}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="fe8a54d9-6609-4e16-a681-000195d14fcb">
+    <flow SubFlow="false" name="delete:/wish-list/{wish}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ee4fe487-848e-4c75-85cf-dbf7f5683e73">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -369,7 +369,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="head:/registrations/{email}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5bd9321f-c859-4714-91cd-bf5f19dfa311">
+    <flow SubFlow="false" name="head:/registrations/{email}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5fdb05dd-2094-4879-b5d7-e8b0cfd5fa14">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -432,7 +432,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e3330ef0-52f6-4eef-afa1-e91e194a2a4a">
+    <flow SubFlow="false" name="get:/wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="26739c2c-d0c4-4e93-9238-9b6f51e8680f">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -474,7 +474,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/items:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d67ed3de-14ea-46f8-ac26-a2b5c0be66b7">
+    <flow SubFlow="false" name="get:/items:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0f18eefe-e3ff-4505-8557-1d811a71d23d">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -516,7 +516,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/items/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f160e3d8-f5f0-4d36-a0bc-5c0a076690c8">
+    <flow SubFlow="false" name="get:/items/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8b125733-d267-4a24-8390-5707513b1c3d">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -558,7 +558,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/orders:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e8d8f461-92e6-45f8-979b-1a84f3e3001d">
+    <flow SubFlow="false" name="post:/basket/checkout:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="feba5846-8517-4685-bc23-0ec5a1e6386d">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -595,14 +595,24 @@
                             <compartment entity-id="compartment#2">
 <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#10">
     <pattern name="getCustomerById.xml" type="http://www.mulesoft.org/schema/mule/core/parse-template" entity-id="Parse Template#7">
-        <graphicalData x="0" y="0" width="0" height="0"/>
+        <graphicalData x="177" y="1302" width="129" height="67"/>
         <properties>
             <property name="location" value="template/getCustomerById.xml"/>
             <property name="auxiliary;index" value="79"/>
         </properties>
     </pattern>
-    <pattern name="get Customer" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#14">
+    <pattern name="Logger" type="http://www.mulesoft.org/schema/mule/core/logger" entity-id="0961f96c-1ef1-44ab-ab93-e291e34d771f">
         <graphicalData x="0" y="0" width="0" height="0"/>
+        <properties>
+            <property name="message" value="#[payload]"/>
+            <property name="category" value=""/>
+            <property name="level" value="INFO"/>
+            <property name="updated"/>
+        </properties>
+        <description></description>
+    </pattern>
+    <pattern name="get Customer" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#14">
+        <graphicalData x="366" y="1301" width="87" height="69"/>
         <properties>
             <property name=""/>
             <property name="operation" value="getCustomer"/>
@@ -665,7 +675,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/basket:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0b075173-a317-4900-9c2e-89f3ac4b1fa8">
+    <flow SubFlow="false" name="post:/basket:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8c4d4a98-2836-4a73-906b-3b5db9ad63d8">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -705,7 +715,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/sales:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d6277815-889c-44f9-b8f7-7a629fa675fe">
+    <flow SubFlow="false" name="post:/sales:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="9cb7760c-e3a5-46a6-be0e-e03630144d52">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -812,7 +822,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="74992858-4995-4d0a-a671-768a59a54e17">
+    <flow SubFlow="false" name="post:/wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="3d3c10ff-7294-41ce-9fd9-86e769f80574">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -843,7 +853,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/registrations/{email}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f15fce75-b89f-4de2-a652-dcf669d7a0cf">
+    <flow SubFlow="false" name="post:/registrations/{email}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="c3a10ffe-d8b9-4984-9e70-cab09404a79d">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -874,7 +884,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="bf9eab6b-b7cd-449c-b855-e79879b3e5ad">
+    <flow SubFlow="false" name="post:/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8b8f8d54-13b2-4412-ae7c-b025c63c9250">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -937,7 +947,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/basket:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="49682f36-bb14-45c3-89ee-f9b966b47cef">
+    <flow SubFlow="false" name="get:/basket:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="c180c7d7-fe3d-45b8-9eae-6f2cf74f1285">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -972,7 +982,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/my-profile:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e9469ed5-cbf4-49cb-92dc-0f00daa112e6">
+    <flow SubFlow="false" name="get:/my-profile:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="3507cc6e-fe4e-4881-b6a1-8f23f0acabca">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1014,7 +1024,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="59876a76-32f2-4186-a1cb-40d7ab3fc2f8">
+    <flow SubFlow="false" name="get:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="bf0b8d1f-5825-456f-bdc3-6fb326ac492d">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1034,7 +1044,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/items/{item}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="23053a22-62d2-4e0f-8b1b-04a6f1721e4e">
+    <flow SubFlow="false" name="get:/items/{item}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e9b89690-30d8-44f1-93e5-b4bd62a2c189">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1054,7 +1064,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8757c54a-242f-414e-9384-8ffc2262d9db">
+    <flow SubFlow="false" name="get:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="fc67dcdd-58da-4cf6-8d00-532175e85b9e">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1074,7 +1084,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-products/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="aa9db1c7-15be-4520-af8c-26840d15ef5f">
+    <flow SubFlow="false" name="get:/top-products/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="452a61bf-8ec9-43af-8590-7d58e0d3f6d0">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1094,7 +1104,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-products/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="9cd3ea37-9874-4064-b3de-791c2fba2ee7">
+    <flow SubFlow="false" name="get:/top-products/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="07309aac-5f63-47be-b646-0aa7f98cb22d">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1114,7 +1124,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/promotions/{promotion}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0dd17c2d-e8b4-43cb-bc79-8f7b6edd35d0">
+    <flow SubFlow="false" name="get:/promotions/{promotion}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="9a0cf34f-40f3-454b-9e86-633f53370894">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1134,7 +1144,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/sales/{sale}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="4cd9b80c-7ba6-4ada-be29-900d996dc401">
+    <flow SubFlow="false" name="get:/sales/{sale}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="947ee3e3-a347-4a7f-b046-17f6c1619a36">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1154,7 +1164,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/top-brands/{brand}/top-products/{product}/add-to-default-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0fc830f6-72e3-4e1f-901e-8b922cd68061">
+    <flow SubFlow="false" name="post:/top-brands/{brand}/top-products/{product}/add-to-default-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="dc08ae8d-1fbe-4647-ad1b-8fb2f40dbda3">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1174,7 +1184,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="put:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6240e872-ff8f-4dfa-981a-85100d9fe597">
+    <flow SubFlow="false" name="put:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="41c3e5e4-15cb-4015-b3f4-6a456937e61e">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1194,7 +1204,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="delete:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="9443caeb-ac18-46bc-ab53-f369ebedd8eb">
+    <flow SubFlow="false" name="delete:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5690da9a-2b55-40dc-a32b-81cebe773353">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1214,7 +1224,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="patch:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="1964d97a-9b99-41bf-9600-df718cfff39f">
+    <flow SubFlow="false" name="patch:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a97988a5-24d5-4a89-85ff-8258062df653">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1234,7 +1244,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="11b1ad8e-47a7-4e5c-8cd6-d9177e3124da">
+    <flow SubFlow="false" name="get:/top-brands:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6639f14d-95f6-4f8c-9e35-026c8a87e975">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1254,7 +1264,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-products:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="36a18234-6ef6-499e-97d3-8b5e2fd8e11b">
+    <flow SubFlow="false" name="get:/top-products:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ac2eac7b-de77-42cf-85c0-3ae6b9f2d216">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1274,7 +1284,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/promotions:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="1d101860-faa4-47fb-8cb8-c83797b46e5d">
+    <flow SubFlow="false" name="get:/promotions:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ea0ede41-5642-4864-a1e0-15445944e764">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1294,7 +1304,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/sales:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e4f4f7fa-7bec-479b-859f-c65addb55d20">
+    <flow SubFlow="false" name="get:/sales:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="564338b1-e68a-4e75-8074-ed8470beec40">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1314,7 +1324,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/recommendations:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="c0f77e0f-e0b9-4170-b8a6-f09a9af4d489">
+    <flow SubFlow="false" name="get:/recommendations:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="423f80b3-7f35-49d2-b731-dfb95644c893">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1334,7 +1344,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/orders:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f088b943-a361-4285-b42b-e93dd54adaac">
+    <flow SubFlow="false" name="get:/orders:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="58a2d132-b7a7-4376-89e3-5e4c4b638cad">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1354,7 +1364,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="4c60d468-eae7-48cf-9383-11c0d2b16be6">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f9dbd2aa-527b-4539-9308-32561bcf16eb">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1374,7 +1384,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e4dc3932-4074-4c19-8f75-a972120960b1">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="026ea03a-493e-48f3-96ba-04c743169d10">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1394,7 +1404,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="17186ab5-9744-4cdb-b129-cfa7fbc1f9b4">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="1418544e-d50f-466b-b0c2-6fa32839118f">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1414,7 +1424,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/registrations/{email}/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="2d28a84f-d37d-439b-b694-9b923ac8452b">
+    <flow SubFlow="false" name="get:/registrations/{email}/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="06d5adbb-97ef-410e-a690-4b0ea8770723">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1434,7 +1444,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/top-products/{product}/add-to-default-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="191d3458-e6e4-422d-ad8a-d0781e2a4e7f">
+    <flow SubFlow="false" name="post:/top-products/{product}/add-to-default-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="70fff958-bc45-4166-87ad-1d9140e03d63">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>

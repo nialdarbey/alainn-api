@@ -47,13 +47,13 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
     </apikit:mapping-exception-strategy>
     <context:property-placeholder location="config.${env}.properties" />
     <ws:consumer-config name="PointOfSaleServiceConsumer" wsdlLocation="service/PointOfSaleService.wsdl" service="PointOfSaleService" port="PointOfSalePort" serviceAddress="${url.pointOfSaleService}" doc:name="Web Service Consumer" />
-    <data-mapper:config name="json_to_xml_processsale_" transformationGraphPath="json_to_xml_processsale_.grf" doc:name="json_to_xml_processsale_" />
     <ws:consumer-config name="BasketServiceConsumer" wsdlLocation="service/BasketService.wsdl" service="BasketService" port="BasketPort" serviceAddress="${url.basketService}" doc:name="Web Service Consumer" />
     <ws:consumer-config name="WishListServiceConsumer" wsdlLocation="service/WishListService.wsdl" service="WishListService" port="WishListPort" serviceAddress="${url.wishListService}" doc:name="Web Service Consumer" />
     <ws:consumer-config name="CustomerServiceConsumer" wsdlLocation="service/CustomerService.wsdl" service="CustomerService" port="CustomerPort" serviceAddress="${url.customerService}" doc:name="Web Service Consumer" />
     <ws:consumer-config name="RegistrationServiceConsumer" wsdlLocation="service/RegistrationService.wsdl" service="RegistrationService" port="RegistrationPort" serviceAddress="${url.registrationService}" doc:name="Web Service Consumer" />
     <ws:consumer-config name="ItemServiceConsumer" wsdlLocation="service/ItemService.wsdl" service="ItemService" port="ItemPort" serviceAddress="${url.itemService}" doc:name="Web Service Consumer" />
     <ws:consumer-config name="OrderFulfillmentServiceConsumer" wsdlLocation="service/OrderFulfillmentService.wsdl" service="OrderFulfillmentService" port="OrderFulfillmentPort" serviceAddress="${url.orderFulfillmentService}" doc:name="Web Service Consumer" />
+    <data-mapper:config name="json_to_xml_processsale_" transformationGraphPath="json_to_xml_processsale_.grf" doc:name="json_to_xml_processsale_" />
     <data-mapper:config name="xml_getitemsresponse__to_json" transformationGraphPath="xml_getitemsresponse__to_json.grf" doc:name="xml_getitemsresponse__to_json"/>
     <data-mapper:config name="xml_getitemresponse__to_json" transformationGraphPath="xml_getitemresponse__to_json.grf" doc:name="xml_getitemresponse__to_json"/>
     <data-mapper:config name="json_to_xml_processorder_" transformationGraphPath="json_to_xml_processorder_.grf" doc:name="json_to_xml_processorder_"/>
@@ -108,11 +108,12 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
         <ws:consumer config-ref="ItemServiceConsumer" doc:name="get Item" operation="getItem" />
         <data-mapper:transform config-ref="xml_getitemresponse__to_json" doc:name="Xml&lt;getItemResponse&gt; To JSON" returnClass="java.lang.String"/>
     </flow>
-    <flow name="post:/orders:alainn-config" doc:name="post:/orders:alainn-config">
+    <flow name="post:/basket/checkout:alainn-config" doc:name="post:/basket/checkout:alainn-config">
         <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
         <enricher target="flowVars.customer" doc:name="Message Enricher">
             <processor-chain doc:name="Processor Chain">
                 <parse-template location="template/getCustomerById.xml" doc:name="getCustomerById.xml"/>
+                <logger message="#[payload]" level="INFO" doc:name="Logger"/>
                 <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer"/>
             </processor-chain>
         </enricher>

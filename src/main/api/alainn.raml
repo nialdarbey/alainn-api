@@ -201,7 +201,7 @@ schemas:
           }
         }
       }
-  - basket-item: &basket-item | 
+  - basket-item: &basket-item-schema | 
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type" : "object",
@@ -211,7 +211,7 @@ schemas:
           "quantity" : { "type" : "integer" }
         }
       }
-  - skus: *basket-item
+  - skus: *basket-item-schema
   - orders: | 
       {
         "$schema": "http://json-schema.org/draft-04/schema#",
@@ -438,6 +438,7 @@ resourceTypes:
                 required: true  
   - controller:
       post:
+        is: [secured]
         responses:
           204:
             description: Done!

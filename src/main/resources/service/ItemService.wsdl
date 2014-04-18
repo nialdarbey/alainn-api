@@ -17,17 +17,11 @@
 	<wsdl:message name="getItemResponse">
 		<wsdl:part element="mes:getItemResponse" name="parameters" />
 	</wsdl:message>
-	<wsdl:message name="modifySKUStockCountBySale">
-		<wsdl:part element="mes:modifySKUStockCountBySale" name="parameters" />
+	<wsdl:message name="modifySKUStockCount">
+		<wsdl:part element="mes:modifySKUStockCount" name="parameters" />
 	</wsdl:message>
-	<wsdl:message name="modifySKUStockCountBySaleResponse">
-		<wsdl:part element="mes:modifySKUStockCountBySaleResponse" name="parameters" />
-	</wsdl:message>
-	<wsdl:message name="modifySKUStockCountByOrder">
-		<wsdl:part element="mes:modifySKUStockCountByOrder" name="parameters" />
-	</wsdl:message>
-	<wsdl:message name="modifySKUStockCountResponseByOrder">
-		<wsdl:part element="mes:modifySKUStockCountByOrderResponse" name="parameters" />
+	<wsdl:message name="modifySKUStockCountResponse">
+		<wsdl:part element="mes:modifySKUStockCountResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:portType name="Item">
 		<wsdl:operation name="getItems">
@@ -38,13 +32,9 @@
 			<wsdl:input message="tns:getItem" />
 			<wsdl:output message="tns:getItemResponse" />
 		</wsdl:operation>
-		<wsdl:operation name="modifySKUStockCountBySale">
-			<wsdl:input message="tns:modifySKUStockCountBySale" />
-			<wsdl:output message="tns:modifySKUStockCountBySaleResponse" />
-		</wsdl:operation>
-		<wsdl:operation name="modifySKUStockCountByOrder">
-			<wsdl:input message="tns:modifySKUStockCountByOrder" />
-			<wsdl:output message="tns:modifySKUStockCountByOrderResponse" />
+		<wsdl:operation name="modifySKUStockCount">
+			<wsdl:input message="tns:modifySKUStockCount" />
+			<wsdl:output message="tns:modifySKUStockCountResponse" />
 		</wsdl:operation>
 	</wsdl:portType>
 	<wsdl:binding name="ItemSoap" type="tns:Item">
@@ -67,17 +57,8 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="modifySKUStockCountBySale">
-			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/modifySKUStockCountBySale" />
-			<wsdl:input>
-				<soap:body use="literal" />
-			</wsdl:input>
-			<wsdl:output>
-				<soap:body use="literal" />
-			</wsdl:output>
-		</wsdl:operation>
-		<wsdl:operation name="modifySKUStockCountByOrder">
-			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/modifySKUStockCountByOrder" />
+		<wsdl:operation name="modifySKUStockCount">
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/modifySKUStockCount" />
 			<wsdl:input>
 				<soap:body use="literal" />
 			</wsdl:input>

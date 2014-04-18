@@ -5,6 +5,7 @@
 	<element name="Customer" type="tns:customerType" />
 	<element name="Item" type="tns:itemType" />
 	<element name="ItemSku" type="tns:skuType" />
+	<element name="TransactedSku" type="tns:transactedSkuType" />
 	<element name="ItemId" type="long" />
 	<element name="Order" type="tns:orderType" />
 	<element name="OrderId" type="long" />
@@ -55,6 +56,7 @@
 			<element name="type" type="string" />
 			<element name="name" type="string" />
 			<element name="summary" type="string" />
+			<element name="imageUrl" type="string" />
 		</sequence>
 	</group>
 

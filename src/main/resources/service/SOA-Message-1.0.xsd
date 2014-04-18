@@ -13,7 +13,7 @@
 			</all>
 		</complexType>
 	</element>
-	
+
 	<element name="PageInfo">
 		<complexType>
 			<sequence>
@@ -31,7 +31,7 @@
 			</choice>
 		</complexType>
 	</element>
-	
+
 	<element name="getCustomerResponse">
 		<complexType>
 			<sequence>
@@ -269,26 +269,17 @@
 			</sequence>
 		</complexType>
 	</element>
-	<element name="modifySKUStockCountBySale">
+	
+	<element name="modifySKUStockCount">
 		<complexType>
 			<sequence>
-				<element ref="mod:Sale" />
+				<element ref="mod:TransactedSku" maxOccurs="unbounded" />
 			</sequence>
 		</complexType>
 	</element>
-	<element name="modifySKUStockCountBySaleResponse">
-
-	</element>
-	<element name="modifySKUStockCountByOrder">
-		<complexType>
-			<sequence>
-				<element ref="mod:Order" />
-			</sequence>
-		</complexType>
-	</element>
-	<element name="modifySKUStockCountByOrderResponse">
-
-	</element>
+	<element name="modifySKUStockCountResponse" />
+	
+	
 
 	<element name="addLoyaltyPoints">
 		<complexType>
