@@ -6,11 +6,11 @@
 	<element name="Item" type="tns:itemType" />
 	<element name="ItemSku" type="tns:skuType" />
 	<element name="TransactedSku" type="tns:transactedSkuType" />
-	<element name="ItemId" type="long" />
+	<element name="ItemId" type="string" />
 	<element name="Order" type="tns:orderType" />
-	<element name="OrderId" type="long" />
+	<element name="OrderId" type="string" />
 	<element name="Sale" type="tns:saleType" />
-	<element name="SaleId" type="long" />
+	<element name="SaleId" type="string" />
 	<element name="BasketItem" type="tns:transactedSkuType" />
 	<element name="Sku" type="string" />
 	<element name="Email" type="string" />

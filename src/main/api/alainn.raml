@@ -3,7 +3,17 @@
 title: Álainn Cosmetics API
 version: v1.0
 #baseUri: http://alainn-cosmetics.cloudhub.io/api/{version}
-baseUri: http://mocksvc.mulesoft.com/mocks/17349175-529d-4d99-ba77-306d349fd8a2/api/{version}
+baseUri: http://mocksvc.mulesoft.com/mocks/c5b7e378-06e6-41b5-a5c7-761c221aa20b/mocks/17349175-529d-4d99-ba77-306d349fd8a2/api/{version}
+securitySchemes:
+  - OAuth 2.0:
+      type: OAuth 2.0
+      describedBy:
+        headers:
+          Authorization:
+      settings:
+        accessTokenUri: http://localhost:8081/access-token
+        authorizationUri: http://localhost:8081/authorize
+        authorizationGrants: [token]
 schemas:
   - item: &item-schema |
       {
@@ -410,6 +420,8 @@ traits:
           example: Creams
 resourceTypes: 
   - document:
+      securedBy: 
+        - OAuth 2.0
       get:
         is: [secured]
         responses:
@@ -503,6 +515,8 @@ resourceTypes:
               }
   /{item}:
     get:
+      securedBy: 
+        - OAuth 2.0
       responses:
         200:
           body:
@@ -837,6 +851,8 @@ resourceTypes:
             "token" : "1234214"
           }
 /my-profile:
+  securedBy: 
+    - OAuth 2.0
   get:
     headers:
       email:
@@ -896,6 +912,8 @@ resourceTypes:
   /{promotion}:
     type: { document : { schema : promotion } }
 /returns:
+  securedBy: 
+    - OAuth 2.0
   post:
     is: [secured]
     body:

@@ -5,6 +5,17 @@
 	<import namespace="http://www.alainn.com/SOA/model/1.0"
 		schemaLocation="SOA-Model-1.0.xsd" />
 
+	<element name="notifySKUItemMovement">
+		<complexType>
+			<sequence>
+				<element ref="mod:TransactedSku" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="notifySKUItemMovementResponse">
+	</element>
+
 	<element name="ItemSearchCriteria">
 		<complexType>
 			<all>
@@ -269,7 +280,7 @@
 			</sequence>
 		</complexType>
 	</element>
-	
+
 	<element name="modifySKUStockCount">
 		<complexType>
 			<sequence>
@@ -278,8 +289,8 @@
 		</complexType>
 	</element>
 	<element name="modifySKUStockCountResponse" />
-	
-	
+
+
 
 	<element name="addLoyaltyPoints">
 		<complexType>

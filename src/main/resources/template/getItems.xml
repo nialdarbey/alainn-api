@@ -6,8 +6,7 @@
          </ns:PageInfo>
     <!--Optional: -->
 	<ns1:ItemSearchCriteria>
-		<!--You may enter the following 2 items in any order -->
-		#[t = message.inboundProperties.type; t == '' ? '' : '<type>' + t + '</type>']
-		#[n = message.inboundProperties.name; n == '' ? '' : '<name>' + n + '</name>']
+		<type>#[t = message.inboundProperties.type; t == '' ? '*' : t ]</type>
+		<name>#[n = message.inboundProperties.name; n == '' ? '*' : n ]</name>
 	</ns1:ItemSearchCriteria>
 </ns:getItems>

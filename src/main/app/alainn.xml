@@ -17,7 +17,7 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
         <mulexml:namespace prefix="mes" uri="http://www.alainn.com/SOA/message/1.0" />
         <mulexml:namespace prefix="mod" uri="http://www.alainn.com/SOA/model/1.0" />
     </mulexml:namespace-manager>
-    <apikit:config name="alainn-config" raml="alainn.raml" consoleEnabled="true" consolePath="console" doc:name="Router" />
+    <apikit:config name="alainn-config" raml="alainn.raml" consoleEnabled="false" doc:name="Router" />
     <apikit:mapping-exception-strategy name="alainn-apiKitGlobalExceptionMapping">
         <apikit:mapping statusCode="404">
             <apikit:exception value="org.mule.module.apikit.exception.NotFoundException" />
@@ -68,6 +68,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
         <service-overrides sessionHandler="org.mule.session.NullSessionHandler"/>
         <https:tls-key-store path="keystore.jks" keyPassword="changeit" storePassword="changeit" />
     </https:connector>
+    <flow name="console" doc:name="console">
+        <https:inbound-endpoint exchange-pattern="request-response" address="https://localhost:9091/console" doc:name="HTTP" connector-ref="httpsConnector" path="console"/>
+        <apikit:console />
+    </flow>
     
     <flow name="alainn-main" doc:name="alainn-main">
         <https:inbound-endpoint exchange-pattern="request-response" address="https://localhost:8081/api" connector-ref="httpsConnector" doc:name="HTTP"/>
