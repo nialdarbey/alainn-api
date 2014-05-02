@@ -5,6 +5,12 @@
 			<xsd:import namespace="http://www.alainn.com/SOA/message/1.0" schemaLocation="SOA-Message-1.0.xsd" />
 		</xsd:schema>
 	</wsdl:types>
+	<wsdl:message name="getTypes">
+		<wsdl:part element="mes:getTypes" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getTypesResponse">
+		<wsdl:part element="mes:getTypesResponse" name="parameters" />
+	</wsdl:message>
 	<wsdl:message name="getItems">
 		<wsdl:part element="mes:getItems" name="parameters" />
 	</wsdl:message>
@@ -24,6 +30,10 @@
 		<wsdl:part element="mes:modifySKUStockCountResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:portType name="Item">
+		<wsdl:operation name="getTypes">
+			<wsdl:input message="tns:getTypes" />
+			<wsdl:output message="tns:getTypesResponse" />
+		</wsdl:operation>
 		<wsdl:operation name="getItems">
 			<wsdl:input message="tns:getItems" />
 			<wsdl:output message="tns:getItemsResponse" />
@@ -39,6 +49,15 @@
 	</wsdl:portType>
 	<wsdl:binding name="ItemSoap" type="tns:Item">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getTypes">
+			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/getTypes" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
 		<wsdl:operation name="getItems">
 			<soap:operation soapAction="http://www.alainn.com/SOA/service/Item/1.0/getItems" />
 			<wsdl:input>

@@ -4,6 +4,7 @@
 
 	<element name="Customer" type="tns:customerType" />
 	<element name="Item" type="tns:itemType" />
+	<element name="Type" type="string" />
 	<element name="ItemSku" type="tns:skuType" />
 	<element name="TransactedSku" type="tns:transactedSkuType" />
 	<element name="ItemId" type="string" />
@@ -56,7 +57,7 @@
 			<element name="type" type="string" />
 			<element name="name" type="string" />
 			<element name="summary" type="string" />
-			<element name="imageUrl" type="string" />
+			<element name="brand" type="string" />
 		</sequence>
 	</group>
 

@@ -21,6 +21,7 @@
 			<all>
 				<element name="type" type="string" />
 				<element name="name" type="string" />
+				<element name="brand" type="string" />
 			</all>
 		</complexType>
 	</element>
@@ -262,6 +263,21 @@
 			<sequence>
 				<element ref="tns:PageInfo" />
 				<element ref="mod:Item" maxOccurs="unbounded" />
+			</sequence>
+		</complexType>
+	</element>
+		<element name="getTypes">
+		<complexType>
+			<sequence>
+				<element ref="tns:PageInfo" />
+			</sequence>
+		</complexType>
+	</element>
+	<element name="getTypesResponse">
+		<complexType>
+			<sequence>
+				<element ref="tns:PageInfo" />
+				<element ref="mod:Type" maxOccurs="unbounded" />
 			</sequence>
 		</complexType>
 	</element>

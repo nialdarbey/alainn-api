@@ -1,0 +1,371 @@
+<Item xmlns="http://webservices.amazon.com/AWSECommerceService/2011-08-01">
+	<ASIN>B00E4VJHBO</ASIN>
+	<DetailPageURL>http://www.amazon.com/Neon-Hair-Shimmer-Gypsy-Stix/dp/B00E4VJHBO%3FSubscriptionId%3DAKIAJMINQZQK3GTGK47Q%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB00E4VJHBO</DetailPageURL>
+	<ItemLinks>
+		<ItemLink>
+			<Description>Technical Details</Description>
+			<URL>http://www.amazon.com/Neon-Hair-Shimmer-Gypsy-Stix/dp/tech-data/B00E4VJHBO%3FSubscriptionId%3DAKIAJMINQZQK3GTGK47Q%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00E4VJHBO</URL>
+		</ItemLink>
+		<ItemLink>
+			<Description>Add To Baby Registry</Description>
+			<URL>http://www.amazon.com/gp/registry/baby/add-item.html%3Fasin.0%3DB00E4VJHBO%26SubscriptionId%3DAKIAJMINQZQK3GTGK47Q%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00E4VJHBO</URL>
+		</ItemLink>
+		<ItemLink>
+			<Description>Add To Wedding Registry</Description>
+			<URL>http://www.amazon.com/gp/registry/wedding/add-item.html%3Fasin.0%3DB00E4VJHBO%26SubscriptionId%3DAKIAJMINQZQK3GTGK47Q%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00E4VJHBO</URL>
+		</ItemLink>
+		<ItemLink>
+			<Description>Add To Wishlist</Description>
+			<URL>http://www.amazon.com/gp/registry/wishlist/add-item.html%3Fasin.0%3DB00E4VJHBO%26SubscriptionId%3DAKIAJMINQZQK3GTGK47Q%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00E4VJHBO</URL>
+		</ItemLink>
+		<ItemLink>
+			<Description>Tell A Friend</Description>
+			<URL>http://www.amazon.com/gp/pdp/taf/B00E4VJHBO%3FSubscriptionId%3DAKIAJMINQZQK3GTGK47Q%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00E4VJHBO</URL>
+		</ItemLink>
+		<ItemLink>
+			<Description>All Customer Reviews</Description>
+			<URL>http://www.amazon.com/review/product/B00E4VJHBO%3FSubscriptionId%3DAKIAJMINQZQK3GTGK47Q%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00E4VJHBO</URL>
+		</ItemLink>
+		<ItemLink>
+			<Description>All Offers</Description>
+			<URL>http://www.amazon.com/gp/offer-listing/B00E4VJHBO%3FSubscriptionId%3DAKIAJMINQZQK3GTGK47Q%26tag%3Daztag-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00E4VJHBO</URL>
+		</ItemLink>
+	</ItemLinks>
+	<SmallImage>
+		<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL._SL75_.jpg</URL>
+		<Height Units="pixels">75</Height>
+		<Width Units="pixels">59</Width>
+	</SmallImage>
+	<MediumImage>
+		<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL._SL160_.jpg</URL>
+		<Height Units="pixels">160</Height>
+		<Width Units="pixels">126</Width>
+	</MediumImage>
+	<LargeImage>
+		<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL.jpg</URL>
+		<Height Units="pixels">500</Height>
+		<Width Units="pixels">393</Width>
+	</LargeImage>
+	<ImageSets>
+		<ImageSet Category="primary">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL._SL30_.jpg</URL>
+				<Height Units="pixels">30</Height>
+				<Width Units="pixels">24</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">59</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">59</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL._SL110_.jpg</URL>
+				<Height Units="pixels">110</Height>
+				<Width Units="pixels">86</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL._SL160_.jpg</URL>
+				<Height Units="pixels">160</Height>
+				<Width Units="pixels">126</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/41EEXDjmtBL.jpg</URL>
+				<Height Units="pixels">500</Height>
+				<Width Units="pixels">393</Width>
+			</LargeImage>
+		</ImageSet>
+		<ImageSet Category="variant">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/51stKmKiGtL._SL30_.jpg</URL>
+				<Height Units="pixels">17</Height>
+				<Width Units="pixels">30</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/51stKmKiGtL._SL75_.jpg</URL>
+				<Height Units="pixels">43</Height>
+				<Width Units="pixels">75</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/51stKmKiGtL._SL75_.jpg</URL>
+				<Height Units="pixels">43</Height>
+				<Width Units="pixels">75</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/51stKmKiGtL._SL110_.jpg</URL>
+				<Height Units="pixels">63</Height>
+				<Width Units="pixels">110</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/51stKmKiGtL._SL160_.jpg</URL>
+				<Height Units="pixels">92</Height>
+				<Width Units="pixels">160</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/51stKmKiGtL.jpg</URL>
+				<Height Units="pixels">288</Height>
+				<Width Units="pixels">500</Width>
+			</LargeImage>
+		</ImageSet>
+		<ImageSet Category="variant">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/41jCC6O7TSL._SL30_.jpg</URL>
+				<Height Units="pixels">17</Height>
+				<Width Units="pixels">30</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/41jCC6O7TSL._SL75_.jpg</URL>
+				<Height Units="pixels">43</Height>
+				<Width Units="pixels">75</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/41jCC6O7TSL._SL75_.jpg</URL>
+				<Height Units="pixels">43</Height>
+				<Width Units="pixels">75</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/41jCC6O7TSL._SL110_.jpg</URL>
+				<Height Units="pixels">63</Height>
+				<Width Units="pixels">110</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/41jCC6O7TSL._SL160_.jpg</URL>
+				<Height Units="pixels">92</Height>
+				<Width Units="pixels">160</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/41jCC6O7TSL.jpg</URL>
+				<Height Units="pixels">288</Height>
+				<Width Units="pixels">500</Width>
+			</LargeImage>
+		</ImageSet>
+		<ImageSet Category="variant">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/41za7p4Eo5L._SL30_.jpg</URL>
+				<Height Units="pixels">30</Height>
+				<Width Units="pixels">24</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/41za7p4Eo5L._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">60</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/41za7p4Eo5L._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">60</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/41za7p4Eo5L._SL110_.jpg</URL>
+				<Height Units="pixels">110</Height>
+				<Width Units="pixels">88</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/41za7p4Eo5L._SL160_.jpg</URL>
+				<Height Units="pixels">160</Height>
+				<Width Units="pixels">129</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/41za7p4Eo5L.jpg</URL>
+				<Height Units="pixels">500</Height>
+				<Width Units="pixels">402</Width>
+			</LargeImage>
+		</ImageSet>
+		<ImageSet Category="variant">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/41CYjv5IsiL._SL30_.jpg</URL>
+				<Height Units="pixels">20</Height>
+				<Width Units="pixels">30</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/41CYjv5IsiL._SL75_.jpg</URL>
+				<Height Units="pixels">50</Height>
+				<Width Units="pixels">75</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/41CYjv5IsiL._SL75_.jpg</URL>
+				<Height Units="pixels">50</Height>
+				<Width Units="pixels">75</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/41CYjv5IsiL._SL110_.jpg</URL>
+				<Height Units="pixels">73</Height>
+				<Width Units="pixels">110</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/41CYjv5IsiL._SL160_.jpg</URL>
+				<Height Units="pixels">107</Height>
+				<Width Units="pixels">160</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/41CYjv5IsiL.jpg</URL>
+				<Height Units="pixels">333</Height>
+				<Width Units="pixels">500</Width>
+			</LargeImage>
+		</ImageSet>
+		<ImageSet Category="variant">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/410OWOXoPyL._SL30_.jpg</URL>
+				<Height Units="pixels">30</Height>
+				<Width Units="pixels">19</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/410OWOXoPyL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">47</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/410OWOXoPyL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">47</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/410OWOXoPyL._SL110_.jpg</URL>
+				<Height Units="pixels">110</Height>
+				<Width Units="pixels">69</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/410OWOXoPyL._SL160_.jpg</URL>
+				<Height Units="pixels">160</Height>
+				<Width Units="pixels">101</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/410OWOXoPyL.jpg</URL>
+				<Height Units="pixels">500</Height>
+				<Width Units="pixels">315</Width>
+			</LargeImage>
+		</ImageSet>
+		<ImageSet Category="variant">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/51m5zn3fYRL._SL30_.jpg</URL>
+				<Height Units="pixels">30</Height>
+				<Width Units="pixels">21</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/51m5zn3fYRL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">52</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/51m5zn3fYRL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">52</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/51m5zn3fYRL._SL110_.jpg</URL>
+				<Height Units="pixels">110</Height>
+				<Width Units="pixels">76</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/51m5zn3fYRL._SL160_.jpg</URL>
+				<Height Units="pixels">160</Height>
+				<Width Units="pixels">110</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/51m5zn3fYRL.jpg</URL>
+				<Height Units="pixels">500</Height>
+				<Width Units="pixels">344</Width>
+			</LargeImage>
+		</ImageSet>
+		<ImageSet Category="variant">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/51bwoW0aUYL._SL30_.jpg</URL>
+				<Height Units="pixels">30</Height>
+				<Width Units="pixels">20</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/51bwoW0aUYL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">50</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/51bwoW0aUYL._SL75_.jpg</URL>
+				<Height Units="pixels">75</Height>
+				<Width Units="pixels">50</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/51bwoW0aUYL._SL110_.jpg</URL>
+				<Height Units="pixels">110</Height>
+				<Width Units="pixels">73</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/51bwoW0aUYL._SL160_.jpg</URL>
+				<Height Units="pixels">160</Height>
+				<Width Units="pixels">107</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/51bwoW0aUYL.jpg</URL>
+				<Height Units="pixels">500</Height>
+				<Width Units="pixels">333</Width>
+			</LargeImage>
+		</ImageSet>
+		<ImageSet Category="variant">
+			<SwatchImage>
+				<URL>http://ecx.images-amazon.com/images/I/51jsTZoey1L._SL30_.jpg</URL>
+				<Height Units="pixels">21</Height>
+				<Width Units="pixels">30</Width>
+			</SwatchImage>
+			<SmallImage>
+				<URL>http://ecx.images-amazon.com/images/I/51jsTZoey1L._SL75_.jpg</URL>
+				<Height Units="pixels">52</Height>
+				<Width Units="pixels">75</Width>
+			</SmallImage>
+			<ThumbnailImage>
+				<URL>http://ecx.images-amazon.com/images/I/51jsTZoey1L._SL75_.jpg</URL>
+				<Height Units="pixels">52</Height>
+				<Width Units="pixels">75</Width>
+			</ThumbnailImage>
+			<TinyImage>
+				<URL>http://ecx.images-amazon.com/images/I/51jsTZoey1L._SL110_.jpg</URL>
+				<Height Units="pixels">76</Height>
+				<Width Units="pixels">110</Width>
+			</TinyImage>
+			<MediumImage>
+				<URL>http://ecx.images-amazon.com/images/I/51jsTZoey1L._SL160_.jpg</URL>
+				<Height Units="pixels">111</Height>
+				<Width Units="pixels">160</Width>
+			</MediumImage>
+			<LargeImage>
+				<URL>http://ecx.images-amazon.com/images/I/51jsTZoey1L.jpg</URL>
+				<Height Units="pixels">346</Height>
+				<Width Units="pixels">500</Width>
+			</LargeImage>
+		</ImageSet>
+	</ImageSets>
+	<ItemAttributes>
+		<Binding>Misc.</Binding>
+		<Brand>Gypsy Stix Neon Shimmer Hair Chalk</Brand>
+		<EAN>0872526106845</EAN>
+		<EANList>
+			<EANListElement>0872526106845</EANListElement>
+		</EANList>
+		<Feature>Shimmery Neon Shades</Feature>
+		<Feature>Lasts up to 3 days</Feature>
+		<Feature>Create colorful Tips, Highlights, or an Ombre Effect</Feature>
+		<Feature>Velum paper Applicator Stix Keep Hands Mess Free</Feature>
+		<Feature>Washes Out With Shampoo, Lasts Throughout Styling, Even With
+			High Heat</Feature>
+		<Label>Lashes and Cosmetics</Label>
+		<Manufacturer>Lashes and Cosmetics</Manufacturer>
+		<PackageDimensions>
+			<Height Units="hundredths-inches">90</Height>
+			<Length Units="hundredths-inches">390</Length>
+			<Weight Units="hundredths-pounds">2</Weight>
+			<Width Units="hundredths-inches">340</Width>
+		</PackageDimensions>
+		<ProductGroup>Beauty</ProductGroup>
+		<ProductTypeName>BEAUTY</ProductTypeName>
+		<Publisher>Lashes and Cosmetics</Publisher>
+		<Studio>Lashes and Cosmetics</Studio>
+		<Title>Neon!!! Hair Shimmer Chalks Set of 6 Colors | Lasts up to 3
+			Days | Gypsy Stix Hues Works in All Hair Colors</Title>
+		<UPC>872526106845</UPC>
+		<UPCList>
+			<UPCListElement>872526106845</UPCListElement>
+		</UPCList>
+	</ItemAttributes>
+</Item>
