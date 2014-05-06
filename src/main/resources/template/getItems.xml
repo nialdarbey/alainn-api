@@ -1,12 +1,13 @@
-<ns:getItems xmlns:ns="http://www.alainn.com/SOA/message/1.0"
-	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+<ns:getItems xmlns:ns="http://www.alainn.com/SOA/message/1.0">
 	<ns:PageInfo>
             <pageIndex>#[message.inboundProperties.pageIndex]</pageIndex>
             <pageSize>#[message.inboundProperties.pageSize]</pageSize>
          </ns:PageInfo>
     <!--Optional: -->
-	<ns1:ItemSearchCriteria>
-		<type>#[t = message.inboundProperties.type; t == '' ? '*' : t ]</type>
-		<name>#[n = message.inboundProperties.name; n == '' ? '*' : n ]</name>
-	</ns1:ItemSearchCriteria>
+	<ns:ItemSearchCriteria>
+		<type>#[t = message.inboundProperties.type; t == null ? '*' : t ]</type>
+		<name>#[n = message.inboundProperties.name; n == null ? '*' : n ]</name>
+		<brand>#[b = message.inboundProperties.name; b == null ? '*' : b ]</brand>
+	</ns:ItemSearchCriteria>
+	<ns:ImageType>#[message.inboundProperties.imageType]</ns:ImageType>
 </ns:getItems>

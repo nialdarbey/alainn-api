@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mule xmlns:cors="http://www.mulesoft.org/schema/mule/cors" xmlns:https="http://www.mulesoft.org/schema/mule/https"
-	xmlns:jetty-ssl="http://www.mulesoft.org/schema/mule/jetty-ssl" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
+	xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
-http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/cors http://www.mulesoft.org/schema/mule/cors/current/mule-cors.xsd
-http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
 http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
-http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
-http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mule/jetty-ssl/current/mule-jetty-ssl.xsd" version="EE-3.5.0">
+http://www.mulesoft.org/schema/mule/cors http://www.mulesoft.org/schema/mule/cors/current/mule-cors.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd" version="EE-3.5.0">
     <mulexml:namespace-manager includeConfigNamespaces="true">
         <mulexml:namespace prefix="mes" uri="http://www.alainn.com/SOA/message/1.0" />
         <mulexml:namespace prefix="mod" uri="http://www.alainn.com/SOA/model/1.0" />
     </mulexml:namespace-manager>
-    <apikit:config name="alainn-config" raml="alainn.raml" consoleEnabled="false" doc:name="Router" />
+    <apikit:config name="alainn-config" raml="alainn.raml" consoleEnabled="true" doc:name="Router" />
     <apikit:mapping-exception-strategy name="alainn-apiKitGlobalExceptionMapping">
         <apikit:mapping statusCode="404">
             <apikit:exception value="org.mule.module.apikit.exception.NotFoundException" />
@@ -54,7 +51,6 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
     <ws:consumer-config name="ItemServiceConsumer" wsdlLocation="service/ItemService.wsdl" service="ItemService" port="ItemPort" serviceAddress="${url.itemService}" doc:name="Web Service Consumer" />
     <ws:consumer-config name="OrderFulfillmentServiceConsumer" wsdlLocation="service/OrderFulfillmentService.wsdl" service="OrderFulfillmentService" port="OrderFulfillmentPort" serviceAddress="${url.orderFulfillmentService}" doc:name="Web Service Consumer" />
     <data-mapper:config name="json_to_xml_processsale_" transformationGraphPath="json_to_xml_processsale_.grf" doc:name="json_to_xml_processsale_" />
-    <data-mapper:config name="xml_getitemsresponse__to_json" transformationGraphPath="xml_getitemsresponse__to_json.grf" doc:name="xml_getitemsresponse__to_json"/>
     <data-mapper:config name="xml_getitemresponse__to_json" transformationGraphPath="xml_getitemresponse__to_json.grf" doc:name="xml_getitemresponse__to_json"/>
     <data-mapper:config name="json_to_xml_processorder_" transformationGraphPath="json_to_xml_processorder_.grf" doc:name="json_to_xml_processorder_"/>
     <data-mapper:config name="xml_getcustomerresponse__to_json" transformationGraphPath="xml_getcustomerresponse__to_json.grf" doc:name="xml_getcustomerresponse__to_json"/>
@@ -70,21 +66,32 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
     </https:connector>
     
     <flow name="alainn-main" doc:name="alainn-main">
-        <https:inbound-endpoint exchange-pattern="request-response" address="https://localhost:8081/omni-channel-api/v1.0" connector-ref="httpsConnector" doc:name="HTTP"/>
+        <https:inbound-endpoint exchange-pattern="request-response" address="https://localhost:${https.port}/omni-channel-api/v1.0" connector-ref="httpsConnector" doc:name="HTTP"/>
+        <set-session-variable variableName="props" value="#[message.inboundProperties]" doc:name="props"/>
         <cors:validate publicResource="true" doc:name="Cors" />
         <apikit:router config-ref="alainn-config" doc:name="APIkit Router" />
         <exception-strategy ref="alainn-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy" />
     </flow>
     
-        <flow name="get:/items:alainn-config" doc:name="get:/items:alainn-config">
+    <flow name="get:/items:alainn-config" doc:name="get:/items:alainn-config">
+    	
         <parse-template location="template/getItems.xml" doc:name="getItems.xml"/>
+        <logger level="INFO" message="Payload after parsing... #[payload]" doc:name="Logger"/>
         <ws:consumer config-ref="ItemServiceConsumer" doc:name="get Items" operation="getItems" />
-        <data-mapper:transform config-ref="xml_getitemsresponse__to_json" doc:name="Xml&lt;getItemsResponse&gt; To JSON" returnClass="java.lang.String"/>
+        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="getItemsResponseXml2getItemsJson.xsl" doc:name="XSLT" mimeType="application/json">
+        	<mulexml:context-property key="next" value="#[i = sessionVars.props.pageIndex; s = sessionVars.props.pageSize; sessionVars.props.'http.context.uri' + '?pageIndex=' + ( (int)i + (int)s ) + '&amp;pageSize=' + s]"/>
+        	<mulexml:context-property key="prev" value="#[i = sessionVars.props.pageIndex; s = sessionVars.props.pageSize; sessionVars.props.'http.context.uri' + '?pageIndex=' + ( (int)i - s &lt; 0 ? 0 : (int)i - s ) + '&amp;pageSize=' + s]"/>
+        	<mulexml:context-property key="baseUrl" value="#[sessionVars.props.'http.context.uri']"/>
+        	<mulexml:context-property key="self" value="#[sessionVars.props.'http.relative.path']" />
+        </mulexml:xslt-transformer>
     </flow>
     <flow name="get:/items/{item}:alainn-config" doc:name="get:/items/{item}:alainn-config">
         <parse-template location="template/getItem.xml" doc:name="getItem.xml"/>
         <ws:consumer config-ref="ItemServiceConsumer" doc:name="get Item" operation="getItem" />
-        <data-mapper:transform config-ref="xml_getitemresponse__to_json" doc:name="Xml&lt;getItemResponse&gt; To JSON" returnClass="java.lang.String"/>
+        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="getItemResponseXml2getItemJson.xsl" doc:name="XSLT" mimeType="application/json">
+        	<mulexml:context-property key="baseUrl" value="#[sessionVars.props.'http.context.uri']"/>
+        	<mulexml:context-property key="self" value="#[sessionVars.props.'http.relative.path']" />
+        </mulexml:xslt-transformer>
     </flow>
     <flow name="post:/basket/checkout:alainn-config" doc:name="post:/basket/checkout:alainn-config">
         <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
@@ -235,10 +242,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
         <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
     </flow>
     
-    <flow name="console" doc:name="console">
-        <https:inbound-endpoint exchange-pattern="request-response" address="https://localhost:9091/console" doc:name="HTTP" connector-ref="httpsConnector" path="console"/>
+    <!-- <flow name="console" doc:name="console">
+        <https:inbound-endpoint exchange-pattern="request-response" address="https://localhost:8083/console" doc:name="HTTP" connector-ref="httpsConnector" path="console"/>
         <apikit:console />
-    </flow>
+    </flow> -->
     
 
 </mule>

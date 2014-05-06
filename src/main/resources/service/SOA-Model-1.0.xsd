@@ -19,6 +19,7 @@
 	<element name="CustomerRegistrationStatus" type="tns:customerRegistrationStatusType" />
 	<element name="EmailAvailability" type="tns:emailAvailabilityType" />
 	<element name="CustomerLoyaltyPoints" type="integer" />
+	<element name="NotificationPreferences" type="tns:notificationPreferencesType" />
 	<element name="MobileToken" type="string" />
 	<element name="Discount" type="float" />
 
@@ -28,28 +29,30 @@
 			<element name="firstName" type="string" />
 			<element name="lastName" type="string" />
 			<element name="email" type="string" />
+			<element name="password" type="string" minOccurs="0" />
 			<element name="mobilePhoneNumber" type="string" />
 			<element name="loyaltyPoints" type="integer" />
-			<element name="mobileTokens" type="tns:mobileTokensType" />
-			<element name="notificationPreferences">
-				<complexType>
-					<sequence>
-						<element name="preference" maxOccurs="unbounded">
-							<simpleType>
-								<restriction base="string">
-									<enumeration value="Email" />
-									<enumeration value="Sms" />
-									<enumeration value="Web" />
-									<enumeration value="Mobile Push" />
-								</restriction>
-							</simpleType>
-						</element>
-					</sequence>
-				</complexType>
-			</element>
+			<element name="mobileToken" type="string" />
+			<element name="notificationPreferences" type="tns:notificationPreferencesType" />
 		</sequence>
 	</complexType>
 
+
+	<complexType name="notificationPreferencesType">
+		<sequence>
+			<element name="preference" maxOccurs="unbounded">
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="Email" />
+						<enumeration value="Sms" />
+						<enumeration value="Web" />
+						<enumeration value="Apple Push" />
+						<enumeration value="Android Push" />
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
 
 	<group name="basicItemInformation">
 		<sequence>
@@ -58,6 +61,32 @@
 			<element name="name" type="string" />
 			<element name="summary" type="string" />
 			<element name="brand" type="string" />
+			<element name="images" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="image" maxOccurs="unbounded">
+							<complexType>
+								<simpleContent>
+									<extension base="string">
+										<attribute name="type">
+											<simpleType>
+												<restriction base="string">
+													<enumeration value="TinyImage" />
+													<enumeration value="SwatchImage" />
+													<enumeration value="ThumbImage" />
+													<enumeration value="SmallImage" />
+													<enumeration value="MediumImage" />
+													<enumeration value="LargeImage" />
+												</restriction>
+											</simpleType>
+										</attribute>
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
 		</sequence>
 	</group>
 
@@ -73,9 +102,9 @@
 		<sequence>
 			<group ref="tns:basicItemInformation" />
 			<element name="sku" type="string" />
-			<element name="price" type="float" />
-			<element name="quantityInStock" type="integer" />
-			<element name="characteristics">
+			<element name="price" type="float" minOccurs="0"/>
+			<element name="quantityInStock" type="integer" minOccurs="0"/>
+			<element name="characteristics" minOccurs="0">
 				<complexType>
 					<sequence>
 						<element name="characteristic" maxOccurs="unbounded">
@@ -167,12 +196,6 @@
 			<enumeration value="Taken" />
 		</restriction>
 	</simpleType>
-
-	<complexType name="mobileTokensType">
-		<sequence>
-			<element name="token" type="string" maxOccurs="unbounded" />
-		</sequence>
-	</complexType>
 
 
 

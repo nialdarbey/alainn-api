@@ -1,44 +1,46 @@
-{
-    "collection": {
-        "links": [
-            {
-                "rel": "self",
-                "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items"
-            }
-        ],
-        "items": [
-            {
-                "links": [
-                    {
-                        "rel": "image",
-                        "href": ""
-                    },
-                    {
-                        "rel": "self",
-                        "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/897234234"
-                    }
-                ],
-                "id": "897234234",
-                "type": "Creams",
-                "name": "Dove",
-                "summary": "Soap! Just plain old soap!"
-            },
-            {
-                "links": [
-                    {
-                        "rel": "image",
-                        "href": ""
-                    },
-                    {
-                        "rel": "self",
-                        "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/43535"
-                    }
-                ],
-                "id": "43535",
-                "type": "Perfumes",
-                "name": "Channel No.5",
-                "summary": "Smelly"
-            }
-        ]
-    }
-}
+              {
+                  "collection": {
+                      "links": [
+                          {
+                              "rel": "self",
+                              "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items"
+                          }
+                      ],
+                      "items": [
+                          {
+                              "links": [
+                                  {
+                                      "rel": "thumb-image",
+                                      "href": "http://ecx.images-amazon.com/images/I/41kAbTj-e1L._SS100_.jpg"
+                                  },
+                                  {
+                                      "rel": "self",
+                                      "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/1112233"
+                                  }
+                              ],
+                              "id": "1112233",
+                              "type": "Creams",
+                              "brand": "L'Oreal",
+                              "name": "L'Oreal Paris Age Perfect Night Cream",
+                              "summary": "Wake up every morning to a beautiful new you. Age Perfect Night Cream deeply moisturizes and helps improve skin elasticity for overnight action. Soy seed proteins improve elasticity for more toned, supple and resilient skin and Beta Hydroxy Acid complex helps improve the appearance of age spots. Night after night, skin becomes more resilient and radiant while its youthful cushion is restored."
+                          },
+                          {
+                              "links": [
+                                  {
+                                      "rel": "thumb-image",
+                                      "href": "http://ecx.images-amazon.com/images/I/31fj2SYjqgL._SL246_SX190_CR0,0,190,246_.jpg"
+                                  },
+                                  {
+                                      "rel": "self",
+                                      "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/43535"
+                                  }
+                              ],
+                              "id": "1112244",
+                              "type": "Lipstick",
+                              "name": "L'Oreal Paris Colour Riche Lipcolour, Fairest Nude, 0.13 Ounces",
+                              "brand": "L'Oreal",
+                              "summary": "Indulge in the color of pure luxury. Color riche nurturing and protective lipcolour is now richer, creamier and more moisturizing than ever before. In addition to nourishing ingredients like omega 3 and vitamin E, the formula has been enriched with argan oil."
+                          }
+                      ]
+                  }
+              }
