@@ -7,6 +7,7 @@
 	<element name="Type" type="string" />
 	<element name="ItemSku" type="tns:skuType" />
 	<element name="TransactedSku" type="tns:transactedSkuType" />
+	<element name="SkuQuantity" type="integer" />
 	<element name="ItemId" type="string" />
 	<element name="Order" type="tns:orderType" />
 	<element name="OrderId" type="string" />

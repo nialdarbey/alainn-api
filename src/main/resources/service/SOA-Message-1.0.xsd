@@ -142,7 +142,8 @@
 		<complexType>
 			<sequence>
 				<element ref="mod:CustomerId" />
-				<element ref="mod:BasketItem" />
+				<element ref="mod:Sku" />
+				<element ref="mod:SkuQuantity" />
 			</sequence>
 		</complexType>
 	</element>
