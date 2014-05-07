@@ -103,8 +103,8 @@
 		<sequence>
 			<group ref="tns:basicItemInformation" />
 			<element name="sku" type="string" />
-			<element name="price" type="float" minOccurs="0"/>
-			<element name="quantityInStock" type="integer" minOccurs="0"/>
+			<element name="price" type="float" minOccurs="0" />
+			<element name="quantityInStock" type="integer" minOccurs="0" />
 			<element name="characteristics" minOccurs="0">
 				<complexType>
 					<sequence>
@@ -142,6 +142,8 @@
 							<restriction base="string">
 								<enumeration value="Pending" />
 								<enumeration value="Ready for Distribution" />
+								<enumeration value="Ready for Pickup" />
+								<enumeration value="Closed" />
 							</restriction>
 						</simpleType>
 					</element>
@@ -153,14 +155,25 @@
 	<complexType name="orderType">
 		<sequence>
 			<element name="id" type="long" minOccurs="0" />
-			<element name="total" type="float" />
+			<element name="total" type="float" minOccurs="0" />
 			<element name="discount" type="float" minOccurs="0" />
 			<element name="pickupLocation" type="string" />
 			<element name="pickupDate" type="date" minOccurs="0" />
+			<element name="status" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="Pending" />
+						<enumeration value="Ready for Distribution" />
+						<enumeration value="Ready for Pickup" />
+						<enumeration value="Closed" />
+					</restriction>
+				</simpleType>
+			</element>
 			<element name="items">
 				<complexType>
 					<sequence>
-						<element name="item" type="tns:orderSkuType" maxOccurs="unbounded" />
+						<element name="item" type="tns:transactedSkuType"
+							maxOccurs="unbounded" />
 					</sequence>
 				</complexType>
 			</element>
