@@ -31,7 +31,7 @@
 							"id": "<xsl:value-of select="id" />",
 							"name":"<xsl:value-of select="name" />",
 							"summary":"<xsl:value-of select="summary" />",
-							"price": <xsl:value-of select="($price div 100)" />,
+							"price": <xsl:value-of select="$price" />,
 							"sku":"<xsl:value-of select="sku" />",
 							"stockQuantity": <xsl:value-of select="quantityInStock" />,
 							"links" : [
@@ -43,7 +43,7 @@
 								{
 									"href" : "<xsl:value-of select="." />",
 									"rel" : "<xsl:value-of select="@type" />"
-								}<xsl:if test="./following-sibling::images/image">,</xsl:if>
+								}<xsl:if test="./following-sibling::image">,</xsl:if>
 			</xsl:for-each>
 							]
 						}<xsl:if test="./following-sibling::mod:ItemSku">,</xsl:if>
