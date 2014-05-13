@@ -1,16 +1,13 @@
 {
   "collection" : {
     "links" : [
-      { "rel" : "next", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=20" },
-      { "rel" : "prev", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=10" },
       { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
     ],
+    "size" : 2,
     "items" : [
       {
         "links" : [
-          { "rel" : "image", "href" : "" },
-          { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/12341324" },
-          { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
+          { "rel" : "image", "href" : "" }
         ],
         "id" : "12341324",
         "type" : "Creams",
@@ -23,9 +20,7 @@
       },
       {
         "links" : [
-          { "rel" : "image", "href" : "" },
-          { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/09878623" },
-          { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }                
+          { "rel" : "image", "href" : "" }         
         ],
         "id" : "09878623",
         "type" : "Creams",

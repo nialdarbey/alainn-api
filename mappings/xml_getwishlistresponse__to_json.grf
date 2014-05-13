@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><Graph author="nialdarbey" created="Sat Apr 12 11:46:43 ART 2014" description="Xml&lt;getWishListResponse&gt; To JSON" guiVersion="3.4.3.P" id="1397324312174" licenseCode="Unlicensed" licenseType="Unknown" modified="Sat Apr 12 11:46:43 ART 2014" modifiedBy="nialdarbey" name="Xml_getWishListResponse__To_JSON" preview-file="${Project_Home}/src/test/resources/getWishListResponse.xml" revision="1.0" showComponentDetails="false">
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="nialdarbey" created="Sat Apr 12 11:46:43 ART 2014" description="Xml&lt;getWishListResponse&gt; To JSON" guiVersion="3.4.3.P" id="1397324312174" licenseCode="Unlicensed" licenseType="Unknown" modified="Sat Apr 12 11:46:43 ART 2014" modifiedBy="nialdarbey" name="Xml_getWishListResponse__To_JSON" preview-file="${Project_Home}/src/test/resources/getWishListResponse.xml" revision="1.0" showComponentDetails="false">
 <Global>
 <Metadata __index="9" __referenceCounter="0" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:getWishListResponse/ns1:ItemSku/characteristics/characteristic" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="e391a303-7cd4-4089-83f7-c9e423190487" _parent_id="__parent_id" _type="Input" id="4327ab0b-7b24-44b6-9dfe-0913ccaa0770">
 <Record fieldDelimiter="," name="characteristic" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
@@ -131,8 +131,8 @@ output.stockQuantity = input.quantityInStock;]]></attr>
 <attr name="__rootGlobalElementName"><![CDATA[{http://www.alainn.com/SOA/message/1.0}getWishListResponse]]></attr>
 </Node>
 <Edge debugMode="true" fromNode="FOREACH_NS0_GET_WISH_LIST_RESPONSE_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="78194623-de67-474f-8a77-9401ae1f0db9" outPort="Port 0 (out)" toNode="JSON_WRITER0:0"/>
-<Edge debugMode="true" fromNode="FOREACH_NS1_ITEM_SKU_ITEMS:0" guiBendpoints="" id="Edge5" inPort="Port 1 (in)" metadata="b9a9f3b3-bb44-4127-b398-bd79b3cdad21" outPort="Port 0 (out)" toNode="JSON_WRITER0:1"/>
+<Edge debugMode="true" fromNode="FOREACH_NS1_ITEM_SKU_ITEMS:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="b9a9f3b3-bb44-4127-b398-bd79b3cdad21" outPort="Port 0 (out)" toNode="JSON_WRITER0:1"/>
 <Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="b2ee9d7d-ac17-4aca-b475-68251c71e2a8" outPort="Port 0 (out)" toNode="FOREACH_NS0_GET_WISH_LIST_RESPONSE_OBJECT:0"/>
-<Edge debugMode="true" fromNode="XML_READER0:1" guiBendpoints="" id="Edge4" inPort="Port 0 (in)" metadata="e391a303-7cd4-4089-83f7-c9e423190487" outPort="Port 1 (out)" toNode="FOREACH_NS1_ITEM_SKU_ITEMS:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:1" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="e391a303-7cd4-4089-83f7-c9e423190487" outPort="Port 1 (out)" toNode="FOREACH_NS1_ITEM_SKU_ITEMS:0"/>
 </Phase>
 </Graph>

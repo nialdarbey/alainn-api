@@ -1,0 +1,6 @@
+<ns:getBrands xmlns:ns="http://www.alainn.com/SOA/message/1.0">
+	<ns:PageInfo>
+            <pageIndex>#[message.inboundProperties.pageIndex]</pageIndex>
+            <pageSize>#[message.inboundProperties.pageSize]</pageSize>
+         </ns:PageInfo>
+</ns:getBrands>

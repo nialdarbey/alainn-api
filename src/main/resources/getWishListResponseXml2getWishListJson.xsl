@@ -10,8 +10,7 @@
 	<xsl:param name="requestedPageSize" />
 	<xsl:param name="baseUrl" />
 	
-	<xsl:variable name="pageSize" select="/mes:getItemsResponse/mes:PageInfo/pageSize" />
-	
+	<xsl:variable name="pageSize" select="/mes:getWishListResponse/mes:PageInfo/pageSize" />
 	
 	<xsl:template match="/">
 		{
@@ -47,18 +46,17 @@
 					}
 			],
 			"collection" : {
-				"size" : <xsl:value-of select="/mes:getItemsResponse/mes:PageInfo/pageSize" />,
+				"size" : <xsl:value-of select="/mes:getWishListResponse/mes:PageInfo/pageSize" />,
 				"items" : [
-		<xsl:for-each select="/mes:getItemsResponse/mod:Item">
+		<xsl:for-each select="/mes:getWishListResponse/mod:ItemSku">
 					{
-						"id": "<xsl:value-of select="id" />",
+						"sku":"<xsl:value-of select="sku" />",
 						"type":"<xsl:value-of select="type" />",
 						"name":"<xsl:value-of select="name" />",
 						"summary":"<xsl:value-of select="summary" />",
-						"brand":"<xsl:value-of select="brand" />",
 						"links" : [
 							{
-								"href" : "<xsl:value-of select="$baseUrl"/>/<xsl:value-of select="id" />",
+								"href" : "<xsl:value-of select="$baseUrl"/>/<xsl:value-of select="sku" />",
 								"rel" : "self"
 							}<xsl:if test="images/image">,</xsl:if>
 			<xsl:for-each select="images/image">
@@ -68,7 +66,7 @@
 							}<xsl:if test="./following-sibling::image">,</xsl:if>
 			</xsl:for-each>
 						]
-					}<xsl:if test="./following-sibling::mod:Item">,</xsl:if>
+					}<xsl:if test="./following-sibling::mod:ItemSku">,</xsl:if>
 		</xsl:for-each>
 				]
 			}

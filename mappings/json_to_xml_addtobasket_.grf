@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="nialdarbey" created="Fri May 09 11:52:03 ART 2014" description="JSON To Xml&lt;addToBasket&gt;" guiVersion="3.4.3.P" id="1399723531693" licenseCode="Unlicensed" licenseType="Unknown" modified="Fri May 09 11:52:03 ART 2014" modifiedBy="nialdarbey" name="JSON_To_Xml_addToBasket_" preview-arguments="customerId:'28'" preview-file="${Project_Home}/src/test/resources/post-basket.json" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{http://www.alainn.com/SOA/message/1.0=ns0}/ns0:addToBasket" _dataStructure="OBJECT" _id="__id" _type="Output" id="22bf1c2e-bf3f-4ff2-95d0-e122bbc05e1a">
+<Record fieldDelimiter="," name="addToBasket" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:addToBasket/ns1:CustomerId" containerType="SINGLE" label="CustomerId" name="CustomerId" type="string"/>
+<Field __index="1" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:addToBasket/ns1:Sku" containerType="SINGLE" label="Sku" name="Sku" type="string"/>
+<Field __index="2" __sourcePath="{http://www.alainn.com/SOA/model/1.0=ns1,http://www.alainn.com/SOA/message/1.0=ns0}/ns0:addToBasket/ns1:SkuQuantity" containerType="SINGLE" label="SkuQuantity" name="SkuQuantity" type="integer"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="9fdfbe7a-aaf9-40c0-86d3-2acf3de1e79c">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" label="__id" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/sku" containerType="SINGLE" label="sku" name="sku" type="string"/>
+<Field __index="1" __sourcePath="{}/object/quantity" containerType="SINGLE" label="quantity" name="quantity" type="number"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="customerId" output="false" type="string"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="XML WRITER" guiX="900" guiY="20" id="EXT_XML_WRITER0" type="EXT_XML_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:element clover:name="ns0:addToBasket" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" xmlns:ns0="http://www.alainn.com/SOA/message/1.0" clover:inPort="0">
+  <clover:element clover:name="ns1:CustomerId" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">$0.CustomerId</clover:element>
+  <clover:element clover:name="ns1:Sku" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">$0.Sku</clover:element>
+  <clover:element clover:name="ns1:SkuQuantity" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">$0.SkuQuantity</clover:element>
+</clover:element>]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'ns0:addToBasket'" guiX="460" guiY="20" id="FOREACH_OBJECT_NS0_ADD_TO_BASKET" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.Sku = input.sku;
+output.SkuQuantity = (isnull(input.quantity) ? null : double2integer(input.quantity));
+output.CustomerId = inputArguments.customerId;]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="JSON READER" guiX="20" guiY="20" id="JSON_READER0" type="JSON_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context xpath="/root">
+  <Context outPort="0" sequenceField="__id" xpath="object">
+    <Mapping cloverField="sku" trim="true" xpath="sku"/>
+    <Mapping cloverField="quantity" trim="true" xpath="quantity"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[./src/test/resources/post-basket.json]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_NS0_ADD_TO_BASKET:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="22bf1c2e-bf3f-4ff2-95d0-e122bbc05e1a" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
+<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="9fdfbe7a-aaf9-40c0-86d3-2acf3de1e79c" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_NS0_ADD_TO_BASKET:0"/>
+</Phase>
+</Graph>

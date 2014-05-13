@@ -5,8 +5,11 @@
 	<element name="Customer" type="tns:customerType" />
 	<element name="Item" type="tns:itemType" />
 	<element name="Type" type="string" />
+	<element name="Brand" type="string" />
 	<element name="ItemSku" type="tns:skuType" />
 	<element name="TransactedSku" type="tns:transactedSkuType" />
+	<element name="TotalCost" type="float" />
+	<element name="LoyaltyPoints" type="integer" />
 	<element name="SkuQuantity" type="integer" />
 	<element name="ItemId" type="string" />
 	<element name="Order" type="tns:orderType" />
@@ -23,6 +26,30 @@
 	<element name="NotificationPreferences" type="tns:notificationPreferencesType" />
 	<element name="MobileToken" type="string" />
 	<element name="Discount" type="float" />
+
+	<complexType name="typesType">
+		<sequence>
+			<element name="type" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="name" type="string" />
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="brandsType">
+		<sequence>
+			<element name="brand" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="name" type="string" />
+					</sequence>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
 
 	<complexType name="customerType">
 		<sequence>

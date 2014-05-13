@@ -3,10 +3,12 @@
     "items": [
         {
             "sku": "xyz",
+            "price" : 12.99,
             "quantity": 3
         },
         {
             "sku": "abc",
+            "price" : 7.50,
             "quantity": 1
         }
     ]

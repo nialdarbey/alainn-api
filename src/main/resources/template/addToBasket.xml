@@ -1,0 +1,6 @@
+      <ns:addToBasket xmlns:ns="http://www.alainn.com/SOA/message/1.0" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+         <ns1:CustomerId>28</ns1:CustomerId>
+         <ns1:Sku>B000X9WXSU</ns1:Sku>
+         <ns1:SkuQuantity>23</ns1:SkuQuantity>
+      </ns:addToBasket>
+   </soapenv:Body>

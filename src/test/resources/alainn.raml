@@ -1,0 +1,947 @@
+#%RAML 0.8
+---
+title: Álainn Cosmetics API
+version: v1.0
+#baseUri: http://alainn-cosmetics.cloudhub.io/api/{version}
+baseUri: http://mocksvc.mulesoft.com/mocks/2716a668-5976-4f72-814a-75635837a1d1/api/{version}
+schemas:
+  - item: &item-schema |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "links" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "href" : { "type" : "string" },
+                "label" : { "type" : "string" },
+                "rel" : { "type" : "string" }
+              }
+            }
+          },
+          "id" : { "type" : "string" },
+          "name" : { "type" : "string" },
+          "summary" : { "type" : "string" },
+          "type" : { "type" : "string" },
+          "description" : { "type" : "string" },
+          "skus" : {
+            "type" : "object",
+            "properties" : {
+              "collection" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "links" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "href" : { "type" : "string" },
+                          "label" : { "type" : "string" },
+                          "rel" : { "type" : "string" }
+                        }
+                      }
+                    },
+                    "id" : { "type" : "long" },
+                    "type" : { "type" : "string" },
+                    "name" : { "type" : "string" },
+                    "summary" : { "type" : "string" },
+                    "sku" : { "type" : "string" },
+                    "price" : { "type" : "number" },  
+                    "stockQuantity" : { "type" : "integer" },
+                    "characteristics" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "name" : { "type" : "string" },
+                          "value" : { "type" : "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }    
+      }
+  - items: &items-schema |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "collection" : {
+            "type" : "object",
+            "properties" : {
+              "links" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "href" : { "type" : "string" },
+                    "label" : { "type" : "string" },
+                    "rel" : { "type" : "string" }
+                  }
+                }
+              },
+              "items" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                      "id" : { "type" : "long" },
+                      "type" : { "type" : "string" },
+                      "name" : { "type" : "string" },
+                      "summary" : { "type" : "string" }
+                  }
+                }
+              }
+            }
+          }
+        }    
+      }
+  - pending-order: *item-schema
+  - pending-orders: *items-schema
+  - reviews: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "count" : { "type" : "integer" },
+          "reviews" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "id" : { "type" : "string" },
+                  "author" : { "type" : "string" },
+                  "review" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - review-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "review" : { "type" : "string" }
+
+        }    
+      }
+  - top-items: *items-schema
+  - top-brands: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "count" : { "type" : "integer" },
+          "brands" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "id" : { "type" : "string" },
+                  "name" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - recommendations: *items-schema
+  - promotions: *items-schema
+  - promotion: *item-schema  
+  - wish-list: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "wishes" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "sku" : { "type" : "string" },
+                  "name" : { "type" : "string" },
+                  "summary" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - wish-list-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "sku" : { "type" : "string" }
+        }
+      }
+  - basket: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "name" : { "type" : "string" },
+                "price" : { "type" : "number" },
+                "quantity" : { "type" : "integer" }
+              }
+             }
+          }
+        }
+      }
+  - basket-item: &basket-item-schema | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "sku" : { "type" : "string" },
+          "name" : { "type" : "string" },
+          "quantity" : { "type" : "integer" }
+        }
+      }
+  - skus: *basket-item-schema
+  - orders: | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "pickupLocation" : { "type" : "string" }
+        }
+      }
+  - order: | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "discount" : { "type" : "number" },
+          "pickupLocation" : { "type" : "string" },
+          "collection" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "links" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "href" : { "type" : "string" },
+                      "label" : { "type" : "string" },
+                      "rel" : { "type" : "string" }
+                    }
+                  }
+                },
+                "sku" : { "type" : "string" },
+                "name" : { "type" : "string" },
+                "price" : { "type" : "number" },
+                "quantity" : { "type" : "integer" },
+                "status" : { "type" : "string" }
+              }
+             }
+          }
+        }
+      }
+  - order-request: &order-request-schema |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "pickupLocation" : { "type" : "string" },
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "quantity" : { "type" : "integer" }
+              }
+             }
+          }
+        }
+      }
+  - return-request: *order-request-schema
+  - sale: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "discount" : { "type" : "number" },
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "name" : { "type" : "string" },
+                "price" : { "type" : "number" },
+                "quantity" : { "type" : "integer" }
+              }
+            }
+          }
+        }
+      }
+  - sales: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" }
+        }
+      }
+  - sale-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "quantity" : { "type" : "integer" }
+              }
+             }
+          }
+        }
+      }
+  - registration-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "firstName" : { "type" : "string" },
+          "lastName" : { "type" : "string" },
+          "mobileNumber" : { "type" : "string" },
+          "notificationPreferences": {
+            "type" : "array",
+            "items" : { "type" : "string" }
+          }
+        }
+      }
+  - mobile-token-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "token" : { "type" : "string" }
+        }
+      }
+  - mobile-tokens: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "tokens" : { 
+            "type" : "array",
+            "items" : { "type" : "string" } 
+          }
+        }
+      }
+  - my-profile: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "x-user-id" : { "type" : "string" },
+          "firstName" : { "type" : "string" },
+          "lastName" : { "type" : "string" },
+          "notificationPreferences" : { 
+            "type" : "array",
+            "items" : { "type" : "string" } 
+          }
+        }
+      }
+documentation:
+  - title: Introduction
+    content: |
+      API to act as main point of entry to multi-channel software so that the customer gets a consistent experience across all channels. 
+      
+      * A
+      * B
+      * C
+traits:
+  - secured:
+      headers:
+        x-user-id:
+          type: string
+          required: true
+          example: 4322234
+  - pageable:
+      queryParameters:
+        pageIndex:
+          type: integer
+          default: 0
+          example: 10
+          required: false
+        pageSize:
+          type: integer
+          default: 10
+          example: 20
+          required: false
+  - searchable:
+      queryParameters:
+        name:
+          type: string
+          required: false
+          example: Bella Il Fiore Shimmer Powder Puff
+          default: '*'
+        type:
+          type: string
+          required: false
+          example: Bath Pearls & Flakes
+          default: '*'
+        brand:
+          type: string
+          required: false
+          example: Bella Il Fiore
+          default: '*'
+  - imageable:
+      queryParameters:
+        imageType:
+          type: string
+          required: false
+          default: SmallImage
+          example: TinyImage,SmallImage,LargeImage
+resourceTypes: 
+  - document:
+      get:
+        is: [secured]
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<schema>>
+  - read-only-collection:
+      type: { document : { schema : <<resourcePathName>> } }
+      get:
+        is: [pageable]
+  - collection:
+      type: read-only-collection
+      post:
+        is: [secured]
+        body:
+          application/json:
+            schema: <<resourcePathName | !singularize>>-request  # e.g. order
+        responses:
+          201:
+            description: Created!
+            headers:
+              Location:
+                description: uri of new resource
+                type: string
+                required: true  
+  - controller:
+      post:
+        is: [secured]
+        responses:
+          204:
+            description: Done!
+  - member:
+      type: { document : { schema : <<resourcePathName | !singularize >> } }
+      put?:
+        is: [secured]
+        body:
+          application/json:
+            schema: <<resourcePathName>>
+        responses:
+          204:
+            description: Modified
+      patch?:
+        is: [secured]
+        body:
+          application/json:
+            schema: <<resourcePathName | !singularize>>
+      delete?:
+        is: [secured]
+        responses:
+          204:
+            description: Deleted
+/items:
+  type: read-only-collection
+  description: List of all items on sale
+  get:
+    is: [searchable, imageable]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                  "collection": {
+                      "links": [
+                          {
+                              "rel": "self",
+                              "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items"
+                          }
+                      ],
+                      "items": [
+                          {
+                              "links": [
+                                  {
+                                      "rel": "thumb-image",
+                                      "href": "http://ecx.images-amazon.com/images/I/41kAbTj-e1L._SS100_.jpg"
+                                  },
+                                  {
+                                      "rel": "self",
+                                      "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/1112233"
+                                  }
+                              ],
+                              "id": "1112233",
+                              "type": "Creams",
+                              "brand": "L'Oreal",
+                              "name": "L'Oreal Paris Age Perfect Night Cream",
+                              "summary": "Wake up every morning to a beautiful new you. Age Perfect Night Cream deeply moisturizes and helps improve skin elasticity for overnight action. Soy seed proteins improve elasticity for more toned, supple and resilient skin and Beta Hydroxy Acid complex helps improve the appearance of age spots. Night after night, skin becomes more resilient and radiant while its youthful cushion is restored."
+                          },
+                          {
+                              "links": [
+                                  {
+                                      "rel": "thumb-image",
+                                      "href": "http://ecx.images-amazon.com/images/I/31fj2SYjqgL._SL246_SX190_CR0,0,190,246_.jpg"
+                                  },
+                                  {
+                                      "rel": "self",
+                                      "href": "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/43535"
+                                  }
+                              ],
+                              "id": "1112244",
+                              "type": "Lipstick",
+                              "name": "L'Oreal Paris Colour Riche Lipcolour, Fairest Nude, 0.13 Ounces",
+                              "brand": "L'Oreal",
+                              "summary": "Indulge in the color of pure luxury. Color riche nurturing and protective lipcolour is now richer, creamier and more moisturizing than ever before. In addition to nourishing ingredients like omega 3 and vitamin E, the formula has been enriched with argan oil."
+                          }
+                      ]
+                  }
+              }
+  /{item}:
+    get:
+      is: [imageable]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "links" : [
+                    { "rel" : "image", "href" : "" },
+                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354" }
+                  ],
+                  "id" : "475635812354",
+                  "type" : "Creams",
+                  "name" : "Dove",
+                  "description" : "Soap! Just plain old soap!",
+                  "skus" : [
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354/skus/12344" },
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354" }
+                      ],
+                      "id" : "12343214",
+                      "summary" : "Great",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1
+                    },
+                    {
+                       "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354/skus/12343214" },
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/items/475635812354" }
+                      ],
+                      "id" : "12343214",
+                      "summary" : "Great",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1
+                    }
+                 ]
+                }
+    /reviews:
+      type: read-only-collection
+      description: Third party reviews for this item
+    /skus:
+      type: read-only-collection
+      get:
+        is: [searchable]
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "collection" : {
+                      "links" : [
+                        { "rel" : "next", "href" : "" },
+                        { "rel" : "prev", "href" : "" },
+                        { "rel" : "self", "href" : "" }
+                      ],
+                      "items" : [
+                        {
+                          "links" : [
+                            { "rel" : "image", "href" : "" },
+                            { "rel" : "self", "href" : "" },
+                            { "rel" : "parent", "label" :"General Info", "href" : "" }
+                          ],
+                          "id" : "12343214",
+                          "sku" : "12344",
+                          "price" : 1.00,
+                          "stockQuantity" : 1
+                        },
+                        {
+                          "links" : [
+                            { "rel" : "image", "href" : "" },
+                            { "rel" : "self", "href" : "" }
+                            { "rel" : "parent", "label" :"General Info", "href" : "" }                
+                          ],
+                          "id" : "12343214",
+                          "sku" : "12344",
+                          "price" : 2.00,
+                          "stockQuantity" : 10
+                        }
+                      ]
+                    }
+                  }
+      /{sku}:
+        get:
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "" },
+                        { "rel" : "parent", "href" : "" }
+                      ],
+                      "id" : "12343214",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "characteristics" : [
+                        { "name" : "size", "value" : "large" },
+                        { "name" : "color", "value" : "blue" }
+                      ]
+                    }
+/wish-list:
+  type: collection
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "sku" : "ex2323xx"
+          }
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "collection" : {
+                  "links" : [
+                    { "rel" : "next", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=60&pageSize=20" },
+                    { "rel" : "prev", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=20&pageSize=20" },
+                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list?pageIndex=40&pageSize=20" }
+                  ],
+                  "items" : [
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list/111234214" }
+                      ],
+                      "id" : "111234214",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1
+                    },
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/wish-list/34223224" }     
+                      ],
+                      "id" : "34223224",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1
+                    }
+                  ]
+                }
+              }
+  /{wish}:
+    delete:
+      description: Remove from wish list
+/basket:
+  type: collection
+  description: All items ready for purchase
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "collection" : {
+                  "links" : [
+                    { "rel" : "next", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=20" },
+                    { "rel" : "prev", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=10" },
+                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
+                  ],
+                  "items" : [
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/12341324" },
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
+                      ],
+                      "id" : "12341324",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!"
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "quantity" : 2
+                    },
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/09878623" }
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }                
+                      ],
+                      "id" : "09878623",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!"
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "quantity" : 1
+                    }
+                  ]
+                }
+              }
+  post:
+    body:
+      application/json:
+        schema: basket-item
+        example: |
+          {
+            "sku" : "abc",
+            "quantity" : 2
+          }
+  /checkout:
+    type: controller
+    description: Orders both pending and fulfilled
+    post:
+      body:
+        application/json:
+          example: &order-request-example |
+           {
+              "pickupLocation" : "Buenos Aires",
+              "items" : [
+                {
+                  "sku" : "xyz",
+                  "quantity" : 3
+                },
+                {
+                  "sku" : "abc",
+                  "quantity" : 1
+                }
+              ]
+            }
+  /{basketItem}:
+    type: member
+    put:
+      description: Modify quantity
+      body:
+        application/json:
+          schema: basket-item
+          example: |
+            {
+              "sku" : "abc",
+              "name" : "",
+              "quantity" : 2
+            }
+    delete: 
+      description: Remove from basket
+/sales:
+  type: collection
+  description: Sales made at POS
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "items" : [
+              {
+                "sku" : "xyz",
+                "quantity" : 3
+              },
+              {
+                "sku" : "abc",
+                "quantity" : 1
+              }
+            ]
+          }
+  /{sale}:
+    type: member
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "date" : "2012-04-23",
+                  "total" : 102.23,
+                  "discount" : 2.77
+                  "items" : [
+                    {
+                      "sku" : "abc",
+                      "name" : "Channel No.5",
+                      "price" : 25.00,
+                      "quantity" : 2
+                    },
+                    {
+                      "sku" : "axxxbc",
+                      "name" : "Channel No.5",
+                      "price" : 27.50,
+                      "quantity" : 2
+                    }
+                  ]
+                }
+/registrations/{email}:
+  type: controller
+  post:
+    body:
+      application/json:
+        schema: registration-request
+        example: |
+          {
+            "firstName" : "Nial",
+            "lastName" : "Darbey",
+            "mobileNumber" : "134123423",
+            "notificationPreferences" : [
+              "email", "sms", "web", "mobile-push"
+            ]
+          }
+  head:
+    responses:
+      200:
+        description: Email found, therefore not available
+      404:
+        description: Email not found, therefore available
+/mobile-tokens:
+  type: collection
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "token" : "1234214"
+          }
+/my-profile:
+  get:
+    headers:
+      email:
+        type: string
+        required: true
+        example: nial.darbey@mulesoft.com
+    responses:
+      200:
+        body:
+          application/json:
+            schema: my-profile
+            example: |
+              {
+                "x-user-id" : "1",
+                "firstName" : "Nial",
+                "lastName" : "Darbey",
+                "notificationPreferences" : [ "email", "mobile-push" ]
+              }
+/orders:
+  type: read-only-collection
+/pending-orders:
+  type: read-only-collection
+  /{order}: 
+    type: member
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+    delete:
+      description: Cancel order
+    patch:
+      description: 'Modify part of Order: quantity of items, delivery address'  
+/top-items: &top-items
+  type: read-only-collection
+  get:
+    is: [searchable]
+  /{product}:
+    type: { document : { schema : item } }
+    /add-to-wish-list:
+      type: controller
+    /reviews:
+      type: collection
+/top-brands:
+  type: read-only-collection
+  description: x
+  get:
+    is: [searchable]
+  /{brand}/top-items: *top-items
+/recommendations:
+  type: read-only-collection
+  description: Recommended Products based on previous purchases
+/promotions:
+  type: read-only-collection
+  get:
+    is: [searchable]
+  /{promotion}:
+    type: { document : { schema : promotion } }
+/returns:
+  post:
+    is: [secured]
+    body:
+      application/json:
+        schema: return-request
+        example: *order-request-example
+    responses:
+      202:
+        description: Accepted
+        headers:
+          Location:
+            type: string
+            example: /returns/124243
+  /{return}:
+    type: { document: { schema: return-request } }
+    /fulfill:
+      type: controller
