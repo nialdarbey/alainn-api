@@ -5,5 +5,5 @@
             <pageSize>#[message.inboundProperties.pageSize]</pageSize>
          </ns:PageInfo>
     <ns:ImageType>#[message.inboundProperties.imageType]</ns:ImageType>
-    <ns1:CustomerId>#[message.inboundProperties.'x-user-id']</ns1:CustomerId>
+    <ns1:CustomerId>#[userId]</ns1:CustomerId>
 </ns:getWishList>

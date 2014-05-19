@@ -371,10 +371,13 @@
 			<sequence>
 				<element ref="mod:CustomerId" />
 				<element ref="mod:MobileToken" />
+				<element ref="mod:MobileTokenType" />
+				
 			</sequence>
 		</complexType>
 	</element>
 	<element name="addMobileTokenResponse" />
+	
 	
 	<element name="addNotificationPreferences">
 		<complexType>

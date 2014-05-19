@@ -4,32 +4,6 @@ title: Álainn Cosmetics API
 version: v1.0
 #baseUri: https://alainn-cosmetics.cloudhub.io/api/{version}
 baseUri: http://mocksvc.mulesoft.com/mocks/365635b1-1817-4450-ab23-ee6421fc6102/api/{version}
-securitySchemes:
-    - oauth_2_0:
-        description: |
-            Dropbox supports OAuth 2.0 for authenticating all API requests.
-        type: OAuth 2.0
-        describedBy:
-            headers:
-                access_token:
-                    description: |
-                       Used to send a valid OAuth 2 access token. Do not use 
-                       with the "access_token" query string parameter.
-                    type: string
-            responses:
-                401:
-                    description: |
-                        Bad or expired token. This can happen if the user or Dropbox
-                        revoked or expired an access token. To fix, you should re-
-                        authenticate the user.
-                403:
-                    description: |
-                        Bad OAuth request (wrong consumer key, bad nonce, expired
-                        timestamp...). Unfortunately, re-authenticating the user won't help here.
-        settings:
-          authorizationUri: https://alainn-cosmetics.cloudhub.io/api/{version}/authorize
-          accessTokenUri: https://alainn-cosmetics.cloudhub.io/api/{version}/access-token
-          authorizationGrants: [ code, token ]
 
 schemas:
   - item: &item-schema |
@@ -136,8 +110,6 @@ schemas:
           }
         }    
       }
-  - brands: *items-schema
-  - categories: *items-schema
   - pending-order: *item-schema
   - pending-orders: *items-schema
   - reviews: |
@@ -1036,314 +1008,47 @@ resourceTypes:
                         { "name" : "color", "value" : "blue" }
                       ]
                     }
-/wish-list:
-  securedBy: [oauth_2_0]
-  type: collection
-  post:
-    description: Add an Item to my Wish List.
-    body:
-      application/json:
-        example: |
-          {
-            "sku" : "B004GW14E4"
-          }
+/brands:
   get:
-    is: [imageable]
-    responses:
-      200:
-        body:
-          application/json:
-            example: |
-              {
-                  "links": [
-                      {
-                          "href": "https://localhost:8082/omni-channel-api/v1.0?pageIndex=28&pageSize=7",
-                          "rel": "next"
-                      },
-                      {
-                          "href": "https://localhost:8082/omni-channel-api/v1.0?pageIndex=14&pageSize=7",
-                          "rel": "prev"
-                      },
-                      {
-                          "href": "https://localhost:8082/omni-channel-api/v1.0/items",
-                          "rel": "self"
-                      }
-                  ],
-                  "collection": {
-                      "size": 7,
-                      "items": [
-                          {
-                              "id": "B003Y60XCC",
-                              "type": "Chemical Hair Dyes",
-                              "name": "L'Oreal Oreor 30 Volume Creme Developer",
-                              "summary": "Fully stabilized formula - Freshness assured",
-                              "brand": "L'Oreal Paris",
-                              "links": [
-                                  {
-                                      "href": "https://localhost:8082/omni-channel-api/v1.0/items/B003Y60XCC",
-                                      "rel": "self"
-                                  },
-                                  {
-                                      "href": "http://ecx.images-amazon.com/images/I/41MWX6KNAuL._SL75_.jpg",
-                                      "rel": "SmallImage"
-                                  }
-                              ]
-                          },
-                          {
-                              "id": "B0044D30Z6",
-                              "type": "Chemical Hair Dyes",
-                              "name": "Garnier HerbaShine Color Creme with Bamboo Extract",
-                              "summary": "",
-                              "brand": "Garnier",
-                              "links": [
-                                  {
-                                      "href": "https://localhost:8082/omni-channel-api/v1.0/items/B0044D30Z6",
-                                      "rel": "self"
-                                  },
-                                  {
-                                      "href": "http://ecx.images-amazon.com/images/I/31I7w6YQ5eL._SL75_.jpg",
-                                      "rel": "SmallImage"
-                                  }
-                              ]
-                          },
-                          {
-                              "id": "B0042YK9F6",
-                              "type": "Bath Pearls & Flakes",
-                              "name": "Pearlcium Pearl Powder",
-                              "summary": "",
-                              "brand": "TheraPure Health Essentials",
-                              "links": [
-                                  {
-                                      "href": "https://localhost:8082/omni-channel-api/v1.0/items/B0042YK9F6",
-                                      "rel": "self"
-                                  },
-                                  {
-                                      "href": "http://ecx.images-amazon.com/images/I/316RsE4g09L._SL75_.jpg",
-                                      "rel": "SmallImage"
-                                  }
-                              ]
-                          },
-                          {
-                              "id": "B004CDNSBO",
-                              "type": "Oils",
-                              "name": "100% Pure Evening Primrose Oil",
-                              "summary": "",
-                              "brand": "Now Foods",
-                              "links": [
-                                  {
-                                      "href": "https://localhost:8082/omni-channel-api/v1.0/items/B004CDNSBO",
-                                      "rel": "self"
-                                  },
-                                  {
-                                      "href": "http://ecx.images-amazon.com/images/I/11B-tmUqh5L._SL75_.jpg",
-                                      "rel": "SmallImage"
-                                  }
-                              ]
-                          },
-                          {
-                              "id": "B0043C8SPK",
-                              "type": "Chemical Hair Dyes",
-                              "name": "TouchBack Temporary Color Marker",
-                              "summary": "Won't flake or rub off when brushed",
-                              "brand": "ColorMark",
-                              "links": [
-                                  {
-                                      "href": "https://localhost:8082/omni-channel-api/v1.0/items/B0043C8SPK",
-                                      "rel": "self"
-                                  },
-                                  {
-                                      "href": "http://ecx.images-amazon.com/images/I/31dGyu4hQJL._SL75_.jpg",
-                                      "rel": "SmallImage"
-                                  }
-                              ]
-                          },
-                          {
-                              "id": "B003Y6182G",
-                              "type": "Chemical Hair Dyes",
-                              "name": "L' Oreal Oreor 40-Volume Creme Developer",
-                              "summary": "Beautiful, uniform color",
-                              "brand": "L'Oreal Paris",
-                              "links": [
-                                  {
-                                      "href": "https://localhost:8082/omni-channel-api/v1.0/items/B003Y6182G",
-                                      "rel": "self"
-                                  },
-                                  {
-                                      "href": "http://ecx.images-amazon.com/images/I/41GDOvgw1KL._SL75_.jpg",
-                                      "rel": "SmallImage"
-                                  }
-                              ]
-                          },
-                          {
-                              "id": "B004ECF7LC",
-                              "type": "Chemical Hair Dyes",
-                              "name": "L'Oreal Paris Excellence Crème with Pro-Keratine Complex",
-                              "summary": "",
-                              "brand": "L'Oreal Paris",
-                              "links": [
-                                  {
-                                      "href": "https://localhost:8082/omni-channel-api/v1.0/items/B004ECF7LC",
-                                      "rel": "self"
-                                  },
-                                  {
-                                      "href": "http://ecx.images-amazon.com/images/I/21g%2B2DBWK1L._SL75_.jpg",
-                                      "rel": "SmallImage"
-                                  }
-                              ]
-                          }
-                      ]
-                  }
-              }
-  /{wish}:
-    delete:
-      description: Remove from wish list
-/basket:
-  securedBy: [oauth_2_0]
-  description: All items ready for purchase
+    is: [pageable]
+    queryParameters:
+      name:
+        type: string
+        required: false
+        example: Deep Steep Honey Bubble Bath
+/categories:
   get:
-    is: [imageable]
-    responses:
-      200:
-        body:
-          application/json:
-            example: |
-              {
-                "collection" : {
-                  "links" : [
-                    { "rel" : "next", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=20" },
-                    { "rel" : "prev", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=10" },
-                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
-                  ],
-                  "items" : [
-                    {
-                      "links" : [
-                        { "rel" : "image", "href" : "" },
-                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/12341324" },
-                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
-                      ],
-                      "id" : "12341324",
-                      "type" : "Creams",
-                      "name" : "Dove",
-                      "summary" : "Soap! Just plain old soap!"
-                      "sku" : "12344",
-                      "price" : 1.00,
-                      "stockQuantity" : 1,
-                      "quantity" : 2
-                    },
-                    {
-                      "links" : [
-                        { "rel" : "image", "href" : "" },
-                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/09878623" }
-                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }                
-                      ],
-                      "id" : "09878623",
-                      "type" : "Creams",
-                      "name" : "Dove",
-                      "summary" : "Soap! Just plain old soap!"
-                      "sku" : "12344",
-                      "price" : 1.00,
-                      "stockQuantity" : 1,
-                      "quantity" : 1
-                    }
-                  ]
-                }
-              }
-  post:
-    description: Add an Item to my Basket. Of course I may add more than 1 of the same Item.
-    body:
-      application/json:
-        schema: basket-item
-        example: |
-          {
-            "sku" : "B0000530ED",
-            "quantity" : 2,
-            "price" : 7.55
-          }
-  /checkout:
-    type: controller
-    description: Orders both pending and fulfilled
-    post:
-      body:
-        application/json:
-          example: &order-request-example |
-           {
-              "pickupLocation" : "Buenos Aires",
-              "items" : [
-                {
-                  "sku" : "B003JTE8JS",
-                  "price" : 7.50,
-                  "quantity" : 3
-                },
-                {
-                  "sku" : "B0000530ED",
-                  "price" : 7.99,
-                  "quantity" : 1
-                }
-              ]
-            }
-      responses: *postResponse
-  /{item}:
-    type: member
-    put:
-      description: Modify quantity
-      body:
-        application/json:
-          schema: basket-item
-          example: |
-            {
-              "sku" : "abc",
-              "name" : "",
-              "quantity" : 2
-            }
-    delete: 
-      description: Remove from basket
-/sales:
-  securedBy: [oauth_2_0]
-  type: collection
-  description: Sales made at POS
-  post:
-    body:
-      application/json:
-        example: |
-          {
-            "items" : [
-              {
-                "sku" : "xyz",
-                "quantity" : 3
-              },
-              {
-                "sku" : "abc",
-                "quantity" : 1
-              }
-            ]
-          }
-  /{sale}:
-    type: member
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
-                {
-                  "date" : "2012-04-23",
-                  "total" : 102.23,
-                  "discount" : 2.77
-                  "items" : [
-                    {
-                      "sku" : "abc",
-                      "name" : "Channel No.5",
-                      "price" : 25.00,
-                      "quantity" : 2
-                    },
-                    {
-                      "sku" : "axxxbc",
-                      "name" : "Channel No.5",
-                      "price" : 27.50,
-                      "quantity" : 2
-                    }
-                  ]
-                }
+    is: [pageable]
+    queryParameters:
+      name:
+        type: string
+        required: false
+        example: Oils
+/top-items: &top-items
+  type: read-only-collection
+  get:
+    is: [searchable]
+  /{product}:
+    type: { document : { schema : item } }
+    /add-to-wish-list:
+      type: controller
+    /reviews:
+      type: collection
+/top-brands:
+  type: read-only-collection
+  description: x
+  get:
+    is: [searchable]
+  /{brand}/top-items: *top-items
+/recommendations:
+  type: read-only-collection
+  description: Recommended Products based on previous purchases
+/promotions:
+  type: read-only-collection
+  get:
+    is: [searchable]
+  /{promotion}:
+    type: { document : { schema : promotion } }
 /registrations/{email}:
   type: controller
   post:
@@ -1375,106 +1080,3 @@ resourceTypes:
         description: Email found, therefore not available
       404:
         description: Email not found, therefore available
-/mobile-tokens/{mobileType}:
-  uriParameters:
-    mobileType:
-      type: string
-      enum: [ios, android]
-  securedBy: [oauth_2_0]
-  post:
-    body:
-      application/json:
-        example: |
-          {
-            "token" : "1234214"
-          }
-/my-profile:
-  securedBy: [oauth_2_0]
-  get:
-    responses:
-      200:
-        body:
-          application/json:
-            schema: my-profile
-            example: |
-              {
-                "firstName" : "Nial",
-                "lastName" : "Darbey",
-                "notificationPreferences" : [ "email", "mobile-push" ]
-              }
-/orders:
-  type: read-only-collection
-  securedBy: [oauth_2_0]
-/pending-orders:
-  type: read-only-collection
-  /{order}: 
-    type: member
-    securedBy: [oauth_2_0]
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-    delete:
-      description: Cancel order
-    patch:
-      description: 'Modify part of Order: quantity of items, delivery address'  
-/brands:
-  type: read-only-collection
-  get:
-    queryParameters:
-      name:
-        type: string
-        required: false
-        example: Deep Steep Honey Bubble Bath
-/categories:
-  type: read-only-collection
-  get:
-    queryParameters:
-      name:
-        type: string
-        required: false
-        example: Oils
-/top-items: &top-items
-  type: read-only-collection
-  get:
-    is: [searchable]
-  /{product}:
-    type: { document : { schema : item } }
-    /add-to-wish-list:
-      type: controller
-    /reviews:
-      type: collection
-/top-brands:
-  type: read-only-collection
-  description: x
-  get:
-    is: [searchable]
-  /{brand}/top-items: *top-items
-/recommendations:
-  type: read-only-collection
-  description: Recommended Products based on previous purchases
-/promotions:
-  type: read-only-collection
-  get:
-    is: [searchable]
-  /{promotion}:
-    type: { document : { schema : promotion } }
-/returns:
-  securedBy: [oauth_2_0]
-  post:
-    body:
-      application/json:
-        schema: return-request
-        example: *order-request-example
-    responses:
-      202:
-        description: Accepted
-        headers:
-          Location:
-            type: string
-            example: /returns/124243
-  /{return}:
-    type: { document: { schema: return-request } }
-    /fulfill:
-      type: controller

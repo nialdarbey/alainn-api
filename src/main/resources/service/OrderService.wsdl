@@ -11,6 +11,12 @@
 	<wsdl:message name="saveOrderResponse">
 		<wsdl:part element="mes:saveOrderResponse" name="parameters" />
 	</wsdl:message>
+	<wsdl:message name="getOrder">
+		<wsdl:part element="mes:saveOrder" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getOrderResponse">
+		<wsdl:part element="mes:getOrderResponse" name="parameters" />
+	</wsdl:message>
 	<wsdl:portType name="Order">
 		<wsdl:operation name="saveOrder">
 			<wsdl:input message="tns:saveOrder" />

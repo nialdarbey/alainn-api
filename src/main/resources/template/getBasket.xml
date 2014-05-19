@@ -1,5 +1,5 @@
 <ns:getBasket xmlns:ns="http://www.alainn.com/SOA/message/1.0"
 	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
 	<ns:ImageType>#[message.inboundProperties.imageType]</ns:ImageType>
-	<ns1:CustomerId>#[message.inboundProperties.'x-user-id']</ns1:CustomerId>
+	<ns1:CustomerId>#[userId]</ns1:CustomerId>
 </ns:getBasket>

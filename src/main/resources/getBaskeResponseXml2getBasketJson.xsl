@@ -6,13 +6,14 @@
 	<xsl:output method="text" version="1.0" encoding="UTF-8"
 		indent="no" media-type="text/plain" />
 		
+	<xsl:param name="fullUrl" />
 	<xsl:param name="baseUrl" />
 	
 	<xsl:template match="/">
 		{
 			"links" : [
 					{
-						"href" : "<xsl:value-of select="$baseUrl"/>",
+						"href" : "<xsl:value-of select="$fullUrl"/>",
 						"rel" : "self"
 					}
 			],

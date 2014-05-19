@@ -25,6 +25,9 @@
 	<element name="CustomerLoyaltyPoints" type="integer" />
 	<element name="NotificationPreferences" type="tns:notificationPreferencesType" />
 	<element name="MobileToken" type="string" />
+	<element name="MobileTokenType" type="string" />
+	
+	
 	<element name="Discount" type="float" />
 
 	<complexType name="typesType">

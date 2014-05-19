@@ -5,9 +5,9 @@
          </ns:PageInfo>
     <!--Optional: -->
 	<ns:ItemSearchCriteria>
-		<type>#[t = message.inboundProperties.type; t == null ? '*' : t ]</type>
-		<name>#[n = message.inboundProperties.name; n == null ? '*' : n ]</name>
-		<brand>#[b = message.inboundProperties.name; b == null ? '*' : b ]</brand>
+		<type>#[b = message.inboundProperties['type']; b == null || b == '' ? '*' : b ]</type>
+		<name>#[b = message.inboundProperties['name']; b == null || b == '' ? '*' : b ]</name>
+		<brand>#[b = message.inboundProperties['brand']; b == null || b == '' ? '*' : b ]</brand>
 	</ns:ItemSearchCriteria>
 	<ns:ImageType>#[message.inboundProperties.imageType]</ns:ImageType>
 </ns:getItems>

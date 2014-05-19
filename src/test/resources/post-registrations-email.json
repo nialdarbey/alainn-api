@@ -2,6 +2,8 @@
     "firstName": "Nial",
     "lastName": "Darbey",
     "mobileNumber": "134123423",
+    "password" : "hello1234",
+    "mobileToken" : "xxx",
     "notificationPreferences": [
         "email",
         "sms",

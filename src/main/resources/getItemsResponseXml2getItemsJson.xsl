@@ -9,6 +9,8 @@
 	<xsl:param name="pageIndex" />
 	<xsl:param name="requestedPageSize" />
 	<xsl:param name="baseUrl" />
+	<xsl:param name="urlXPage" />
+	<xsl:param name="fullUrl" />
 	
 	<xsl:variable name="pageSize" select="/mes:getItemsResponse/mes:PageInfo/pageSize" />
 	
@@ -18,7 +20,7 @@
 			"links" : [
 		<xsl:if test="$requestedPageSize = $pageSize" >
 			<xsl:variable name="nextUrl">
-				<xsl:value-of select="$baseUrl"/>?pageIndex=<xsl:value-of select="$pageIndex + $pageSize"/>&amp;pageSize=<xsl:value-of select="$requestedPageSize"/>
+				<xsl:value-of select="$urlXPage"/>&amp;pageIndex=<xsl:value-of select="$pageIndex + $pageSize"/>&amp;pageSize=<xsl:value-of select="$requestedPageSize"/>
 			</xsl:variable>
 					{
 						"href" : "<xsl:value-of select="$nextUrl"/>",
@@ -29,10 +31,10 @@
 			<xsl:variable name="prevUrl">
 				<xsl:choose>
 					<xsl:when test="$pageIndex - $pageSize >= 0">
-						<xsl:value-of select="$baseUrl"/>?pageIndex=<xsl:value-of select="$pageIndex - $pageSize"/>&amp;pageSize=<xsl:value-of select="$requestedPageSize"/>
+						<xsl:value-of select="$urlXPage"/>&amp;pageIndex=<xsl:value-of select="$pageIndex - $pageSize"/>&amp;pageSize=<xsl:value-of select="$requestedPageSize"/>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:value-of select="$baseUrl"/>?pageIndex=0&amp;pageSize=<xsl:value-of select="$requestedPageSize"/>
+						<xsl:value-of select="$urlXPage"/>&amp;pageIndex=0&amp;pageSize=<xsl:value-of select="$requestedPageSize"/>
 					</xsl:otherwise>
 				</xsl:choose>
 			</xsl:variable>
@@ -42,7 +44,7 @@
 					},
 		</xsl:if>
 					{
-						"href" : "<xsl:value-of select="$baseUrl"/>",
+						"href" : "<xsl:value-of select="$fullUrl"/>",
 						"rel" : "self"
 					}
 			],

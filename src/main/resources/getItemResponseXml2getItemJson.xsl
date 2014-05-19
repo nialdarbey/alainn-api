@@ -7,14 +7,14 @@
 		indent="no" media-type="text/plain" />
 		
 	<xsl:param name="baseUrl" />
-	<xsl:param name="self" />
+	<xsl:param name="fullUrl" />
 
 	<xsl:template match="/mes:getItemResponse">
 		<xsl:variable name="itemId" select="mod:Item/id" />
 		{
 			"links" : [
 					{
-						"href" : "<xsl:value-of select="$baseUrl"/>/<xsl:value-of select="$self"/>",
+						"href" : "<xsl:value-of select="$fullUrl"/>",
 						"rel" : "self"
 					}
 			],
@@ -36,7 +36,7 @@
 							"stockQuantity": <xsl:value-of select="quantityInStock" />,
 							"links" : [
 								{
-									"href" : "<xsl:value-of select="$baseUrl"/>/items/<xsl:value-of select="$itemId" />/skus/<xsl:value-of select="id" />",
+									"href" : "<xsl:value-of select="$fullUrl"/>/skus/<xsl:value-of select="id" />",
 									"rel" : "self"
 								}<xsl:if test="images/image">,</xsl:if>
 			<xsl:for-each select="images/image">

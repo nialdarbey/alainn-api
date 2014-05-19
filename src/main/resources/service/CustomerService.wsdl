@@ -29,6 +29,7 @@
 	<wsdl:message name="addMobileTokenResponse">
 		<wsdl:part element="mes:addMobileTokenResponse" name="parameters" />
 	</wsdl:message>
+
 	<wsdl:portType name="Customer">
 		<wsdl:operation name="saveCustomer">
 			<wsdl:input message="tns:saveCustomer" />
@@ -85,6 +86,7 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
+
 	</wsdl:binding>
 	<wsdl:service name="CustomerService">
 		<wsdl:port binding="tns:CustomerSoap" name="CustomerPort">

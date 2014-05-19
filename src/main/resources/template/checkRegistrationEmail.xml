@@ -1,4 +1,4 @@
 <ns:checkRegistrationEmail xmlns:ns="http://www.alainn.com/SOA/message/1.0"
 	xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
-	<ns1:Email>#[message.inboundProperties.email]</ns1:Email>
+	<ns1:Email>#[email.toLowerCase()]</ns1:Email>
 </ns:checkRegistrationEmail>
