@@ -47,10 +47,13 @@ Registered both as a Service with the OAuth 2.0 Access Token Enforcement policy 
 ```xml
 	<expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
 ```
+
 	**Note:** This can only be executed in the expression-component Message Processor. The 
+
 ```xml
 	<set-session-variable /> 
 ```
+
 	Message Processor has no access to securityContext.
 
 * 2 APIkit Configs on 1 RAML definition:
