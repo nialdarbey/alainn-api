@@ -9,4 +9,5 @@
     <muleExtension name="APIkit" qualifier="org.mule.tooling.apikit"/>
     <muleExtension name="Salesforce" qualifier="org.mule.tooling.ui.contribution.sfdc.3.5.0"/>
     <muleExtension name="APIkit" qualifier="org.mule.tooling.apikit"/>
+    <muleExtension name="Cloudhub" qualifier="org.mule.tooling.ui.contribution.cloudhub"/>
 </mule-project>

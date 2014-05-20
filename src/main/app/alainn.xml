@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:context="http://www.springframework.org/schema/context" xmlns:cors="http://www.mulesoft.org/schema/mule/cors" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:jetty="http://www.mulesoft.org/schema/mule/jetty" xmlns:jetty-ssl="http://www.mulesoft.org/schema/mule/jetty-ssl" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+<mule xmlns:pattern="http://www.mulesoft.org/schema/mule/pattern"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cors="http://www.mulesoft.org/schema/mule/cors"
+	xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:jetty="http://www.mulesoft.org/schema/mule/jetty"
+	xmlns:jetty-ssl="http://www.mulesoft.org/schema/mule/jetty-ssl"
+	xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml"
+	xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+	xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking"
+	xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/pattern http://www.mulesoft.org/schema/mule/pattern/current/mule-pattern.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
 http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
@@ -11,406 +26,626 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/jetty http://www.mulesoft.org/schema/mule/jetty/current/mule-jetty.xsd
-http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mule/jetty-ssl/current/mule-jetty-ssl.xsd" version="EE-3.5.0">
-    <mulexml:namespace-manager includeConfigNamespaces="true">
-        <mulexml:namespace prefix="mes" uri="http://www.alainn.com/SOA/message/1.0" />
-        <mulexml:namespace prefix="mod" uri="http://www.alainn.com/SOA/model/1.0" />
-    </mulexml:namespace-manager>
-    <apikit:config name="alainn-config" raml="alainn.raml" consoleEnabled="true" doc:name="Router" />
-    <apikit:mapping-exception-strategy name="alainn-apiKitGlobalExceptionMapping">
-        <apikit:mapping statusCode="404">
-            <apikit:exception value="org.mule.module.apikit.exception.NotFoundException" />
-            <set-property propertyName="Content-Type" value="application/json" />
-            <set-payload value="{ &quot;message&quot;: &quot;Resource not found&quot; }" />
-        </apikit:mapping>
-        <apikit:mapping statusCode="405">
-            <apikit:exception value="org.mule.module.apikit.exception.MethodNotAllowedException" />
-            <set-property propertyName="Content-Type" value="application/json" />
-            <set-payload value="{ &quot;message&quot;: &quot;Method not allowed&quot; }" />
-        </apikit:mapping>
-        <apikit:mapping statusCode="415">
-            <apikit:exception value="org.mule.module.apikit.exception.UnsupportedMediaTypeException" />
-            <set-property propertyName="Content-Type" value="application/json" />
-            <set-payload value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }" />
-        </apikit:mapping>
-        <apikit:mapping statusCode="406">
-            <apikit:exception value="org.mule.module.apikit.exception.NotAcceptableException" />
-            <set-property propertyName="Content-Type" value="application/json" />
-            <set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }" />
-        </apikit:mapping>
-        <apikit:mapping statusCode="400">
-            <apikit:exception value="org.mule.module.apikit.exception.BadRequestException" />
-            <set-property propertyName="Content-Type" value="application/json" />
-            <set-payload value="{ &quot;message&quot;: &quot;Bad request: #[exception.cause.message]&quot; }" />
-        </apikit:mapping>
-        <apikit:mapping statusCode="409">
-            <apikit:exception value="org.mule.module.ws.consumer.SoapFaultException" />
-            <set-payload value="{ &quot;message&quot;: &quot;#[exception.message]&quot; }" />
-            <set-property propertyName="Content-Type" value="application/json" />
-        </apikit:mapping>
-    </apikit:mapping-exception-strategy>
-    <context:property-placeholder location="config.${env}.properties" />
-    <ws:consumer-config name="PointOfSaleServiceConsumer" wsdlLocation="service/PointOfSaleService.wsdl" service="PointOfSaleService" port="PointOfSalePort" serviceAddress="${url.pointOfSaleService}" doc:name="Web Service Consumer" />
-    <ws:consumer-config name="BasketServiceConsumer" wsdlLocation="service/BasketService.wsdl" service="BasketService" port="BasketPort" serviceAddress="${url.basketService}" doc:name="Web Service Consumer" />
-    <ws:consumer-config name="WishListServiceConsumer" wsdlLocation="service/WishListService.wsdl" service="WishListService" port="WishListPort" serviceAddress="${url.wishListService}" doc:name="Web Service Consumer" />
-    <ws:consumer-config name="CustomerServiceConsumer" wsdlLocation="service/CustomerService.wsdl" service="CustomerService" port="CustomerPort" serviceAddress="${url.customerService}" doc:name="Web Service Consumer" />
-    <ws:consumer-config name="RegistrationServiceConsumer" wsdlLocation="service/RegistrationService.wsdl" service="RegistrationService" port="RegistrationPort" serviceAddress="${url.registrationService}" doc:name="Web Service Consumer" />
-    <ws:consumer-config name="ItemServiceConsumer" wsdlLocation="service/ItemService.wsdl" service="ItemService" port="ItemPort" serviceAddress="${url.itemService}" doc:name="Web Service Consumer" />
-    <ws:consumer-config name="OrderFulfillmentServiceConsumer" wsdlLocation="service/OrderFulfillmentService.wsdl" service="OrderFulfillmentService" port="OrderFulfillmentPort" serviceAddress="${url.orderFulfillmentService}" doc:name="Web Service Consumer" />
-    <data-mapper:config name="json_to_xml_processsale_" transformationGraphPath="json_to_xml_processsale_.grf" doc:name="json_to_xml_processsale_" />
-    <data-mapper:config name="xml_getitemresponse__to_json" transformationGraphPath="xml_getitemresponse__to_json.grf" doc:name="xml_getitemresponse__to_json" />
-    <data-mapper:config name="xml_getcustomerresponse__to_json" transformationGraphPath="xml_getcustomerresponse__to_json.grf" doc:name="xml_getcustomerresponse__to_json" />
-    <data-mapper:config name="xml_getwishlistresponse__to_json" transformationGraphPath="xml_getwishlistresponse__to_json.grf" doc:name="xml_getwishlistresponse__to_json" />
-    <data-mapper:config name="json_to_xml_1" transformationGraphPath="json_to_xml_1.grf" doc:name="json_to_xml_1" />
-    <data-mapper:config name="JSON_To_Xml_processOrder_" transformationGraphPath="json_to_xml_processorder__1.grf" doc:name="JSON_To_Xml_processOrder_" />
-    <data-mapper:config name="JSON_To_Xml_addToBasket_" transformationGraphPath="json_to_xml_addtobasket_.grf" doc:name="JSON_To_Xml_addToBasket_" />
-    <data-mapper:config name="JSON_To_Xml_processSale_" transformationGraphPath="json_to_xml_processsale__1.grf" doc:name="JSON_To_Xml_processSale_" />
-    <data-mapper:config name="JSON_To_Xml_addWish_" transformationGraphPath="json_to_xml_addwish_.grf" doc:name="JSON_To_Xml_addWish_" />
-    <configuration doc:name="Configuration">
-        <expression-language autoResolveVariables="true">
-            <import name="SoapFaultException" class="org.mule.module.ws.consumer.SoapFaultException" />
-            <global-functions>def baseUrl() {
-				'https://' + sessionVars.props.Host + sessionVars.props.'http.request.path';
+http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mule/jetty-ssl/current/mule-jetty-ssl.xsd"
+	version="EE-3.5.0">
+
+
+
+
+	<mulexml:namespace-manager
+		includeConfigNamespaces="true">
+		<mulexml:namespace prefix="mes"
+			uri="http://www.alainn.com/SOA/message/1.0" />
+		<mulexml:namespace prefix="mod"
+			uri="http://www.alainn.com/SOA/model/1.0" />
+	</mulexml:namespace-manager>
+	<apikit:config name="alainn-config" raml="alainn.raml"
+		consoleEnabled="false" doc:name="Router" />
+	<apikit:mapping-exception-strategy
+		name="alainn-apiKitGlobalExceptionMapping">
+		<apikit:mapping statusCode="404">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.NotFoundException" />
+			<set-property propertyName="Content-Type" value="application/json" />
+			<set-payload
+				value="{ &quot;message&quot;: &quot;Resource not found&quot; }" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="405">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.MethodNotAllowedException" />
+			<set-property propertyName="Content-Type" value="application/json" />
+			<set-payload
+				value="{ &quot;message&quot;: &quot;Method not allowed&quot; }" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="415">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.UnsupportedMediaTypeException" />
+			<set-property propertyName="Content-Type" value="application/json" />
+			<set-payload
+				value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="406">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.NotAcceptableException" />
+			<set-property propertyName="Content-Type" value="application/json" />
+			<set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="400">
+			<apikit:exception
+				value="org.mule.module.apikit.exception.BadRequestException" />
+			<set-property propertyName="Content-Type" value="application/json" />
+			<set-payload
+				value="{ &quot;message&quot;: &quot;Bad request: #[exception.cause.message]&quot; }" />
+		</apikit:mapping>
+		<apikit:mapping statusCode="409">
+			<apikit:exception value="org.mule.module.ws.consumer.SoapFaultException" />
+			<set-payload
+				value="{ &quot;message&quot;: &quot;#[exception.message]&quot; }" />
+			<set-property propertyName="Content-Type" value="application/json" />
+		</apikit:mapping>
+	</apikit:mapping-exception-strategy>
+	<context:property-placeholder location="config.${env}.properties" />
+	<ws:consumer-config name="PointOfSaleServiceConsumer"
+		wsdlLocation="service/PointOfSaleService.wsdl" service="PointOfSaleService"
+		port="PointOfSalePort" serviceAddress="${url.pointOfSaleService}"
+		doc:name="Web Service Consumer" />
+	<ws:consumer-config name="BasketServiceConsumer"
+		wsdlLocation="service/BasketService.wsdl" service="BasketService"
+		port="BasketPort" serviceAddress="${url.basketService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="WishListServiceConsumer"
+		wsdlLocation="service/WishListService.wsdl" service="WishListService"
+		port="WishListPort" serviceAddress="${url.wishListService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="CustomerServiceConsumer"
+		wsdlLocation="service/CustomerService.wsdl" service="CustomerService"
+		port="CustomerPort" serviceAddress="${url.customerService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="RegistrationServiceConsumer"
+		wsdlLocation="service/RegistrationService.wsdl" service="RegistrationService"
+		port="RegistrationPort" serviceAddress="${url.registrationService}"
+		doc:name="Web Service Consumer" />
+	<ws:consumer-config name="ItemServiceConsumer"
+		wsdlLocation="service/ItemService.wsdl" service="ItemService" port="ItemPort"
+		serviceAddress="${url.itemService}" doc:name="Web Service Consumer" />
+	<ws:consumer-config name="OrderFulfillmentServiceConsumer"
+		wsdlLocation="service/OrderFulfillmentService.wsdl" service="OrderFulfillmentService"
+		port="OrderFulfillmentPort" serviceAddress="${url.orderFulfillmentService}"
+		doc:name="Web Service Consumer" />
+	<data-mapper:config name="json_to_xml_processsale_"
+		transformationGraphPath="json_to_xml_processsale_.grf" doc:name="json_to_xml_processsale_" />
+	<data-mapper:config name="xml_getitemresponse__to_json"
+		transformationGraphPath="xml_getitemresponse__to_json.grf" doc:name="xml_getitemresponse__to_json" />
+	<data-mapper:config name="xml_getcustomerresponse__to_json"
+		transformationGraphPath="xml_getcustomerresponse__to_json.grf"
+		doc:name="xml_getcustomerresponse__to_json" />
+	<data-mapper:config name="xml_getwishlistresponse__to_json"
+		transformationGraphPath="xml_getwishlistresponse__to_json.grf"
+		doc:name="xml_getwishlistresponse__to_json" />
+	<data-mapper:config name="json_to_xml_1"
+		transformationGraphPath="json_to_xml_1.grf" doc:name="json_to_xml_1" />
+	<data-mapper:config name="JSON_To_Xml_processOrder_"
+		transformationGraphPath="json_to_xml_processorder__1.grf" doc:name="JSON_To_Xml_processOrder_" />
+	<data-mapper:config name="JSON_To_Xml_addToBasket_"
+		transformationGraphPath="json_to_xml_addtobasket_.grf" doc:name="JSON_To_Xml_addToBasket_" />
+	<data-mapper:config name="JSON_To_Xml_processSale_"
+		transformationGraphPath="json_to_xml_processsale__1.grf" doc:name="JSON_To_Xml_processSale_" />
+	<data-mapper:config name="JSON_To_Xml_addWish_"
+		transformationGraphPath="json_to_xml_addwish_.grf" doc:name="JSON_To_Xml_addWish_" />
+	<configuration doc:name="Configuration">
+		<expression-language autoResolveVariables="true">
+			<import name="SoapFaultException" class="org.mule.module.ws.consumer.SoapFaultException" />
+			<global-functions>def baseUrl() {
+				'https://' + sessionVars.props.Host.substring(0, sessionVars.props.Host.length() - 5)
+				+ sessionVars.props.'http.request.path';
 				}
 				def urlXPage() {
-				separator = '?';
+				separator =
+				'?';
 				params = '';
 				map = sessionVars.props['http.query.params'];
 				inParams = map.keySet();
 				for (String param : inParams) {
-				if (param != 'pageIndex' and param != 'pageSize') {
-				params += separator + param + '=' + map[param];
+				if (param !=
+				'pageIndex' and param != 'pageSize') {
+				params += separator + param +
+				'=' + map[param];
 				separator = '&amp;';
 				}
 				}
 				baseUrl() + params;
 				}
-				def fullUrl() {
-				'https://' + sessionVars.props.Host.replace(':8082', '') + sessionVars.props.'http.request';
-				}</global-functions>
-        </expression-language>
-    </configuration>
-    <data-mapper:config name="JSON_To_Xml_processRegistration_" transformationGraphPath="json_to_xml_processregistration_.grf" doc:name="JSON_To_Xml_processRegistration_" />
-    <apikit:config name="non-secure-config" raml="alainn.raml" consoleEnabled="true" doc:name="Router" />
-    <https:connector name="httpsConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP\HTTPS">
-        <service-overrides sessionHandler="org.mule.session.NullSessionHandler" />
-        <https:tls-key-store path="keystore.jks" keyPassword="changeit" storePassword="changeit" />
-    </https:connector>
-    <jetty-ssl:connector name="Jetty" doc:name="Jetty">
-        <service-overrides sessionHandler="org.mule.session.NullSessionHandler" />
-        <jetty-ssl:tls-key-store path="keystore.jks" keyPassword="changeit" storePassword="changeit" />
-    </jetty-ssl:connector>
-    <flow name="console" doc:name="console">
-        <jetty-ssl:inbound-endpoint exchange-pattern="request-response" doc:name="Jetty" address="https://localhost:${https.port}/omni-channel-api-v1.0-console" connector-ref="Jetty" />
-        <apikit:console config-ref="alainn-config" doc:name="APIkit Console"/>
-    </flow>
-    <flow name="secure-alainn-main" doc:name="secure-alainn-main">
-        <jetty-ssl:inbound-endpoint exchange-pattern="request-response" doc:name="Jetty" address="https://localhost:${https.port}/omni-channel-api/v1.0" connector-ref="Jetty" />
-        <set-session-variable variableName="props" value="#[message.inboundProperties]" doc:name="props" />
-        <cors:validate publicResource="true" doc:name="Cors" />
-        <apikit:router config-ref="alainn-config" doc:name="Secure" />
-        <exception-strategy ref="alainn-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy" />
-    </flow>
-    <flow name="alainnFlow1" doc:name="alainnFlow1">
-        <jetty-ssl:inbound-endpoint exchange-pattern="request-response" doc:name="Jetty" address="https://localhost:${https.port}/open/omni-channel-api/v1.0" connector-ref="Jetty" />
-        <set-session-variable variableName="props" value="#[message.inboundProperties]" doc:name="props" />
-        <cors:validate publicResource="true" doc:name="Cors" />
-        <apikit:router config-ref="non-secure-config" doc:name="Non Secure" />
-        <exception-strategy ref="alainn-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy" />
-    </flow>
-    <flow name="post:/basket/checkout:alainn-config" doc:name="post:/basket/checkout:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
-        <data-mapper:transform config-ref="JSON_To_Xml_processOrder_" doc:name="JSON To Xml&lt;processOrder&gt;">
-            <data-mapper:input-arguments>
-                <data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
-            </data-mapper:input-arguments>
-        </data-mapper:transform>
-        <ws:consumer config-ref="OrderFulfillmentServiceConsumer" doc:name="process Order" operation="processOrder" />
-        <set-property propertyName="Location" value="#[flowVars.apiUrl + '/orders/' + xpath('/mes:processOrderResponse/mod:OrderId/text()').text]" doc:name="Location" />
-    </flow>
-    <flow name="post:/basket:alainn-config" doc:name="post:/basket:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
-        <set-variable variableName="sku" value="#[json:sku]" doc:name="sku" />
-        <data-mapper:transform config-ref="JSON_To_Xml_addToBasket_" doc:name="JSON To Xml&lt;addToBasket&gt;">
-            <data-mapper:input-arguments>
-                <data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
-            </data-mapper:input-arguments>
-        </data-mapper:transform>
-        <ws:consumer config-ref="BasketServiceConsumer" doc:name="add to Basket" operation="addToBasket" />
-        <set-property propertyName="Location" value="#[apiUrl + '/basket/' + sku]" doc:name="Location" />
-    </flow>
-    <flow name="post:/wish-list:alainn-config" doc:name="post:/wish-list:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
-        <set-variable variableName="sku" value="#[json:sku]" doc:name="sku" />
-        <data-mapper:transform config-ref="JSON_To_Xml_addWish_" doc:name="JSON To Xml&lt;addWish&gt;">
-            <data-mapper:input-arguments>
-                <data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
-            </data-mapper:input-arguments>
-        </data-mapper:transform>
-        <ws:consumer config-ref="WishListServiceConsumer" doc:name="add Wish" operation="addWish" />
-        <set-property propertyName="Location" value="#[apiUrl + '/wish-list/' + sku]" doc:name="Location" />
-    </flow>
-    <flow name="get:/basket:alainn-config" doc:name="get:/basket:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <parse-template location="template/getBasket.xml" doc:name="getBasket.xml" />
-        <ws:consumer config-ref="BasketServiceConsumer" operation="getBasket" doc:name="get Basket" />
-        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" doc:name="Xml to Json" xsl-file="getBaskeResponseXml2getBasketJson.xsl" mimeType="application/json">
-            <mulexml:context-property key="fullUrl" value="#[fullUrl()]" />
-            <mulexml:context-property key="baseUrl" value="#[baseUrl()]" />
-        </mulexml:xslt-transformer>
-    </flow>
-    <flow name="get:/wish-list:alainn-config" doc:name="get:/wish-list:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <parse-template location="template/getWishList.xml" doc:name="getWishList.xml" />
-        <ws:consumer config-ref="WishListServiceConsumer" doc:name="get Wish List" operation="getWishList" />
-        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="getWishListResponseXml2getWishListJson.xsl" doc:name="Xml to Json" mimeType="application/json">
-            <mulexml:context-property key="pageIndex" value="#[sessionVars.props.pageIndex]" />
-            <mulexml:context-property key="requestedPageSize" value="#[sessionVars.props.pageSize]" />
-            <mulexml:context-property key="baseUrl" value="#[baseUrl()]" />
-            <mulexml:context-property key="fullUrl" value="#[fullUrl()]" />
-            <mulexml:context-property key="urlXPage" value="#[urlXPage()]" />
-        </mulexml:xslt-transformer>
-    </flow>
-    <flow name="get:/my-profile:alainn-config" doc:name="get:/my-profile:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <parse-template location="template/getCustomerByEmail.xml" doc:name="getCustomerByEmail.xml" />
-        <ws:consumer config-ref="CustomerServiceConsumer" operation="getCustomer" doc:name="get Customer" />
-        <data-mapper:transform config-ref="xml_getcustomerresponse__to_json" doc:name="Xml&lt;getCustomerResponse&gt; To JSON" returnClass="java.lang.String" />
-    </flow>
-    <flow name="get:/items" doc:name="get:/items">
-        <parse-template location="template/getItems.xml" doc:name="getItems.xml" />
-        <ws:consumer config-ref="ItemServiceConsumer" doc:name="get Items" operation="getItems" />
-        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="getItemsResponseXml2getItemsJson.xsl" doc:name="XSLT" mimeType="application/json">
-            <mulexml:context-property key="pageIndex" value="#[sessionVars.props.pageIndex]" />
-            <mulexml:context-property key="requestedPageSize" value="#[sessionVars.props.pageSize]" />
-            <mulexml:context-property key="baseUrl" value="#[baseUrl()]" />
-            <mulexml:context-property key="urlXPage" value="#[urlXPage()]" />
-            <mulexml:context-property key="fullUrl" value="#[fullUrl()]" />
-        </mulexml:xslt-transformer>
-    </flow>
-    <flow name="get:/items/{item}" doc:name="get:/items/{item}">
-        <parse-template location="template/getItem.xml" doc:name="getItem.xml" />
-        <ws:consumer config-ref="ItemServiceConsumer" doc:name="get Item" operation="getItem" />
-        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="getItemResponseXml2getItemJson.xsl" doc:name="XSLT" mimeType="application/json">
-            <mulexml:context-property key="baseUrl" value="#[baseUrl()]" />
-            <mulexml:context-property key="fullUrl" value="#[fullUrl()]" />
-        </mulexml:xslt-transformer>
-    </flow>
-    <flow name="head:/registrations/{email}:non-secure-config" doc:name="head:/registrations/{email}:non-secure-config">
-        <parse-template location="template/checkRegistrationEmail.xml" doc:name="checkRegistrationEmail.xml" />
-        <ws:consumer config-ref="RegistrationServiceConsumer" doc:name="check Registration Email" operation="checkRegistrationEmail" />
-        <expression-transformer expression="#[xpath('/mes:checkRegistrationEmailResponse/mod:EmailAvailability/text()').text == 'true']" doc:name="Available?" />
-        <scripting:component doc:name=" if Available then throw NotFoundException">
-            <scripting:script engine="Groovy"><![CDATA[if (payload == true) {
+				def
+				fullUrl() {
+				'https://' + sessionVars.props.Host.substring(0, sessionVars.props.Host.length() - 5)
+				+ sessionVars.props.'http.request';
+				}
+			</global-functions>
+		</expression-language>
+	</configuration>
+	<data-mapper:config name="JSON_To_Xml_processRegistration_"
+		transformationGraphPath="json_to_xml_processregistration_.grf"
+		doc:name="JSON_To_Xml_processRegistration_" />
+	<apikit:config name="non-secure-config" raml="alainn.raml"
+		consoleEnabled="true" doc:name="Router" />
+	<https:connector name="httpsConnector" cookieSpec="netscape"
+		validateConnections="true" sendBufferSize="0" receiveBufferSize="0"
+		receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000"
+		socketSoLinger="0" doc:name="HTTP\HTTPS">
+		<service-overrides sessionHandler="org.mule.session.NullSessionHandler" />
+		<https:tls-key-store path="keystore.jks"
+			keyPassword="changeit" storePassword="changeit" />
+	</https:connector>
+	<jetty-ssl:connector name="Jetty" doc:name="Jetty">
+		<service-overrides sessionHandler="org.mule.session.NullSessionHandler" />
+		<jetty-ssl:tls-key-store path="keystore.jks"
+			keyPassword="changeit" storePassword="changeit" />
+	</jetty-ssl:connector>
+	<flow name="console" doc:name="console">
+		<jetty-ssl:inbound-endpoint
+			exchange-pattern="request-response" doc:name="Jetty"
+			address="https://localhost:${https.port}/omni-channel-api-v1.0-console"
+			connector-ref="Jetty" />
+		<apikit:console config-ref="alainn-config" doc:name="APIkit Console" />
+	</flow>
+	<flow name="secure-alainn-main" doc:name="secure-alainn-main">
+		<jetty-ssl:inbound-endpoint
+			exchange-pattern="request-response" doc:name="Jetty"
+			address="https://localhost:${https.port}/omni-channel-api/v1.0"
+			connector-ref="Jetty" />
+		<set-session-variable variableName="props"
+			value="#[message.inboundProperties]" doc:name="props" />
+		<expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
+		<cors:validate publicResource="true" doc:name="Cors" />
+		<apikit:router config-ref="alainn-config" doc:name="Secure" />
+		<exception-strategy ref="alainn-apiKitGlobalExceptionMapping"
+			doc:name="Reference Exception Strategy" />
+	</flow>
+	<flow name="alainnFlow1" doc:name="alainnFlow1">
+		<jetty-ssl:inbound-endpoint
+			exchange-pattern="request-response" doc:name="Jetty"
+			address="https://localhost:${https.port}/open/omni-channel-api/v1.0"
+			connector-ref="Jetty" />
+		<set-session-variable variableName="props"
+			value="#[message.inboundProperties]" doc:name="props" />
+		<cors:validate publicResource="true" doc:name="Cors" />
+		<apikit:router config-ref="non-secure-config" doc:name="Non Secure" />
+		<exception-strategy ref="alainn-apiKitGlobalExceptionMapping"
+			doc:name="Reference Exception Strategy" />
+	</flow>
+	<flow name="post:/basket/checkout:alainn-config" doc:name="post:/basket/checkout:alainn-config">
+		<set-variable variableName="apiUrl"
+			value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
+		<data-mapper:transform config-ref="JSON_To_Xml_processOrder_"
+			doc:name="JSON To Xml&lt;processOrder&gt;">
+			<data-mapper:input-arguments>
+				<data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
+			</data-mapper:input-arguments>
+		</data-mapper:transform>
+		<ws:consumer config-ref="OrderFulfillmentServiceConsumer"
+			doc:name="process Order" operation="processOrder" />
+		<set-property propertyName="Location"
+			value="#[baseUrl() + '/orders/' + xpath('/mes:processOrderResponse/mod:OrderId/text()').text]"
+			doc:name="Location" />
+	</flow>
+	<flow name="post:/basket:alainn-config" doc:name="post:/basket:alainn-config">
+		<set-variable variableName="sku" value="#[json:sku]"
+			doc:name="sku" />
+		<data-mapper:transform config-ref="JSON_To_Xml_addToBasket_"
+			doc:name="JSON To Xml&lt;addToBasket&gt;">
+			<data-mapper:input-arguments>
+				<data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
+			</data-mapper:input-arguments>
+		</data-mapper:transform>
+		<ws:consumer config-ref="BasketServiceConsumer" doc:name="add to Basket"
+			operation="addToBasket" />
+		<set-property propertyName="Location" value="#[fullUrl() + '/' + sku]"
+			doc:name="Location" />
+	</flow>
+	<flow name="post:/wish-list:alainn-config" doc:name="post:/wish-list:alainn-config">
+		<set-variable variableName="sku" value="#[json:sku]"
+			doc:name="sku" />
+		<data-mapper:transform config-ref="JSON_To_Xml_addWish_"
+			doc:name="JSON To Xml&lt;addWish&gt;">
+			<data-mapper:input-arguments>
+				<data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
+			</data-mapper:input-arguments>
+		</data-mapper:transform>
+		<ws:consumer config-ref="WishListServiceConsumer"
+			doc:name="add Wish" operation="addWish" />
+		<set-property propertyName="Location"
+			value="#[fullUrl() + '/' + sku]" doc:name="Location" />
+	</flow>
+	<flow name="get:/basket:alainn-config" doc:name="get:/basket:alainn-config">
+		<parse-template location="template/getBasket.xml"
+			doc:name="getBasket.xml" />
+		<ws:consumer config-ref="BasketServiceConsumer" operation="getBasket"
+			doc:name="get Basket" />
+		<mulexml:xslt-transformer
+			maxIdleTransformers="2" maxActiveTransformers="5" doc:name="Xml to Json"
+			xsl-file="getBaskeResponseXml2getBasketJson.xsl" mimeType="application/json">
+			<mulexml:context-property key="fullUrl"
+				value="#[fullUrl()]" />
+			<mulexml:context-property key="baseUrl"
+				value="#[baseUrl()]" />
+		</mulexml:xslt-transformer>
+	</flow>
+	<flow name="get:/wish-list:alainn-config" doc:name="get:/wish-list:alainn-config">
+		<parse-template location="template/getWishList.xml"
+			doc:name="getWishList.xml" />
+		<ws:consumer config-ref="WishListServiceConsumer"
+			doc:name="get Wish List" operation="getWishList" />
+		<mulexml:xslt-transformer
+			maxIdleTransformers="2" maxActiveTransformers="5"
+			xsl-file="getWishListResponseXml2getWishListJson.xsl" doc:name="Xml to Json"
+			mimeType="application/json">
+			<mulexml:context-property key="pageIndex"
+				value="#[sessionVars.props.pageIndex]" />
+			<mulexml:context-property key="requestedPageSize"
+				value="#[sessionVars.props.pageSize]" />
+			<mulexml:context-property key="baseUrl"
+				value="#[baseUrl()]" />
+			<mulexml:context-property key="fullUrl"
+				value="#[fullUrl()]" />
+			<mulexml:context-property key="urlXPage"
+				value="#[urlXPage()]" />
+		</mulexml:xslt-transformer>
+	</flow>
+	<flow name="get:/my-profile:alainn-config" doc:name="get:/my-profile:alainn-config">
+		<parse-template location="template/getCustomerByEmail.xml"
+			doc:name="getCustomerByEmail.xml" />
+		<ws:consumer config-ref="CustomerServiceConsumer"
+			operation="getCustomer" doc:name="get Customer" />
+		<data-mapper:transform config-ref="xml_getcustomerresponse__to_json"
+			doc:name="Xml&lt;getCustomerResponse&gt; To JSON" returnClass="java.lang.String" />
+	</flow>
+	<flow name="get:/items" doc:name="get:/items">
+		<parse-template location="template/getItems.xml"
+			doc:name="getItems.xml" />
+		<ws:consumer config-ref="ItemServiceConsumer" doc:name="get Items"
+			operation="getItems" />
+		<mulexml:xslt-transformer
+			maxIdleTransformers="2" maxActiveTransformers="5"
+			xsl-file="getItemsResponseXml2getItemsJson.xsl" doc:name="XSLT"
+			mimeType="application/json">
+			<mulexml:context-property key="pageIndex"
+				value="#[sessionVars.props.pageIndex]" />
+			<mulexml:context-property key="requestedPageSize"
+				value="#[sessionVars.props.pageSize]" />
+			<mulexml:context-property key="baseUrl"
+				value="#[baseUrl()]" />
+			<mulexml:context-property key="urlXPage"
+				value="#[urlXPage()]" />
+			<mulexml:context-property key="fullUrl"
+				value="#[fullUrl()]" />
+		</mulexml:xslt-transformer>
+	</flow>
+	<flow name="get:/items/{item}" doc:name="get:/items/{item}">
+		<parse-template location="template/getItem.xml"
+			doc:name="getItem.xml" />
+		<ws:consumer config-ref="ItemServiceConsumer" doc:name="get Item"
+			operation="getItem" />
+		<mulexml:xslt-transformer
+			maxIdleTransformers="2" maxActiveTransformers="5"
+			xsl-file="getItemResponseXml2getItemJson.xsl" doc:name="XSLT"
+			mimeType="application/json">
+			<mulexml:context-property key="baseUrl"
+				value="#[baseUrl()]" />
+			<mulexml:context-property key="fullUrl"
+				value="#[fullUrl()]" />
+		</mulexml:xslt-transformer>
+	</flow>
+	<flow name="head:/registrations/{email}:non-secure-config"
+		doc:name="head:/registrations/{email}:non-secure-config">
+		<parse-template location="template/checkRegistrationEmail.xml"
+			doc:name="checkRegistrationEmail.xml" />
+		<ws:consumer config-ref="RegistrationServiceConsumer"
+			doc:name="check Registration Email" operation="checkRegistrationEmail" />
+		<expression-transformer
+			expression="#[xpath('/mes:checkRegistrationEmailResponse/mod:EmailAvailability/text()').text == 'true']"
+			doc:name="Available?" />
+		<scripting:component doc:name=" if Available then throw NotFoundException">
+			<scripting:script engine="Groovy"><![CDATA[if (payload == true) {
 	throw new org.mule.module.apikit.exception.NotFoundException();
 }]]></scripting:script>
-        </scripting:component>
-    </flow>
-    <flow name="post:/registrations/{email}:non-secure-config" doc:name="post:/registrations/{email}:non-secure-config">
-        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
-        <data-mapper:transform config-ref="JSON_To_Xml_processRegistration_" doc:name="JSON To Xml&lt;processRegistration&gt;">
-            <data-mapper:input-arguments>
-                <data-mapper:input-argument key="email">#[email]</data-mapper:input-argument>
-            </data-mapper:input-arguments>
-        </data-mapper:transform>
-        <ws:consumer config-ref="RegistrationServiceConsumer" doc:name="process Registration" operation="processRegistration" />
-        <!-- <choice-exception-strategy doc:name="Choice Exception Strategy"> <catch-exception-strategy 
+		</scripting:component>
+	</flow>
+	<flow name="post:/registrations/{email}:non-secure-config"
+		doc:name="post:/registrations/{email}:non-secure-config">
+		<set-variable variableName="apiUrl"
+			value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
+		<data-mapper:transform config-ref="JSON_To_Xml_processRegistration_"
+			doc:name="JSON To Xml&lt;processRegistration&gt;">
+			<data-mapper:input-arguments>
+				<data-mapper:input-argument key="email">#[email]</data-mapper:input-argument>
+			</data-mapper:input-arguments>
+		</data-mapper:transform>
+		<ws:consumer config-ref="RegistrationServiceConsumer"
+			doc:name="process Registration" operation="processRegistration" />
+		<!-- <choice-exception-strategy doc:name="Choice Exception Strategy"> <catch-exception-strategy 
 			when="exception is SoapFaultException and exception.faultCode.localPart == 
 			'customer-already-exists'" doc:name="Catch Exception Strategy"> <scripting:component 
 			doc:name="Groovy"> <scripting:script engine="Groovy"><![CDATA[throw new com.alainn.soa.service.fault.CustomerAlreadyRegisteredException();]]></scripting:script> 
 			</scripting:component> </catch-exception-strategy> </choice-exception-strategy> -->
-    </flow>
-    <flow name="post:/mobile-tokens:alainn-config" doc:name="post:/mobile-tokens:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
-        <data-mapper:transform doc:name="JSON To XML" config-ref="json_to_xml_1">
-            <data-mapper:input-arguments>
-                <data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
-            </data-mapper:input-arguments>
-        </data-mapper:transform>
-        <ws:consumer config-ref="CustomerServiceConsumer" doc:name="add Mobile Token" operation="addMobileToken" />
-        <set-property propertyName="Location" value="#[apiUrl + '/mobile-tokens']" doc:name="Location" />
-    </flow>
-    <flow name="post:/sales:alainn-config" doc:name="post:/sales:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <set-variable variableName="apiUrl" value="#[message.inboundProperties['http.context.uri']]" doc:name="apiUrl" />
-        <data-mapper:transform config-ref="JSON_To_Xml_processSale_" doc:name="JSON To Xml&lt;processSale&gt;" />
-        <ws:consumer config-ref="PointOfSaleServiceConsumer" doc:name="process Sale" operation="processSale" />
-        <set-property propertyName="Location" value="#[apiUrl + '/sales/' + xpath('/mes:processSaleResponse/mod:SaleId/text()').text]" doc:name="Location" />
-    </flow>
-    <flow name="delete:/basket/{item}:alainn-config" doc:name="delete:/basket/{item}:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <parse-template location="template/removeFromBasket.xml" doc:name="removeFromBasket.xml" />
-        <ws:consumer config-ref="BasketServiceConsumer" doc:name="remove From Basket" operation="removeFromBasket" />
-    </flow>
-    <flow name="delete:/wish-list/{wish}:alainn-config" doc:name="delete:/wish-list/{wish}:alainn-config">
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-        <parse-template location="template/removeWish.xml" doc:name="removeWish.xml" />
-        <ws:consumer config-ref="WishListServiceConsumer" doc:name="remove Wish" operation="removeWish" />
-    </flow>
-    <flow name="get:/categories" doc:name="get:/categories">
-        <parse-template location="template/getTypes.xml" doc:name="getTypes.xml" />
-        <ws:consumer config-ref="ItemServiceConsumer" operation="getTypes" doc:name="Web Service Consumer" />
-        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="getTypesResponse2getTypes.xsl" mimeType="application/json" doc:name="getTypesResponse2getTypes.xsl">
-            <mulexml:context-property key="pageIndex" value="#[sessionVars.props.pageIndex]" />
-            <mulexml:context-property key="requestedPageSize" value="#[sessionVars.props.pageSize]" />
-            <mulexml:context-property key="baseUrl" value="#[baseUrl()]" />
-        </mulexml:xslt-transformer>
-    </flow>
-    <flow name="get:/brands" doc:name="get:/brands">
-        <parse-template location="template/getBrands.xml" doc:name="getBrands.xml" />
-        <ws:consumer config-ref="ItemServiceConsumer" operation="getBrands" doc:name="get Brands" />
-        <mulexml:xslt-transformer maxIdleTransformers="2" maxActiveTransformers="5" xsl-file="getBrandsResponse2getBrands.xsl" doc:name="getBrandsResponse2getBrands.xsl" mimeType="application/json">
-            <mulexml:context-property key="pageIndex" value="#[sessionVars.props.pageIndex]" />
-            <mulexml:context-property key="requestedPageSize" value="#[sessionVars.props.pageSize]" />
-            <mulexml:context-property key="baseUrl" value="#[baseUrl()]" />
-            <mulexml:context-property key="fullUrl" value="#[fullUrl()]" />
-            <mulexml:context-property key="urlXPage" value="#[urlXPage()]" />
-        </mulexml:xslt-transformer>
-    </flow>
-    <flow name="get:/basket/{item}:alainn-config" doc:name="get:/basket/{item}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/items/{item}/reviews:alainn-config" doc:name="get:/items/{item}/reviews:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/orders/{order}:alainn-config" doc:name="get:/orders/{order}:alainn-config">
-        <set-payload value="{&#xA;  &quot;date&quot; : 1243214,&#xA;  &quot;total&quot; : 123.02,&#xA;  &quot;discount&quot; : 12.00,&#xA;  &quot;pickupLocation&quot; : &quot;Buenos Aires&quot;,&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 1.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;xyz&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 5.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    }&#xA;  ]&#xA;}" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-products/{product}:alainn-config" doc:name="get:/top-products/{product}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-products/{product}/reviews:alainn-config" doc:name="get:/top-products/{product}/reviews:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/promotions/{promotion}:alainn-config" doc:name="get:/promotions/{promotion}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/sales/{sale}:alainn-config" doc:name="get:/sales/{sale}:alainn-config">
-        <set-payload value="{&#xA;  &quot;date&quot; : &quot;2012-04-23&quot;,&#xA;  &quot;total&quot; : 102.23,&#xA;  &quot;discount&quot; : 2.77&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;Channel No.5&quot;,&#xA;      &quot;price&quot; : 25.00,&#xA;      &quot;quantity&quot; : 2&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;axxxbc&quot;,&#xA;      &quot;name&quot; : &quot;Channel No.5&quot;,&#xA;      &quot;price&quot; : 27.50,&#xA;      &quot;quantity&quot; : 2&#xA;    }&#xA;  ]&#xA;}" doc:name="Set Payload" />
-    </flow>
-    <flow name="post:/top-brands/{brand}/top-products/{product}/add-to-default-wish-list:alainn-config" doc:name="post:/top-brands/{brand}/top-products/{product}/add-to-default-wish-list:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="put:/basket/{item}:alainn-config" doc:name="put:/basket/{item}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="delete:/orders/{order}:alainn-config" doc:name="delete:/orders/{order}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="patch:/orders/{order}:alainn-config" doc:name="patch:/orders/{order}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-brands:alainn-config" doc:name="get:/top-brands:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-products:alainn-config" doc:name="get:/top-products:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/promotions:alainn-config" doc:name="get:/promotions:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/sales:alainn-config" doc:name="get:/sales:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/recommendations:alainn-config" doc:name="get:/recommendations:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/orders:alainn-config" doc:name="get:/orders:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-brands/{brand}/top-products:alainn-config" doc:name="get:/top-brands/{brand}/top-products:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-brands/{brand}/top-products/{product}:alainn-config" doc:name="get:/top-brands/{brand}/top-products/{product}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-brands/{brand}/top-products/{product}/reviews:alainn-config" doc:name="get:/top-brands/{brand}/top-products/{product}/reviews:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/registrations/{email}/mobile-tokens:alainn-config" doc:name="get:/registrations/{email}/mobile-tokens:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="post:/top-products/{product}/add-to-default-wish-list:alainn-config" doc:name="post:/top-products/{product}/add-to-default-wish-list:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <!-- <flow name="console" doc:name="console"> <https:inbound-endpoint exchange-pattern="request-response" 
+	</flow>
+	<flow name="post:/mobile-tokens/{mobileType}:alainn-config" doc:name="post:/mobile-tokens/{mobileType}:alainn-config">
+		<data-mapper:transform doc:name="JSON To XML"
+			config-ref="json_to_xml_1">
+			<data-mapper:input-arguments>
+				<data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
+			</data-mapper:input-arguments>
+		</data-mapper:transform>
+		<ws:consumer config-ref="CustomerServiceConsumer"
+			doc:name="add Mobile Token" operation="addMobileToken" />
+	</flow>
+	<flow name="post:/sales:alainn-config" doc:name="post:/sales:alainn-config">
+		<data-mapper:transform config-ref="JSON_To_Xml_processSale_"
+			doc:name="JSON To Xml&lt;processSale&gt;" />
+		<ws:consumer config-ref="PointOfSaleServiceConsumer"
+			doc:name="process Sale" operation="processSale" />
+		<set-property propertyName="Location"
+			value="#[fullUrl() + '/' + xpath('/mes:processSaleResponse/mod:SaleId/text()').text]"
+			doc:name="Location" />
+	</flow>
+	<flow name="delete:/basket/{item}:alainn-config" doc:name="delete:/basket/{item}:alainn-config">
+		<parse-template location="template/removeFromBasket.xml"
+			doc:name="removeFromBasket.xml" />
+		<ws:consumer config-ref="BasketServiceConsumer" doc:name="remove From Basket"
+			operation="removeFromBasket" />
+	</flow>
+	<flow name="delete:/wish-list/{wish}:alainn-config" doc:name="delete:/wish-list/{wish}:alainn-config">
+		<parse-template location="template/removeWish.xml"
+			doc:name="removeWish.xml" />
+		<ws:consumer config-ref="WishListServiceConsumer"
+			doc:name="remove Wish" operation="removeWish" />
+	</flow>
+	<flow name="get:/categories" doc:name="get:/categories">
+		<parse-template location="template/getTypes.xml"
+			doc:name="getTypes.xml" />
+		<ws:consumer config-ref="ItemServiceConsumer" operation="getTypes"
+			doc:name="get Types" />
+		<mulexml:xslt-transformer
+			maxIdleTransformers="2" maxActiveTransformers="5"
+			xsl-file="getTypesResponse2getTypes.xsl" mimeType="application/json"
+			doc:name="getTypesResponse2getTypes.xsl">
+			<mulexml:context-property key="pageIndex"
+				value="#[sessionVars.props.pageIndex]" />
+			<mulexml:context-property key="requestedPageSize"
+				value="#[sessionVars.props.pageSize]" />
+			<mulexml:context-property key="baseUrl"
+				value="#[baseUrl()]" />
+		</mulexml:xslt-transformer>
+	</flow>
+	<flow name="get:/brands" doc:name="get:/brands">
+		<parse-template location="template/getBrands.xml"
+			doc:name="getBrands.xml" />
+		<ws:consumer config-ref="ItemServiceConsumer" operation="getBrands"
+			doc:name="get Brands" />
+		<mulexml:xslt-transformer
+			maxIdleTransformers="2" maxActiveTransformers="5"
+			xsl-file="getBrandsResponse2getBrands.xsl" doc:name="getBrandsResponse2getBrands.xsl"
+			mimeType="application/json">
+			<mulexml:context-property key="pageIndex"
+				value="#[sessionVars.props.pageIndex]" />
+			<mulexml:context-property key="requestedPageSize"
+				value="#[sessionVars.props.pageSize]" />
+			<mulexml:context-property key="baseUrl"
+				value="#[baseUrl()]" />
+			<mulexml:context-property key="fullUrl"
+				value="#[fullUrl()]" />
+			<mulexml:context-property key="urlXPage"
+				value="#[urlXPage()]" />
+		</mulexml:xslt-transformer>
+	</flow>
+	<flow name="get:/basket/{item}:alainn-config" doc:name="get:/basket/{item}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/items/{item}/reviews:alainn-config" doc:name="get:/items/{item}/reviews:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/orders/{order}:alainn-config" doc:name="get:/orders/{order}:alainn-config">
+		<set-payload
+			value="{&#xA;  &quot;date&quot; : 1243214,&#xA;  &quot;total&quot; : 123.02,&#xA;  &quot;discount&quot; : 12.00,&#xA;  &quot;pickupLocation&quot; : &quot;Buenos Aires&quot;,&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 1.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;xyz&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 5.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    }&#xA;  ]&#xA;}"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-products/{product}:alainn-config" doc:name="get:/top-products/{product}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-products/{product}/reviews:alainn-config"
+		doc:name="get:/top-products/{product}/reviews:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/promotions/{promotion}:alainn-config" doc:name="get:/promotions/{promotion}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/sales/{sale}:alainn-config" doc:name="get:/sales/{sale}:alainn-config">
+		<set-payload
+			value="{&#xA;  &quot;date&quot; : &quot;2012-04-23&quot;,&#xA;  &quot;total&quot; : 102.23,&#xA;  &quot;discount&quot; : 2.77&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;Channel No.5&quot;,&#xA;      &quot;price&quot; : 25.00,&#xA;      &quot;quantity&quot; : 2&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;axxxbc&quot;,&#xA;      &quot;name&quot; : &quot;Channel No.5&quot;,&#xA;      &quot;price&quot; : 27.50,&#xA;      &quot;quantity&quot; : 2&#xA;    }&#xA;  ]&#xA;}"
+			doc:name="Set Payload" />
+	</flow>
+	<flow
+		name="post:/top-brands/{brand}/top-products/{product}/add-to-default-wish-list:alainn-config"
+		doc:name="post:/top-brands/{brand}/top-products/{product}/add-to-default-wish-list:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="put:/basket/{item}:alainn-config" doc:name="put:/basket/{item}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="delete:/orders/{order}:alainn-config" doc:name="delete:/orders/{order}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="patch:/orders/{order}:alainn-config" doc:name="patch:/orders/{order}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-brands:alainn-config" doc:name="get:/top-brands:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-products:alainn-config" doc:name="get:/top-products:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/promotions:alainn-config" doc:name="get:/promotions:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/sales:alainn-config" doc:name="get:/sales:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/recommendations:alainn-config" doc:name="get:/recommendations:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/orders:alainn-config" doc:name="get:/orders:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-brands/{brand}/top-products:alainn-config"
+		doc:name="get:/top-brands/{brand}/top-products:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-brands/{brand}/top-products/{product}:alainn-config"
+		doc:name="get:/top-brands/{brand}/top-products/{product}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow
+		name="get:/top-brands/{brand}/top-products/{product}/reviews:alainn-config"
+		doc:name="get:/top-brands/{brand}/top-products/{product}/reviews:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/registrations/{email}/mobile-tokens:alainn-config"
+		doc:name="get:/registrations/{email}/mobile-tokens:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow
+		name="post:/top-products/{product}/add-to-default-wish-list:alainn-config"
+		doc:name="post:/top-products/{product}/add-to-default-wish-list:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<!-- <flow name="console" doc:name="console"> <https:inbound-endpoint exchange-pattern="request-response" 
 		address="https://localhost:8083/console" doc:name="HTTP" connector-ref="httpsConnector" 
 		path="console"/> <apikit:console /> </flow> -->
-    <flow name="put:/basket/{basketItem}:alainn-config" doc:name="put:/basket/{basketItem}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="delete:/basket/{basketItem}:alainn-config" doc:name="delete:/basket/{basketItem}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="delete:/pending-orders/{order}:alainn-config" doc:name="delete:/pending-orders/{order}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="patch:/pending-orders/{order}:alainn-config" doc:name="patch:/pending-orders/{order}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-items:alainn-config" doc:name="get:/top-items:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/mobile-tokens:alainn-config" doc:name="get:/mobile-tokens:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/pending-orders:alainn-config" doc:name="get:/pending-orders:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/basket/{basketItem}:alainn-config" doc:name="get:/basket/{basketItem}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-brands/{brand}/top-items:alainn-config" doc:name="get:/top-brands/{brand}/top-items:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-brands/{brand}/top-items/{product}:alainn-config" doc:name="get:/top-brands/{brand}/top-items/{product}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-brands/{brand}/top-items/{product}/reviews:alainn-config" doc:name="get:/top-brands/{brand}/top-items/{product}/reviews:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/items/{item}/skus:alainn-config" doc:name="get:/items/{item}/skus:alainn-config">
-        <set-payload value="{&#xA;  &quot;collection&quot; : {&#xA;    &quot;links&quot; : [&#xA;      { &quot;rel&quot; : &quot;next&quot;, &quot;href&quot; : &quot;&quot; },&#xA;      { &quot;rel&quot; : &quot;prev&quot;, &quot;href&quot; : &quot;&quot; },&#xA;      { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; }&#xA;    ],&#xA;    &quot;items&quot; : [&#xA;      {&#xA;        &quot;links&quot; : [&#xA;          { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;parent&quot;, &quot;label&quot; :&quot;General Info&quot;, &quot;href&quot; : &quot;&quot; }&#xA;        ],&#xA;        &quot;id&quot; : &quot;12343214&quot;,&#xA;        &quot;sku&quot; : &quot;12344&quot;,&#xA;        &quot;price&quot; : 1.00,&#xA;        &quot;stockQuantity&quot; : 1&#xA;      },&#xA;      {&#xA;        &quot;links&quot; : [&#xA;          { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; }&#xA;          { &quot;rel&quot; : &quot;parent&quot;, &quot;label&quot; :&quot;General Info&quot;, &quot;href&quot; : &quot;&quot; }                &#xA;        ],&#xA;        &quot;id&quot; : &quot;12343214&quot;,&#xA;        &quot;sku&quot; : &quot;12344&quot;,&#xA;        &quot;price&quot; : 2.00,&#xA;        &quot;stockQuantity&quot; : 10&#xA;      }&#xA;    ]&#xA;  }&#xA;}" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/items/{item}/skus/{sku}:alainn-config" doc:name="get:/items/{item}/skus/{sku}:alainn-config">
-        <set-payload value="{&#xA;  &quot;links&quot; : [&#xA;    { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;parent&quot;, &quot;href&quot; : &quot;&quot; }&#xA;  ],&#xA;  &quot;id&quot; : &quot;12343214&quot;,&#xA;  &quot;sku&quot; : &quot;12344&quot;,&#xA;  &quot;price&quot; : 1.00,&#xA;  &quot;stockQuantity&quot; : 1,&#xA;  &quot;characteristics&quot; : [&#xA;    { &quot;name&quot; : &quot;size&quot;, &quot;value&quot; : &quot;large&quot; },&#xA;    { &quot;name&quot; : &quot;color&quot;, &quot;value&quot; : &quot;blue&quot; }&#xA;  ]&#xA;}" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/pending-orders/{order}:alainn-config" doc:name="get:/pending-orders/{order}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-items/{product}:alainn-config" doc:name="get:/top-items/{product}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/top-items/{product}/reviews:alainn-config" doc:name="get:/top-items/{product}/reviews:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="get:/returns/{return}:alainn-config" doc:name="get:/returns/{return}:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="post:/returns" doc:name="post:/returns">
-        <copy-properties propertyName="*" doc:name="Property"/>
-        <http:outbound-endpoint exchange-pattern="request-response" method="POST" address="http://alainn-api-stg.stg.cloudhub.io/access-token" doc:name="HTTP"/>
-    </flow>
-    <flow name="post:/top-brands/{brand}/top-items/{product}/add-to-wish-list:alainn-config" doc:name="post:/top-brands/{brand}/top-items/{product}/add-to-wish-list:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="post:/top-brands/{brand}/top-items/{product}/reviews:alainn-config" doc:name="post:/top-brands/{brand}/top-items/{product}/reviews:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="post:/top-items/{product}/add-to-wish-list:alainn-config" doc:name="post:/top-items/{product}/add-to-wish-list:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="post:/top-items/{product}/reviews:alainn-config" doc:name="post:/top-items/{product}/reviews:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="post:/returns/{return}/fulfill:alainn-config" doc:name="post:/returns/{return}/fulfill:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload" />
-    </flow>
-    <flow name="put:/mobile-tokens:alainn-config" doc:name="put:/mobile-tokens:alainn-config">
-        <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload"/>
-    </flow>
+	<flow name="put:/basket/{basketItem}:alainn-config" doc:name="put:/basket/{basketItem}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="delete:/basket/{basketItem}:alainn-config" doc:name="delete:/basket/{basketItem}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="delete:/pending-orders/{order}:alainn-config"
+		doc:name="delete:/pending-orders/{order}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="patch:/pending-orders/{order}:alainn-config" doc:name="patch:/pending-orders/{order}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-items:alainn-config" doc:name="get:/top-items:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/mobile-tokens:alainn-config" doc:name="get:/mobile-tokens:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/pending-orders:alainn-config" doc:name="get:/pending-orders:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/basket/{basketItem}:alainn-config" doc:name="get:/basket/{basketItem}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-brands/{brand}/top-items:alainn-config"
+		doc:name="get:/top-brands/{brand}/top-items:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-brands/{brand}/top-items/{product}:alainn-config"
+		doc:name="get:/top-brands/{brand}/top-items/{product}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow
+		name="get:/top-brands/{brand}/top-items/{product}/reviews:alainn-config"
+		doc:name="get:/top-brands/{brand}/top-items/{product}/reviews:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/items/{item}/skus:alainn-config" doc:name="get:/items/{item}/skus:alainn-config">
+		<set-payload
+			value="{&#xA;  &quot;collection&quot; : {&#xA;    &quot;links&quot; : [&#xA;      { &quot;rel&quot; : &quot;next&quot;, &quot;href&quot; : &quot;&quot; },&#xA;      { &quot;rel&quot; : &quot;prev&quot;, &quot;href&quot; : &quot;&quot; },&#xA;      { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; }&#xA;    ],&#xA;    &quot;items&quot; : [&#xA;      {&#xA;        &quot;links&quot; : [&#xA;          { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;parent&quot;, &quot;label&quot; :&quot;General Info&quot;, &quot;href&quot; : &quot;&quot; }&#xA;        ],&#xA;        &quot;id&quot; : &quot;12343214&quot;,&#xA;        &quot;sku&quot; : &quot;12344&quot;,&#xA;        &quot;price&quot; : 1.00,&#xA;        &quot;stockQuantity&quot; : 1&#xA;      },&#xA;      {&#xA;        &quot;links&quot; : [&#xA;          { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; }&#xA;          { &quot;rel&quot; : &quot;parent&quot;, &quot;label&quot; :&quot;General Info&quot;, &quot;href&quot; : &quot;&quot; }                &#xA;        ],&#xA;        &quot;id&quot; : &quot;12343214&quot;,&#xA;        &quot;sku&quot; : &quot;12344&quot;,&#xA;        &quot;price&quot; : 2.00,&#xA;        &quot;stockQuantity&quot; : 10&#xA;      }&#xA;    ]&#xA;  }&#xA;}"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/items/{item}/skus/{sku}:alainn-config" doc:name="get:/items/{item}/skus/{sku}:alainn-config">
+		<set-payload
+			value="{&#xA;  &quot;links&quot; : [&#xA;    { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;parent&quot;, &quot;href&quot; : &quot;&quot; }&#xA;  ],&#xA;  &quot;id&quot; : &quot;12343214&quot;,&#xA;  &quot;sku&quot; : &quot;12344&quot;,&#xA;  &quot;price&quot; : 1.00,&#xA;  &quot;stockQuantity&quot; : 1,&#xA;  &quot;characteristics&quot; : [&#xA;    { &quot;name&quot; : &quot;size&quot;, &quot;value&quot; : &quot;large&quot; },&#xA;    { &quot;name&quot; : &quot;color&quot;, &quot;value&quot; : &quot;blue&quot; }&#xA;  ]&#xA;}"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/pending-orders/{order}:alainn-config" doc:name="get:/pending-orders/{order}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-items/{product}:alainn-config" doc:name="get:/top-items/{product}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/top-items/{product}/reviews:alainn-config"
+		doc:name="get:/top-items/{product}/reviews:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="get:/returns/{return}:alainn-config" doc:name="get:/returns/{return}:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="post:/returns" doc:name="post:/returns">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow
+		name="post:/top-brands/{brand}/top-items/{product}/add-to-wish-list:alainn-config"
+		doc:name="post:/top-brands/{brand}/top-items/{product}/add-to-wish-list:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow
+		name="post:/top-brands/{brand}/top-items/{product}/reviews:alainn-config"
+		doc:name="post:/top-brands/{brand}/top-items/{product}/reviews:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="post:/top-items/{product}/add-to-wish-list:alainn-config"
+		doc:name="post:/top-items/{product}/add-to-wish-list:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="post:/top-items/{product}/reviews:alainn-config"
+		doc:name="post:/top-items/{product}/reviews:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="post:/returns/{return}/fulfill:alainn-config"
+		doc:name="post:/returns/{return}/fulfill:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
+	<flow name="put:/mobile-tokens:alainn-config" doc:name="put:/mobile-tokens:alainn-config">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />
+	</flow>
 </mule>

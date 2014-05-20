@@ -1461,19 +1461,14 @@ resourceTypes:
   /{promotion}:
     type: { document : { schema : promotion } }
 /returns:
-  securedBy: [oauth_2_0]
   post:
     body:
-      application/json:
-        schema: return-request
-        example: *order-request-example
+      application/x-www-form-urlencoded:
     responses:
-      202:
+      200:
         description: Accepted
-        headers:
-          Location:
-            type: string
-            example: /returns/124243
+        body:
+          application/json:
   /{return}:
     type: { document: { schema: return-request } }
     /fulfill:

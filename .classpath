@@ -11,5 +11,6 @@
 	<classpathentry kind="con" path="MULE_LIB/Salesforce"/>
 	<classpathentry kind="lib" path="/Users/nialdarbey/Downloads/mule-module-cors-1.1 (1).jar"/>
 	<classpathentry kind="lib" path="/Users/nialdarbey/Downloads/MuleStudio-Dec-13/plugins/org.mule.tooling.server.3.4.2.ee_3.4.2.201312301836/mule/data-mapper/clover-plugins/org.jetel.jdbc/lib/mysql/mysql-connector-java-5.1.15-bin.jar"/>
+	<classpathentry kind="con" path="MULE_LIB/Cloudhub/org.mule.tooling.ui.contribution.cloudhub"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

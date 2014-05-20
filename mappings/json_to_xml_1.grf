@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><Graph author="nialdarbey" created="Sat Apr 12 18:36:17 ART 2014" description="JSON To XML" guiVersion="3.4.3.P" id="1397338643246" licenseCode="Unlicensed" licenseType="Unknown" modified="Sat Apr 12 18:36:17 ART 2014" modifiedBy="nialdarbey" name="JSON_To_XML" preview-arguments="customerId:'1324321jkl'" preview-file="${Project_Home}/src/test/resources/post-mobile-tokens.json" revision="1.0" showComponentDetails="false">
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="nialdarbey" created="Sat Apr 12 18:36:17 ART 2014" description="JSON To XML" guiVersion="3.4.3.P" id="1397338643246" licenseCode="Unlicensed" licenseType="Unknown" modified="Sat Apr 12 18:36:17 ART 2014" modifiedBy="nialdarbey" name="JSON_To_XML" preview-arguments="customerId:'1324321jkl'" preview-file="${Project_Home}/src/test/resources/post-mobile-tokens.json" revision="1.0" showComponentDetails="false">
 <Global>
 <Metadata __index="0" __referenceCounter="1" __sourcePath="{http://www.alainn.com/SOA/message/1.0=ns0}/ns0:addMobileToken" _dataStructure="OBJECT" _id="__id" _type="Output" id="1ef3ecfb-9bce-452f-8d7b-6e2b008371fb">
 <Record fieldDelimiter="," name="addMobileToken" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
@@ -16,7 +16,7 @@
 <Dictionary>
 <Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
 <Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
-<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="customerId" output="true" type="string"/>
+<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="customerId" output="false" type="string"/>
 </Dictionary>
 </Global>
 <Phase number="0">

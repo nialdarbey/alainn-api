@@ -2,13 +2,13 @@
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="alainn">
     <global-unknown description="false" index="1" entity-id="global-unknown#1">
         <content>&lt;mulexml:namespace-manager xmlns:mulexml=&quot;http://www.mulesoft.org/schema/mule/xml&quot; includeConfigNamespaces=&quot;true&quot;&gt;
-        &lt;mulexml:namespace prefix=&quot;mes&quot; uri=&quot;http://www.alainn.com/SOA/message/1.0&quot;/&gt;
-        &lt;mulexml:namespace prefix=&quot;mod&quot; uri=&quot;http://www.alainn.com/SOA/model/1.0&quot;/&gt;
-    &lt;/mulexml:namespace-manager&gt;</content>
+		&lt;mulexml:namespace prefix=&quot;mes&quot; uri=&quot;http://www.alainn.com/SOA/message/1.0&quot;/&gt;
+		&lt;mulexml:namespace prefix=&quot;mod&quot; uri=&quot;http://www.alainn.com/SOA/model/1.0&quot;/&gt;
+	&lt;/mulexml:namespace-manager&gt;</content>
     </global-unknown>
     <global-element name="Router" type="http://www.mulesoft.org/schema/mule/apikit/config" entity-id="Router#1">
         <properties>
-            <property name="consoleEnabled" value="true"/>
+            <property name="consoleEnabled" value="false"/>
             <property name="raml" value="alainn.raml"/>
             <property name="flow-mapping"/>
             <property name="consolePath"/>
@@ -18,37 +18,37 @@
     </global-element>
     <global-unknown description="false" unknownName="alainn-apiKitGlobalExceptionMapping" index="5" entity-id="global-unknown#2">
         <content>&lt;apikit:mapping-exception-strategy xmlns:apikit=&quot;http://www.mulesoft.org/schema/mule/apikit&quot; name=&quot;alainn-apiKitGlobalExceptionMapping&quot;&gt;
-        &lt;apikit:mapping statusCode=&quot;404&quot;&gt;
-            &lt;apikit:exception value=&quot;org.mule.module.apikit.exception.NotFoundException&quot;/&gt;
-            &lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
-            &lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Resource not found&amp;quot; }&quot;/&gt;
-        &lt;/apikit:mapping&gt;
-        &lt;apikit:mapping statusCode=&quot;405&quot;&gt;
-            &lt;apikit:exception value=&quot;org.mule.module.apikit.exception.MethodNotAllowedException&quot;/&gt;
-            &lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
-            &lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Method not allowed&amp;quot; }&quot;/&gt;
-        &lt;/apikit:mapping&gt;
-        &lt;apikit:mapping statusCode=&quot;415&quot;&gt;
-            &lt;apikit:exception value=&quot;org.mule.module.apikit.exception.UnsupportedMediaTypeException&quot;/&gt;
-            &lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
-            &lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Unsupported media type&amp;quot; }&quot;/&gt;
-        &lt;/apikit:mapping&gt;
-        &lt;apikit:mapping statusCode=&quot;406&quot;&gt;
-            &lt;apikit:exception value=&quot;org.mule.module.apikit.exception.NotAcceptableException&quot;/&gt;
-            &lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
-            &lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Not acceptable&amp;quot; }&quot;/&gt;
-        &lt;/apikit:mapping&gt;
-        &lt;apikit:mapping statusCode=&quot;400&quot;&gt;
-            &lt;apikit:exception value=&quot;org.mule.module.apikit.exception.BadRequestException&quot;/&gt;
-            &lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
-            &lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Bad request: #[exception.cause.message]&amp;quot; }&quot;/&gt;
-        &lt;/apikit:mapping&gt;
-        &lt;apikit:mapping statusCode=&quot;409&quot;&gt;
-            &lt;apikit:exception value=&quot;org.mule.module.ws.consumer.SoapFaultException&quot;/&gt;
-            &lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;#[exception.message]&amp;quot; }&quot;/&gt;
-            &lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
-        &lt;/apikit:mapping&gt;
-    &lt;/apikit:mapping-exception-strategy&gt;</content>
+		&lt;apikit:mapping statusCode=&quot;404&quot;&gt;
+			&lt;apikit:exception value=&quot;org.mule.module.apikit.exception.NotFoundException&quot;/&gt;
+			&lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
+			&lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Resource not found&amp;quot; }&quot;/&gt;
+		&lt;/apikit:mapping&gt;
+		&lt;apikit:mapping statusCode=&quot;405&quot;&gt;
+			&lt;apikit:exception value=&quot;org.mule.module.apikit.exception.MethodNotAllowedException&quot;/&gt;
+			&lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
+			&lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Method not allowed&amp;quot; }&quot;/&gt;
+		&lt;/apikit:mapping&gt;
+		&lt;apikit:mapping statusCode=&quot;415&quot;&gt;
+			&lt;apikit:exception value=&quot;org.mule.module.apikit.exception.UnsupportedMediaTypeException&quot;/&gt;
+			&lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
+			&lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Unsupported media type&amp;quot; }&quot;/&gt;
+		&lt;/apikit:mapping&gt;
+		&lt;apikit:mapping statusCode=&quot;406&quot;&gt;
+			&lt;apikit:exception value=&quot;org.mule.module.apikit.exception.NotAcceptableException&quot;/&gt;
+			&lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
+			&lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Not acceptable&amp;quot; }&quot;/&gt;
+		&lt;/apikit:mapping&gt;
+		&lt;apikit:mapping statusCode=&quot;400&quot;&gt;
+			&lt;apikit:exception value=&quot;org.mule.module.apikit.exception.BadRequestException&quot;/&gt;
+			&lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
+			&lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;Bad request: #[exception.cause.message]&amp;quot; }&quot;/&gt;
+		&lt;/apikit:mapping&gt;
+		&lt;apikit:mapping statusCode=&quot;409&quot;&gt;
+			&lt;apikit:exception value=&quot;org.mule.module.ws.consumer.SoapFaultException&quot;/&gt;
+			&lt;set-payload xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; value=&quot;{ &amp;quot;message&amp;quot;: &amp;quot;#[exception.message]&amp;quot; }&quot;/&gt;
+			&lt;set-property xmlns=&quot;http://www.mulesoft.org/schema/mule/core&quot; propertyName=&quot;Content-Type&quot; value=&quot;application/json&quot;/&gt;
+		&lt;/apikit:mapping&gt;
+	&lt;/apikit:mapping-exception-strategy&gt;</content>
     </global-unknown>
     <global-element name="Property Placeholder" type="http://www.springframework.org/schema/context/property-placeholder" entity-id="Property Placeholder#1">
         <properties>
@@ -272,6 +272,7 @@
                 <property name="path" value="keystore.jks"/>
                 <property name="storePassword" value="changeit"/>
                 <property name="keyPassword" value="changeit"/>
+                <property name="isProcessed$$$$ " value="true"/>
                 <property name="auxiliary;index" value="55"/>
                 <property name="auxiliary;wrapIn" value="55"/>
             </property-collection>
@@ -290,12 +291,13 @@
                 <property name="path" value="keystore.jks"/>
                 <property name="storePassword" value="changeit"/>
                 <property name="keyPassword" value="changeit"/>
+                <property name="isProcessed$$$$ " value="true"/>
                 <property name="auxiliary;index" value="58"/>
                 <property name="auxiliary;wrapIn" value="58"/>
             </property-collection>
         </properties>
     </global-element>
-    <flow SubFlow="false" name="console" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="aa3865b1-34a9-44f1-81d1-5cba35785af6">
+    <flow SubFlow="false" name="console" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="74cedf70-9961-468b-ae4b-b4de6cde200e">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -338,7 +340,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="secure-alainn-main" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5bb9398e-ddba-4881-84ca-e1da441a1741">
+    <flow SubFlow="false" name="secure-alainn-main" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="bb6e95b5-0283-456b-b0f8-f004340e8373">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -381,7 +383,16 @@
                     <property name="auxiliary;index" value="64"/>
                 </properties>
             </pattern>
-            <unknown description="false" index="65" entity-id="unknown#1">
+            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
+                    <property name="file"/>
+                    <property name="evaluator"/>
+                    <property name="auxiliary;index" value="65"/>
+                </properties>
+            </pattern>
+            <unknown description="false" index="66" entity-id="unknown#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <content>&lt;cors:validate xmlns:cors=&quot;http://www.mulesoft.org/schema/mule/cors&quot; publicResource=&quot;true&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;Cors&quot;/&gt;</content>
             </unknown>
@@ -389,25 +400,25 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="config-ref" value="alainn-config"/>
-                    <property name="auxiliary;index" value="66"/>
+                    <property name="auxiliary;index" value="67"/>
                 </properties>
             </pattern>
             <pattern name="Reference Exception Strategy" type="http://www.mulesoft.org/schema/mule/core/exception-strategy" entity-id="Reference Exception Strategy#1">
                 <properties>
                     <property name="ref" value="alainn-apiKitGlobalExceptionMapping"/>
-                    <property name="auxiliary;index" value="67"/>
+                    <property name="auxiliary;index" value="68"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="alainnFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="23b2e4aa-4f39-44d8-8559-333a42d7b56e">
+    <flow SubFlow="false" name="alainnFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6c080e2e-1bd5-4e1a-b998-4d4ef4f61123">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="68"/>
+            <property name="auxiliary;index" value="69"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
             <graphicalData x="0" y="0" width="0" height="0"/>
@@ -429,7 +440,7 @@
                     <property name="encoding"/>
                     <property name="responseTransformer-refs"/>
                     <property name="user"/>
-                    <property name="auxiliary;index" value="69"/>
+                    <property name="auxiliary;index" value="70"/>
                     <property name="mimeType"/>
                     <property name="connector-ref" value="Jetty"/>
                 </properties>
@@ -440,10 +451,10 @@
                     <property name="variableName" value="props"/>
                     <property name="value" value="#[message.inboundProperties]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-session-variable"/>
-                    <property name="auxiliary;index" value="70"/>
+                    <property name="auxiliary;index" value="71"/>
                 </properties>
             </pattern>
-            <unknown description="false" index="71" entity-id="unknown#2">
+            <unknown description="false" index="72" entity-id="unknown#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <content>&lt;cors:validate xmlns:cors=&quot;http://www.mulesoft.org/schema/mule/cors&quot; publicResource=&quot;true&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;Cors&quot;/&gt;</content>
             </unknown>
@@ -451,39 +462,30 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="config-ref" value="non-secure-config"/>
-                    <property name="auxiliary;index" value="72"/>
+                    <property name="auxiliary;index" value="73"/>
                 </properties>
             </pattern>
             <pattern name="Reference Exception Strategy" type="http://www.mulesoft.org/schema/mule/core/exception-strategy" entity-id="Reference Exception Strategy#2">
                 <properties>
                     <property name="ref" value="alainn-apiKitGlobalExceptionMapping"/>
-                    <property name="auxiliary;index" value="73"/>
+                    <property name="auxiliary;index" value="74"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/basket/checkout:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="47df3a66-d8b9-4caf-aeb4-2e3cb3be017f">
+    <flow SubFlow="false" name="post:/basket/checkout:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6ba6e98b-1d12-456d-9283-2adbb7a0caad">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="74"/>
+            <property name="auxiliary;index" value="75"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#4">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#1">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="75"/>
-                </properties>
-            </pattern>
             <pattern name="apiUrl" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#1">
-                <graphicalData x="0" y="0" width="0" height="0"/>
+                <graphicalData x="21" y="895" width="68" height="67"/>
                 <properties>
                     <property name="variableName" value="apiUrl"/>
                     <property name="value" value="#[message.inboundProperties['http.context.uri']]"/>
@@ -492,7 +494,7 @@
                 </properties>
             </pattern>
             <pattern name="JSON To Xml&lt;processOrder&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#11">
-                <graphicalData x="0" y="0" width="0" height="0"/>
+                <graphicalData x="149" y="888" width="124" height="80"/>
                 <properties>
                     <property name="returnClass"/>
                     <property name="stream"/>
@@ -515,7 +517,7 @@
                 </properties>
             </pattern>
             <pattern name="process Order" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#8">
-                <graphicalData x="0" y="0" width="0" height="0"/>
+                <graphicalData x="333" y="894" width="90" height="69"/>
                 <properties>
                     <property name=""/>
                     <property name="operation" value="processOrder"/>
@@ -525,17 +527,17 @@
                 </properties>
             </pattern>
             <pattern name="Location" type="http://www.mulesoft.org/schema/mule/core/properties-transformer" entity-id="Property#1">
-                <graphicalData x="0" y="0" width="0" height="0"/>
+                <graphicalData x="483" y="895" width="68" height="67"/>
                 <properties>
                     <property name="propertyName" value="Location"/>
-                    <property name="value" value="#[flowVars.apiUrl + '/orders/' + xpath('/mes:processOrderResponse/mod:OrderId/text()').text]"/>
+                    <property name="value" value="#[baseUrl() + '/orders/' + xpath('/mes:processOrderResponse/mod:OrderId/text()').text]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-property"/>
                     <property name="auxiliary;index" value="81"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/basket:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="fc06956f-52ad-42fc-94d1-54199fb35d52">
+    <flow SubFlow="false" name="post:/basket:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="61512ff4-55b6-4261-b0cf-c5e126dfdceb">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -546,31 +548,13 @@
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#5">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#2">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="83"/>
-                </properties>
-            </pattern>
-            <pattern name="apiUrl" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#2">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="variableName" value="apiUrl"/>
-                    <property name="value" value="#[message.inboundProperties['http.context.uri']]"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="84"/>
-                </properties>
-            </pattern>
-            <pattern name="sku" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#3">
+            <pattern name="sku" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="variableName" value="sku"/>
                     <property name="value" value="#[json:sku]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="85"/>
+                    <property name="auxiliary;index" value="83"/>
                 </properties>
             </pattern>
             <pattern name="JSON To Xml&lt;addToBasket&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#12">
@@ -583,15 +567,15 @@
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
                     <property name="pipeSize"/>
                     <property name="config-ref" value="JSON_To_Xml_addToBasket_"/>
-                    <property name="auxiliary;index" value="86"/>
+                    <property name="auxiliary;index" value="84"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-arguments;0">
-                        <property name="auxiliary;index" value="87"/>
-                        <property name="auxiliary;wrapIn" value="87"/>
+                        <property name="auxiliary;index" value="85"/>
+                        <property name="auxiliary;wrapIn" value="85"/>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-argument;1">
                             <property name="value" value="#[userId]"/>
                             <property name="key" value="customerId"/>
-                            <property name="auxiliary;index" value="88"/>
-                            <property name="auxiliary;wrapIn" value="88"/>
+                            <property name="auxiliary;index" value="86"/>
+                            <property name="auxiliary;wrapIn" value="86"/>
                         </property-collection>
                     </property-collection>
                 </properties>
@@ -603,56 +587,38 @@
                     <property name="operation" value="addToBasket"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="BasketServiceConsumer"/>
-                    <property name="auxiliary;index" value="89"/>
+                    <property name="auxiliary;index" value="87"/>
                 </properties>
             </pattern>
             <pattern name="Location" type="http://www.mulesoft.org/schema/mule/core/properties-transformer" entity-id="Property#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="propertyName" value="Location"/>
-                    <property name="value" value="#[apiUrl + '/basket/' + sku]"/>
+                    <property name="value" value="#[fullUrl() + '/' + sku]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-property"/>
-                    <property name="auxiliary;index" value="90"/>
+                    <property name="auxiliary;index" value="88"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a8f66096-c48f-4b6f-b695-fc7a6b77e19a">
+    <flow SubFlow="false" name="post:/wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="708b840c-259a-4722-9596-7980d96cee5a">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="91"/>
+            <property name="auxiliary;index" value="89"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#6">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#3">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="92"/>
-                </properties>
-            </pattern>
-            <pattern name="apiUrl" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#4">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="variableName" value="apiUrl"/>
-                    <property name="value" value="#[message.inboundProperties['http.context.uri']]"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="93"/>
-                </properties>
-            </pattern>
-            <pattern name="sku" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#5">
+            <pattern name="sku" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#3">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="variableName" value="sku"/>
                     <property name="value" value="#[json:sku]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="94"/>
+                    <property name="auxiliary;index" value="90"/>
                 </properties>
             </pattern>
             <pattern name="JSON To Xml&lt;addWish&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#13">
@@ -665,15 +631,15 @@
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
                     <property name="pipeSize"/>
                     <property name="config-ref" value="JSON_To_Xml_addWish_"/>
-                    <property name="auxiliary;index" value="95"/>
+                    <property name="auxiliary;index" value="91"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-arguments;0">
-                        <property name="auxiliary;index" value="96"/>
-                        <property name="auxiliary;wrapIn" value="96"/>
+                        <property name="auxiliary;index" value="92"/>
+                        <property name="auxiliary;wrapIn" value="92"/>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-argument;1">
                             <property name="value" value="#[userId]"/>
                             <property name="key" value="customerId"/>
-                            <property name="auxiliary;index" value="97"/>
-                            <property name="auxiliary;wrapIn" value="97"/>
+                            <property name="auxiliary;index" value="93"/>
+                            <property name="auxiliary;wrapIn" value="93"/>
                         </property-collection>
                     </property-collection>
                 </properties>
@@ -685,45 +651,36 @@
                     <property name="operation" value="addWish"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="WishListServiceConsumer"/>
-                    <property name="auxiliary;index" value="98"/>
+                    <property name="auxiliary;index" value="94"/>
                 </properties>
             </pattern>
             <pattern name="Location" type="http://www.mulesoft.org/schema/mule/core/properties-transformer" entity-id="Property#3">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="propertyName" value="Location"/>
-                    <property name="value" value="#[apiUrl + '/wish-list/' + sku]"/>
+                    <property name="value" value="#[fullUrl() + '/' + sku]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-property"/>
-                    <property name="auxiliary;index" value="99"/>
+                    <property name="auxiliary;index" value="95"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/basket:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8dd3f936-e23e-4358-b315-d958c7830e1f">
+    <flow SubFlow="false" name="get:/basket:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f2a464d9-1151-4ba0-868b-7b393ba39618">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="100"/>
+            <property name="auxiliary;index" value="96"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#7">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#4">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="101"/>
-                </properties>
-            </pattern>
             <pattern name="getBasket.xml" type="http://www.mulesoft.org/schema/mule/core/parse-template" entity-id="Parse Template#1">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/getBasket.xml"/>
-                    <property name="auxiliary;index" value="102"/>
+                    <property name="auxiliary;index" value="97"/>
                 </properties>
             </pattern>
             <pattern name="get Basket" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#11">
@@ -733,7 +690,7 @@
                     <property name="operation" value="getBasket"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="BasketServiceConsumer"/>
-                    <property name="auxiliary;index" value="103"/>
+                    <property name="auxiliary;index" value="98"/>
                 </properties>
             </pattern>
             <pattern name="Xml to Json" type="http://www.mulesoft.org/schema/mule/xml/xslt-transformer" entity-id="XSLT#1">
@@ -746,7 +703,7 @@
                     <property name="encoding"/>
                     <property name="transformerFactoryClass"/>
                     <property name="outputEncoding"/>
-                    <property name="auxiliary;index" value="104"/>
+                    <property name="auxiliary;index" value="99"/>
                     <property name="mimeType" value="application/json"/>
                     <property name="maxIdleTransformers" value="2"/>
                     <property name="uriResolver-ref"/>
@@ -754,31 +711,22 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="1963afcf-93a9-4bd5-8b1f-0f8e39d04082">
+    <flow SubFlow="false" name="get:/wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5c64c5a3-f274-4bc9-a705-c97e9c13ac82">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="107"/>
+            <property name="auxiliary;index" value="102"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#8">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#5">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="108"/>
-                </properties>
-            </pattern>
             <pattern name="getWishList.xml" type="http://www.mulesoft.org/schema/mule/core/parse-template" entity-id="Parse Template#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/getWishList.xml"/>
-                    <property name="auxiliary;index" value="109"/>
+                    <property name="auxiliary;index" value="103"/>
                 </properties>
             </pattern>
             <pattern name="get Wish List" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#12">
@@ -788,7 +736,7 @@
                     <property name="operation" value="getWishList"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="WishListServiceConsumer"/>
-                    <property name="auxiliary;index" value="110"/>
+                    <property name="auxiliary;index" value="104"/>
                 </properties>
             </pattern>
             <pattern name="Xml to Json" type="http://www.mulesoft.org/schema/mule/xml/xslt-transformer" entity-id="XSLT#2">
@@ -801,7 +749,7 @@
                     <property name="encoding"/>
                     <property name="transformerFactoryClass"/>
                     <property name="outputEncoding"/>
-                    <property name="auxiliary;index" value="111"/>
+                    <property name="auxiliary;index" value="105"/>
                     <property name="mimeType" value="application/json"/>
                     <property name="maxIdleTransformers" value="2"/>
                     <property name="uriResolver-ref"/>
@@ -809,31 +757,22 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/my-profile:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="da2b13b5-b588-498d-8f1c-a1de74882d84">
+    <flow SubFlow="false" name="get:/my-profile:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="cc951dc0-24a1-4951-98a9-8145d9271907">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="117"/>
+            <property name="auxiliary;index" value="111"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#9">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#6">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="118"/>
-                </properties>
-            </pattern>
             <pattern name="getCustomerByEmail.xml" type="http://www.mulesoft.org/schema/mule/core/parse-template" entity-id="Parse Template#3">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/getCustomerByEmail.xml"/>
-                    <property name="auxiliary;index" value="119"/>
+                    <property name="auxiliary;index" value="112"/>
                 </properties>
             </pattern>
             <pattern name="get Customer" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#13">
@@ -843,7 +782,7 @@
                     <property name="operation" value="getCustomer"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="CustomerServiceConsumer"/>
-                    <property name="auxiliary;index" value="120"/>
+                    <property name="auxiliary;index" value="113"/>
                 </properties>
             </pattern>
             <pattern name="Xml&lt;getCustomerResponse&gt; To JSON" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#14">
@@ -856,19 +795,19 @@
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
                     <property name="pipeSize"/>
                     <property name="config-ref" value="xml_getcustomerresponse__to_json"/>
-                    <property name="auxiliary;index" value="121"/>
+                    <property name="auxiliary;index" value="114"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/items" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="50d8dc1c-c11f-40b5-bff2-9e551ba9150a">
+    <flow SubFlow="false" name="get:/items" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0c04b793-9c33-43eb-b77d-93799f74e794">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="122"/>
+            <property name="auxiliary;index" value="115"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#10">
             <graphicalData x="0" y="0" width="0" height="0"/>
@@ -876,7 +815,7 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/getItems.xml"/>
-                    <property name="auxiliary;index" value="123"/>
+                    <property name="auxiliary;index" value="116"/>
                 </properties>
             </pattern>
             <pattern name="get Items" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#14">
@@ -886,7 +825,7 @@
                     <property name="operation" value="getItems"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="ItemServiceConsumer"/>
-                    <property name="auxiliary;index" value="124"/>
+                    <property name="auxiliary;index" value="117"/>
                 </properties>
             </pattern>
             <pattern name="XSLT" type="http://www.mulesoft.org/schema/mule/xml/xslt-transformer" entity-id="XSLT#3">
@@ -899,7 +838,7 @@
                     <property name="encoding"/>
                     <property name="transformerFactoryClass"/>
                     <property name="outputEncoding"/>
-                    <property name="auxiliary;index" value="125"/>
+                    <property name="auxiliary;index" value="118"/>
                     <property name="mimeType" value="application/json"/>
                     <property name="maxIdleTransformers" value="2"/>
                     <property name="uriResolver-ref"/>
@@ -907,14 +846,14 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/items/{item}" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="70f41040-01b4-46af-bffd-5e9d96334e4f">
+    <flow SubFlow="false" name="get:/items/{item}" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="810cea1f-7de0-4e8d-864c-f0016f25c865">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="131"/>
+            <property name="auxiliary;index" value="124"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#11">
             <graphicalData x="0" y="0" width="0" height="0"/>
@@ -922,7 +861,7 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/getItem.xml"/>
-                    <property name="auxiliary;index" value="132"/>
+                    <property name="auxiliary;index" value="125"/>
                 </properties>
             </pattern>
             <pattern name="get Item" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#15">
@@ -932,7 +871,7 @@
                     <property name="operation" value="getItem"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="ItemServiceConsumer"/>
-                    <property name="auxiliary;index" value="133"/>
+                    <property name="auxiliary;index" value="126"/>
                 </properties>
             </pattern>
             <pattern name="XSLT" type="http://www.mulesoft.org/schema/mule/xml/xslt-transformer" entity-id="XSLT#4">
@@ -945,7 +884,7 @@
                     <property name="encoding"/>
                     <property name="transformerFactoryClass"/>
                     <property name="outputEncoding"/>
-                    <property name="auxiliary;index" value="134"/>
+                    <property name="auxiliary;index" value="127"/>
                     <property name="mimeType" value="application/json"/>
                     <property name="maxIdleTransformers" value="2"/>
                     <property name="uriResolver-ref"/>
@@ -953,14 +892,14 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="head:/registrations/{email}:non-secure-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="236bfd8c-a27b-4935-b9a6-f6c347fb9165">
+    <flow SubFlow="false" name="head:/registrations/{email}:non-secure-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="2cf710b4-22c6-428f-ac53-92284ddfa888">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="137"/>
+            <property name="auxiliary;index" value="130"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#12">
             <graphicalData x="0" y="0" width="0" height="0"/>
@@ -968,7 +907,7 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/checkRegistrationEmail.xml"/>
-                    <property name="auxiliary;index" value="138"/>
+                    <property name="auxiliary;index" value="131"/>
                 </properties>
             </pattern>
             <pattern name="check Registration Email" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#16">
@@ -978,10 +917,10 @@
                     <property name="operation" value="checkRegistrationEmail"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="RegistrationServiceConsumer"/>
-                    <property name="auxiliary;index" value="139"/>
+                    <property name="auxiliary;index" value="132"/>
                 </properties>
             </pattern>
-            <pattern name="Available?" type="http://www.mulesoft.org/schema/mule/core/expression-transformer" entity-id="Expression#7">
+            <pattern name="Available?" type="http://www.mulesoft.org/schema/mule/core/expression-transformer" entity-id="Expression#2">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="expression" value="#[xpath('/mes:checkRegistrationEmailResponse/mod:EmailAvailability/text()').text == 'true']"/>
@@ -992,7 +931,7 @@
                     <property name="custom-evaluator"/>
                     <property name="encoding"/>
                     <property name="evaluator"/>
-                    <property name="auxiliary;index" value="140"/>
+                    <property name="auxiliary;index" value="133"/>
                     <property name="mimeType"/>
                 </properties>
             </pattern>
@@ -1000,41 +939,41 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="script-ref"/>
-                    <property name="auxiliary;index" value="141"/>
-                    <property-collection name="@http://www.mulesoft.org/schema/mule/scripting/script-for-properties;0">
-                        <property name="text" value="if (payload == true) {&#xA;&#x9;throw new org.mule.module.apikit.exception.NotFoundException();&#xA;}"/>
-                        <property name="engine" value="Groovy"/>
-                        <property name="auxiliary;index" value="142"/>
-                        <property name="auxiliary;wrapIn" value="142"/>
-                    </property-collection>
+                    <property name="auxiliary;index" value="134"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/scripting/script;0">
                         <property name="text" value="if (payload == true) {&#xA;&#x9;throw new org.mule.module.apikit.exception.NotFoundException();&#xA;}"/>
                         <property name="engine" value="Groovy"/>
-                        <property name="auxiliary;index" value="142"/>
-                        <property name="auxiliary;wrapIn" value="142"/>
+                        <property name="auxiliary;index" value="135"/>
+                        <property name="auxiliary;wrapIn" value="135"/>
+                    </property-collection>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/scripting/script-for-properties;0">
+                        <property name="text" value="if (payload == true) {&#xA;&#x9;throw new org.mule.module.apikit.exception.NotFoundException();&#xA;}"/>
+                        <property name="engine" value="Groovy"/>
+                        <property name="auxiliary;index" value="135"/>
+                        <property name="auxiliary;wrapIn" value="135"/>
                     </property-collection>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/registrations/{email}:non-secure-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="9ddff042-3d52-4c3a-91ea-1dc449a5d32e">
+    <flow SubFlow="false" name="post:/registrations/{email}:non-secure-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6b0ea8cc-2870-442a-9bea-dd031d53d203">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="143"/>
+            <property name="auxiliary;index" value="136"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#13">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="apiUrl" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#6">
+            <pattern name="apiUrl" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#4">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="variableName" value="apiUrl"/>
                     <property name="value" value="#[message.inboundProperties['http.context.uri']]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="144"/>
+                    <property name="auxiliary;index" value="137"/>
                 </properties>
             </pattern>
             <pattern name="JSON To Xml&lt;processRegistration&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#15">
@@ -1047,15 +986,15 @@
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
                     <property name="pipeSize"/>
                     <property name="config-ref" value="JSON_To_Xml_processRegistration_"/>
-                    <property name="auxiliary;index" value="145"/>
+                    <property name="auxiliary;index" value="138"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-arguments;0">
-                        <property name="auxiliary;index" value="146"/>
-                        <property name="auxiliary;wrapIn" value="146"/>
+                        <property name="auxiliary;index" value="139"/>
+                        <property name="auxiliary;wrapIn" value="139"/>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-argument;1">
                             <property name="value" value="#[email]"/>
                             <property name="key" value="email"/>
-                            <property name="auxiliary;index" value="147"/>
-                            <property name="auxiliary;wrapIn" value="147"/>
+                            <property name="auxiliary;index" value="140"/>
+                            <property name="auxiliary;wrapIn" value="140"/>
                         </property-collection>
                     </property-collection>
                 </properties>
@@ -1067,40 +1006,22 @@
                     <property name="operation" value="processRegistration"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="RegistrationServiceConsumer"/>
-                    <property name="auxiliary;index" value="148"/>
+                    <property name="auxiliary;index" value="141"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5b3f98ae-38ef-4192-88fc-1d2730803348">
+    <flow SubFlow="false" name="post:/mobile-tokens/{mobileType}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="04f38a1d-3e22-41cc-8ff7-177e7692170b">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="149"/>
+            <property name="auxiliary;index" value="142"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#14">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#8">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="150"/>
-                </properties>
-            </pattern>
-            <pattern name="apiUrl" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#7">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="variableName" value="apiUrl"/>
-                    <property name="value" value="#[message.inboundProperties['http.context.uri']]"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="151"/>
-                </properties>
-            </pattern>
             <pattern name="JSON To XML" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#16">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
@@ -1111,15 +1032,15 @@
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
                     <property name="pipeSize"/>
                     <property name="config-ref" value="json_to_xml_1"/>
-                    <property name="auxiliary;index" value="152"/>
+                    <property name="auxiliary;index" value="143"/>
                     <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-arguments;0">
-                        <property name="auxiliary;index" value="153"/>
-                        <property name="auxiliary;wrapIn" value="153"/>
+                        <property name="auxiliary;index" value="144"/>
+                        <property name="auxiliary;wrapIn" value="144"/>
                         <property-collection name="@http://www.mulesoft.org/schema/mule/ee/data-mapper/input-argument;1">
                             <property name="value" value="#[userId]"/>
                             <property name="key" value="customerId"/>
-                            <property name="auxiliary;index" value="154"/>
-                            <property name="auxiliary;wrapIn" value="154"/>
+                            <property name="auxiliary;index" value="145"/>
+                            <property name="auxiliary;wrapIn" value="145"/>
                         </property-collection>
                     </property-collection>
                 </properties>
@@ -1131,49 +1052,22 @@
                     <property name="operation" value="addMobileToken"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="CustomerServiceConsumer"/>
-                    <property name="auxiliary;index" value="155"/>
-                </properties>
-            </pattern>
-            <pattern name="Location" type="http://www.mulesoft.org/schema/mule/core/properties-transformer" entity-id="Property#4">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="propertyName" value="Location"/>
-                    <property name="value" value="#[apiUrl + '/mobile-tokens']"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-property"/>
-                    <property name="auxiliary;index" value="156"/>
+                    <property name="auxiliary;index" value="146"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/sales:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a68c8f9c-6711-4a9e-8e38-3949c545a0bf">
+    <flow SubFlow="false" name="post:/sales:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f898702c-e98b-4c5a-8b3a-53d5ab43f618">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="157"/>
+            <property name="auxiliary;index" value="147"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#15">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#9">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="158"/>
-                </properties>
-            </pattern>
-            <pattern name="apiUrl" type="http://www.mulesoft.org/schema/mule/core/variable-transformer" entity-id="Variable#8">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="variableName" value="apiUrl"/>
-                    <property name="value" value="#[message.inboundProperties['http.context.uri']]"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-variable"/>
-                    <property name="auxiliary;index" value="159"/>
-                </properties>
-            </pattern>
             <pattern name="JSON To Xml&lt;processSale&gt;" type="http://www.mulesoft.org/schema/mule/ee/data-mapper/data-mapper-connector" entity-id="DataMapper#17">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
@@ -1184,7 +1078,7 @@
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/ee/data-mapper/transform"/>
                     <property name="pipeSize"/>
                     <property name="config-ref" value="JSON_To_Xml_processSale_"/>
-                    <property name="auxiliary;index" value="160"/>
+                    <property name="auxiliary;index" value="148"/>
                 </properties>
             </pattern>
             <pattern name="process Sale" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#19">
@@ -1194,45 +1088,36 @@
                     <property name="operation" value="processSale"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="PointOfSaleServiceConsumer"/>
-                    <property name="auxiliary;index" value="161"/>
+                    <property name="auxiliary;index" value="149"/>
                 </properties>
             </pattern>
-            <pattern name="Location" type="http://www.mulesoft.org/schema/mule/core/properties-transformer" entity-id="Property#5">
+            <pattern name="Location" type="http://www.mulesoft.org/schema/mule/core/properties-transformer" entity-id="Property#4">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="propertyName" value="Location"/>
-                    <property name="value" value="#[apiUrl + '/sales/' + xpath('/mes:processSaleResponse/mod:SaleId/text()').text]"/>
+                    <property name="value" value="#[fullUrl() + '/' + xpath('/mes:processSaleResponse/mod:SaleId/text()').text]"/>
                     <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/set-property"/>
-                    <property name="auxiliary;index" value="162"/>
+                    <property name="auxiliary;index" value="150"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="delete:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d0dbc5e4-fbec-4f2d-af1e-3783b741eaa5">
+    <flow SubFlow="false" name="delete:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="64f24950-66e1-42fc-a9ab-2f82480b0d41">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="163"/>
+            <property name="auxiliary;index" value="151"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#16">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#10">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="164"/>
-                </properties>
-            </pattern>
             <pattern name="removeFromBasket.xml" type="http://www.mulesoft.org/schema/mule/core/parse-template" entity-id="Parse Template#7">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/removeFromBasket.xml"/>
-                    <property name="auxiliary;index" value="165"/>
+                    <property name="auxiliary;index" value="152"/>
                 </properties>
             </pattern>
             <pattern name="remove From Basket" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#20">
@@ -1242,36 +1127,27 @@
                     <property name="operation" value="removeFromBasket"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="BasketServiceConsumer"/>
-                    <property name="auxiliary;index" value="166"/>
+                    <property name="auxiliary;index" value="153"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="delete:/wish-list/{wish}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="c215a9aa-a87e-4f42-a1d3-08a71d98deb5">
+    <flow SubFlow="false" name="delete:/wish-list/{wish}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="4b585548-073e-4577-a705-fb0265810761">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="167"/>
+            <property name="auxiliary;index" value="154"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#17">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="set userId" type="http://www.mulesoft.org/schema/mule/core/expression-component" entity-id="Expression#11">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="expression" value="sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username"/>
-                    <property name="file"/>
-                    <property name="evaluator"/>
-                    <property name="auxiliary;index" value="168"/>
-                </properties>
-            </pattern>
             <pattern name="removeWish.xml" type="http://www.mulesoft.org/schema/mule/core/parse-template" entity-id="Parse Template#8">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/removeWish.xml"/>
-                    <property name="auxiliary;index" value="169"/>
+                    <property name="auxiliary;index" value="155"/>
                 </properties>
             </pattern>
             <pattern name="remove Wish" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#21">
@@ -1281,19 +1157,19 @@
                     <property name="operation" value="removeWish"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="WishListServiceConsumer"/>
-                    <property name="auxiliary;index" value="170"/>
+                    <property name="auxiliary;index" value="156"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/categories" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0abf1861-5352-4b83-a756-938e638c37e9">
+    <flow SubFlow="false" name="get:/categories" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="88a52299-ade3-4db0-83fe-f2870ec20207">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="171"/>
+            <property name="auxiliary;index" value="157"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#18">
             <graphicalData x="0" y="0" width="0" height="0"/>
@@ -1301,17 +1177,17 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/getTypes.xml"/>
-                    <property name="auxiliary;index" value="172"/>
+                    <property name="auxiliary;index" value="158"/>
                 </properties>
             </pattern>
-            <pattern name="Web Service Consumer" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#22">
+            <pattern name="get Types" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#22">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name=""/>
                     <property name="operation" value="getTypes"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="ItemServiceConsumer"/>
-                    <property name="auxiliary;index" value="173"/>
+                    <property name="auxiliary;index" value="159"/>
                 </properties>
             </pattern>
             <pattern name="getTypesResponse2getTypes.xsl" type="http://www.mulesoft.org/schema/mule/xml/xslt-transformer" entity-id="XSLT#5">
@@ -1324,7 +1200,7 @@
                     <property name="encoding"/>
                     <property name="transformerFactoryClass"/>
                     <property name="outputEncoding"/>
-                    <property name="auxiliary;index" value="174"/>
+                    <property name="auxiliary;index" value="160"/>
                     <property name="mimeType" value="application/json"/>
                     <property name="maxIdleTransformers" value="2"/>
                     <property name="uriResolver-ref"/>
@@ -1332,14 +1208,14 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/brands" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="1164e3af-8785-4294-b619-543ab99b327d">
+    <flow SubFlow="false" name="get:/brands" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="fb327877-3664-46bf-849b-a159c23a7ca0">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
             <property name="bussinessEventsLabel"/>
             <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="178"/>
+            <property name="auxiliary;index" value="164"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#19">
             <graphicalData x="0" y="0" width="0" height="0"/>
@@ -1347,7 +1223,7 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="location" value="template/getBrands.xml"/>
-                    <property name="auxiliary;index" value="179"/>
+                    <property name="auxiliary;index" value="165"/>
                 </properties>
             </pattern>
             <pattern name="get Brands" type="http://www.mulesoft.org/schema/mule/ws/consumer" entity-id="Web Service Consumer#23">
@@ -1357,7 +1233,7 @@
                     <property name="operation" value="getBrands"/>
                     <property name="mtomEnabled"/>
                     <property name="config-ref" value="ItemServiceConsumer"/>
-                    <property name="auxiliary;index" value="180"/>
+                    <property name="auxiliary;index" value="166"/>
                 </properties>
             </pattern>
             <pattern name="getBrandsResponse2getBrands.xsl" type="http://www.mulesoft.org/schema/mule/xml/xslt-transformer" entity-id="XSLT#6">
@@ -1370,7 +1246,7 @@
                     <property name="encoding"/>
                     <property name="transformerFactoryClass"/>
                     <property name="outputEncoding"/>
-                    <property name="auxiliary;index" value="181"/>
+                    <property name="auxiliary;index" value="167"/>
                     <property name="mimeType" value="application/json"/>
                     <property name="maxIdleTransformers" value="2"/>
                     <property name="uriResolver-ref"/>
@@ -1378,7 +1254,147 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e02b407b-ce11-433f-802e-7146cbb9b924">
+    <flow SubFlow="false" name="get:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="49d530f5-e904-4c47-b680-411a0d321261">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="173"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#20">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
+                    <property name="auxiliary;index" value="174"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="get:/items/{item}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6e84b193-4b24-41b9-bb52-332a386b6184">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="175"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#21">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#2">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
+                    <property name="auxiliary;index" value="176"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="get:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ca2052b1-a403-47c5-9a26-f38870537c25">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="177"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#22">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#3">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="{&#xA;  &quot;date&quot; : 1243214,&#xA;  &quot;total&quot; : 123.02,&#xA;  &quot;discount&quot; : 12.00,&#xA;  &quot;pickupLocation&quot; : &quot;Buenos Aires&quot;,&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 1.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;xyz&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 5.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    }&#xA;  ]&#xA;}"/>
+                    <property name="auxiliary;index" value="178"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="get:/top-products/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="64dfae6a-f612-466d-b889-21c7da32d49a">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="179"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#23">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#4">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
+                    <property name="auxiliary;index" value="180"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="get:/top-products/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="fb5adb0f-2a1d-44a3-bd01-9041b92579dc">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="181"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#24">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#5">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
+                    <property name="auxiliary;index" value="182"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="get:/promotions/{promotion}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e605c182-3c48-4eba-8176-c4c857b66621">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="183"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#25">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#6">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
+                    <property name="auxiliary;index" value="184"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="get:/sales/{sale}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="fee6d362-423c-45f4-8447-5032e403cd29">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="185"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#26">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#7">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="value" value="{&#xA;  &quot;date&quot; : &quot;2012-04-23&quot;,&#xA;  &quot;total&quot; : 102.23,&#xA;  &quot;discount&quot; : 2.77&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;Channel No.5&quot;,&#xA;      &quot;price&quot; : 25.00,&#xA;      &quot;quantity&quot; : 2&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;axxxbc&quot;,&#xA;      &quot;name&quot; : &quot;Channel No.5&quot;,&#xA;      &quot;price&quot; : 27.50,&#xA;      &quot;quantity&quot; : 2&#xA;    }&#xA;  ]&#xA;}"/>
+                    <property name="auxiliary;index" value="186"/>
+                </properties>
+            </pattern>
+        </lane>
+    </flow>
+    <flow SubFlow="false" name="post:/top-brands/{brand}/top-products/{product}/add-to-default-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0acdae04-924a-490c-bb83-c0ecd935d855">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1387,9 +1403,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="187"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#20">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#27">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#1">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#8">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1398,7 +1414,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/items/{item}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e9549d65-7925-4987-8543-be6be4ae28d6">
+    <flow SubFlow="false" name="put:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="87d40e7e-f125-4f00-b7a4-8d85a969edb1">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1407,9 +1423,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="189"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#21">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#28">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#2">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#9">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1418,7 +1434,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="18d4403d-7c75-46ec-9cbe-a294909c4e77">
+    <flow SubFlow="false" name="delete:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ad6dedbe-f902-4522-a091-55f2c8ba4a27">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1427,18 +1443,18 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="191"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#22">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#29">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#3">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#10">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="value" value="{&#xA;  &quot;date&quot; : 1243214,&#xA;  &quot;total&quot; : 123.02,&#xA;  &quot;discount&quot; : 12.00,&#xA;  &quot;pickupLocation&quot; : &quot;Buenos Aires&quot;,&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 1.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;xyz&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 5.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    }&#xA;  ]&#xA;}"/>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
                     <property name="auxiliary;index" value="192"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-products/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d1a1424c-ba40-4003-9d54-54db726a79c5">
+    <flow SubFlow="false" name="patch:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e32f5551-f357-4b61-837e-1a4f91e1562f">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1447,9 +1463,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="193"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#23">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#30">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#4">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#11">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1458,7 +1474,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-products/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="7c1ff803-9503-4349-a75a-8c49e32b372e">
+    <flow SubFlow="false" name="get:/top-brands:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e5f692e3-7455-4e70-a40d-40ad0768ae54">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1467,9 +1483,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="195"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#24">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#31">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#5">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#12">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1478,7 +1494,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/promotions/{promotion}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5a49ff66-f721-4aa7-ba4f-385323d8590f">
+    <flow SubFlow="false" name="get:/top-products:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="50bc9c4e-8a7d-4dc3-9ee2-e052ea44143a">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1487,9 +1503,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="197"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#25">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#32">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#6">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#13">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1498,7 +1514,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/sales/{sale}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a3f45d9d-ff32-4146-af2b-6f50bfc8c240">
+    <flow SubFlow="false" name="get:/promotions:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="eb017fe4-7686-47d8-825d-131e17b83abd">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1507,18 +1523,18 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="199"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#26">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#33">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#7">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#14">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="value" value="{&#xA;  &quot;date&quot; : &quot;2012-04-23&quot;,&#xA;  &quot;total&quot; : 102.23,&#xA;  &quot;discount&quot; : 2.77&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;Channel No.5&quot;,&#xA;      &quot;price&quot; : 25.00,&#xA;      &quot;quantity&quot; : 2&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;axxxbc&quot;,&#xA;      &quot;name&quot; : &quot;Channel No.5&quot;,&#xA;      &quot;price&quot; : 27.50,&#xA;      &quot;quantity&quot; : 2&#xA;    }&#xA;  ]&#xA;}"/>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
                     <property name="auxiliary;index" value="200"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/top-brands/{brand}/top-products/{product}/add-to-default-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="7939ca3e-1a2b-498e-8f2e-4b5519081e0d">
+    <flow SubFlow="false" name="get:/sales:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="1261f568-1cb3-45e0-b289-7a7b3e0919cc">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1527,9 +1543,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="201"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#27">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#34">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#8">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#15">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1538,7 +1554,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="put:/basket/{item}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="b9e134f5-1a97-4374-9a14-d9eb14b581db">
+    <flow SubFlow="false" name="get:/recommendations:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="dd857e8e-e67b-426d-a1a7-f3962a1f34e3">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1547,9 +1563,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="203"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#28">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#35">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#9">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#16">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1558,7 +1574,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="delete:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="da38e387-3072-4870-b2d7-baf3fbd6129e">
+    <flow SubFlow="false" name="get:/orders:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="eb706469-b9e5-4959-8097-6daefb8d3c5a">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1567,9 +1583,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="205"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#29">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#36">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#10">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#17">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1578,7 +1594,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="patch:/orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="7cfd9c07-76f3-4a30-b7a0-d7e622425786">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="06571c38-f48d-44ea-9c66-dbc2676065a0">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1587,9 +1603,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="207"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#30">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#37">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#11">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#18">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1598,7 +1614,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="52a1f4b0-e3b0-41e8-8482-c8c6d751070d">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="d4d39273-c586-4569-8560-67590b92140b">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1607,9 +1623,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="209"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#31">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#38">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#12">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#19">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1618,7 +1634,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-products:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="66c14a46-fb34-4691-84b5-ef103c055043">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="2f84e7d3-a290-43fd-8a61-384a38a8c435">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1627,9 +1643,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="211"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#32">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#39">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#13">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#20">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1638,7 +1654,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/promotions:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="17284613-0669-4942-ba34-e47f1096c42a">
+    <flow SubFlow="false" name="get:/registrations/{email}/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="99982108-b845-4938-8453-2ba87631951f">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1647,9 +1663,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="213"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#33">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#40">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#14">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#21">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1658,7 +1674,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/sales:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6fd47b58-03f0-45bf-9c55-c3306c610321">
+    <flow SubFlow="false" name="post:/top-products/{product}/add-to-default-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="33d70707-24f0-466a-b3d3-e1a5f78a7184">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1667,9 +1683,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="215"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#34">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#41">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#15">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#22">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1678,7 +1694,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/recommendations:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="c2d9280d-4d3a-47b0-b76a-725d01e673c1">
+    <flow SubFlow="false" name="put:/basket/{basketItem}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="34442e4e-73cb-4335-bef2-5ac10447f88a">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1687,9 +1703,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="217"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#35">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#42">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#16">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#23">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1698,7 +1714,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/orders:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="5ab3a7a9-ffef-40f4-adec-25d4ffd7bae7">
+    <flow SubFlow="false" name="delete:/basket/{basketItem}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="aa9bab13-6f0c-48ba-81bf-87eff2bb85e0">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1707,9 +1723,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="219"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#36">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#43">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#17">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#24">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1718,7 +1734,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8146bb40-b732-4a9c-84f1-d145331d2857">
+    <flow SubFlow="false" name="delete:/pending-orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="9944c611-16c7-4768-b59f-e583fc70ed90">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1727,9 +1743,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="221"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#37">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#44">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#18">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#25">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1738,7 +1754,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8786be44-2186-41a1-86c4-40416b3f8d4c">
+    <flow SubFlow="false" name="patch:/pending-orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e2c201b7-0fdf-439e-b5a9-a6910158e7b9">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1747,9 +1763,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="223"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#38">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#45">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#19">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#26">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1758,7 +1774,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-products/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="7a911006-eed5-4755-8bdf-be4150d320d9">
+    <flow SubFlow="false" name="get:/top-items:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="4ec17f3e-d482-4cf7-9602-aa49d4d08731">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1767,9 +1783,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="225"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#39">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#46">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#20">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#27">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1778,7 +1794,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/registrations/{email}/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e1fa5479-7d6f-4946-ba18-801a2474fa75">
+    <flow SubFlow="false" name="get:/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a41282b7-2233-43e1-9b84-38d357ed9a73">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1787,9 +1803,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="227"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#40">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#47">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#21">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#28">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1798,7 +1814,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="post:/top-products/{product}/add-to-default-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f72d513e-ebe3-4391-aa21-05bc82748f57">
+    <flow SubFlow="false" name="get:/pending-orders:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="65ff9f60-7a3f-442f-a70a-f23aaabebc9c">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1807,9 +1823,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="229"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#41">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#48">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#22">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#29">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1818,7 +1834,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="put:/basket/{basketItem}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ca811e2d-f7bb-4e84-a339-ee83c9d1e512">
+    <flow SubFlow="false" name="get:/basket/{basketItem}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="975ec577-78d2-46d1-be5c-a515237bee69">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1827,9 +1843,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="231"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#42">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#49">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#23">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#30">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1838,7 +1854,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="delete:/basket/{basketItem}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="c904ec3c-575c-4c8a-bdb6-bd82e7de4def">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-items:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a693db55-4a1a-4ef9-a9c9-a9ed3c2bec4e">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1847,9 +1863,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="233"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#43">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#50">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#24">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#31">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1858,7 +1874,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="delete:/pending-orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="33b3e26b-30ae-41b2-8aa8-3afada5cea6e">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-items/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="90e50262-50cf-4f64-aed9-31e7a70d5a04">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1867,9 +1883,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="235"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#44">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#51">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#25">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#32">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1878,7 +1894,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="patch:/pending-orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="9a36e749-cf3e-4f8a-a3b2-a1ad94145b0c">
+    <flow SubFlow="false" name="get:/top-brands/{brand}/top-items/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8ce1ad64-bbae-4b7e-95d7-8f4c65e9884c">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1887,9 +1903,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="237"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#45">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#52">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#26">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#33">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1898,7 +1914,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-items:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="640c0392-44a5-4765-9e7c-e5ae6bff796e">
+    <flow SubFlow="false" name="get:/items/{item}/skus:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="44ef2c86-d3d0-40fe-b94b-682964d84c08">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1907,18 +1923,18 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="239"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#46">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#53">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#27">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#34">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="value" value="#[NullPayload.getInstance()]"/>
+                    <property name="value" value="{&#xA;  &quot;collection&quot; : {&#xA;    &quot;links&quot; : [&#xA;      { &quot;rel&quot; : &quot;next&quot;, &quot;href&quot; : &quot;&quot; },&#xA;      { &quot;rel&quot; : &quot;prev&quot;, &quot;href&quot; : &quot;&quot; },&#xA;      { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; }&#xA;    ],&#xA;    &quot;items&quot; : [&#xA;      {&#xA;        &quot;links&quot; : [&#xA;          { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;parent&quot;, &quot;label&quot; :&quot;General Info&quot;, &quot;href&quot; : &quot;&quot; }&#xA;        ],&#xA;        &quot;id&quot; : &quot;12343214&quot;,&#xA;        &quot;sku&quot; : &quot;12344&quot;,&#xA;        &quot;price&quot; : 1.00,&#xA;        &quot;stockQuantity&quot; : 1&#xA;      },&#xA;      {&#xA;        &quot;links&quot; : [&#xA;          { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; }&#xA;          { &quot;rel&quot; : &quot;parent&quot;, &quot;label&quot; :&quot;General Info&quot;, &quot;href&quot; : &quot;&quot; }                &#xA;        ],&#xA;        &quot;id&quot; : &quot;12343214&quot;,&#xA;        &quot;sku&quot; : &quot;12344&quot;,&#xA;        &quot;price&quot; : 2.00,&#xA;        &quot;stockQuantity&quot; : 10&#xA;      }&#xA;    ]&#xA;  }&#xA;}"/>
                     <property name="auxiliary;index" value="240"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="02918378-aa0e-490a-9505-2bf317d1a269">
+    <flow SubFlow="false" name="get:/items/{item}/skus/{sku}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e5c964d0-8a01-4f11-8d8b-499b127044c8">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1927,18 +1943,18 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="241"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#47">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#54">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#28">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#35">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="value" value="#[NullPayload.getInstance()]"/>
+                    <property name="value" value="{&#xA;  &quot;links&quot; : [&#xA;    { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;parent&quot;, &quot;href&quot; : &quot;&quot; }&#xA;  ],&#xA;  &quot;id&quot; : &quot;12343214&quot;,&#xA;  &quot;sku&quot; : &quot;12344&quot;,&#xA;  &quot;price&quot; : 1.00,&#xA;  &quot;stockQuantity&quot; : 1,&#xA;  &quot;characteristics&quot; : [&#xA;    { &quot;name&quot; : &quot;size&quot;, &quot;value&quot; : &quot;large&quot; },&#xA;    { &quot;name&quot; : &quot;color&quot;, &quot;value&quot; : &quot;blue&quot; }&#xA;  ]&#xA;}"/>
                     <property name="auxiliary;index" value="242"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/pending-orders:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="b289d3fd-a666-4990-9cf6-449ae1c9b237">
+    <flow SubFlow="false" name="get:/pending-orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="72c7727d-730d-4ef6-bb4d-f02fdfba6a12">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1947,9 +1963,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="243"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#48">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#55">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#29">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#36">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1958,7 +1974,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/basket/{basketItem}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="6f522c46-ac75-47b7-8ea8-9d0115a64166">
+    <flow SubFlow="false" name="get:/top-items/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="b8d5a063-d700-41f4-9f10-cb39b27c5647">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1967,9 +1983,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="245"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#49">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#56">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#30">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#37">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1978,7 +1994,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-items:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="a3757cdf-5aa4-46a1-9c51-a83865cc593c">
+    <flow SubFlow="false" name="get:/top-items/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="99138941-a322-47af-a362-dab846012bc0">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -1987,9 +2003,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="247"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#50">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#57">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#31">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#38">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -1998,7 +2014,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-items/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0f644d92-c401-477e-a057-48944238c246">
+    <flow SubFlow="false" name="get:/returns/{return}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0fc22f14-7acf-4824-8106-4a300e2509b2">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -2007,9 +2023,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="249"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#51">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#58">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#32">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#39">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -2018,7 +2034,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-brands/{brand}/top-items/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="18e52fae-80a5-4159-8e51-44243b825eaf">
+    <flow SubFlow="false" name="post:/returns" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="19724676-1898-4e81-8ff3-1ba2632d4c63">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -2027,9 +2043,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="251"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#52">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#59">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#33">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#40">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -2038,7 +2054,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/items/{item}/skus:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="b70f882a-5ead-40f9-9773-bd95a981642c">
+    <flow SubFlow="false" name="post:/top-brands/{brand}/top-items/{product}/add-to-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="8a99ccfa-069c-4fae-a2c9-c249b240030b">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -2047,18 +2063,18 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="253"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#53">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#60">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#34">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#41">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="value" value="{&#xA;  &quot;collection&quot; : {&#xA;    &quot;links&quot; : [&#xA;      { &quot;rel&quot; : &quot;next&quot;, &quot;href&quot; : &quot;&quot; },&#xA;      { &quot;rel&quot; : &quot;prev&quot;, &quot;href&quot; : &quot;&quot; },&#xA;      { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; }&#xA;    ],&#xA;    &quot;items&quot; : [&#xA;      {&#xA;        &quot;links&quot; : [&#xA;          { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;parent&quot;, &quot;label&quot; :&quot;General Info&quot;, &quot;href&quot; : &quot;&quot; }&#xA;        ],&#xA;        &quot;id&quot; : &quot;12343214&quot;,&#xA;        &quot;sku&quot; : &quot;12344&quot;,&#xA;        &quot;price&quot; : 1.00,&#xA;        &quot;stockQuantity&quot; : 1&#xA;      },&#xA;      {&#xA;        &quot;links&quot; : [&#xA;          { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;          { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; }&#xA;          { &quot;rel&quot; : &quot;parent&quot;, &quot;label&quot; :&quot;General Info&quot;, &quot;href&quot; : &quot;&quot; }                &#xA;        ],&#xA;        &quot;id&quot; : &quot;12343214&quot;,&#xA;        &quot;sku&quot; : &quot;12344&quot;,&#xA;        &quot;price&quot; : 2.00,&#xA;        &quot;stockQuantity&quot; : 10&#xA;      }&#xA;    ]&#xA;  }&#xA;}"/>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
                     <property name="auxiliary;index" value="254"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/items/{item}/skus/{sku}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="bcadcba5-57c6-44cc-a27d-a7ea7bae46ac">
+    <flow SubFlow="false" name="post:/top-brands/{brand}/top-items/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="f57b4cec-630d-4f97-a898-6a0cf466976c">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -2067,18 +2083,18 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="255"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#54">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#61">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#35">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#42">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
-                    <property name="value" value="{&#xA;  &quot;links&quot; : [&#xA;    { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;parent&quot;, &quot;href&quot; : &quot;&quot; }&#xA;  ],&#xA;  &quot;id&quot; : &quot;12343214&quot;,&#xA;  &quot;sku&quot; : &quot;12344&quot;,&#xA;  &quot;price&quot; : 1.00,&#xA;  &quot;stockQuantity&quot; : 1,&#xA;  &quot;characteristics&quot; : [&#xA;    { &quot;name&quot; : &quot;size&quot;, &quot;value&quot; : &quot;large&quot; },&#xA;    { &quot;name&quot; : &quot;color&quot;, &quot;value&quot; : &quot;blue&quot; }&#xA;  ]&#xA;}"/>
+                    <property name="value" value="#[NullPayload.getInstance()]"/>
                     <property name="auxiliary;index" value="256"/>
                 </properties>
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/pending-orders/{order}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e2190ed5-ca31-48ef-bc7c-bbea68e99d6b">
+    <flow SubFlow="false" name="post:/top-items/{product}/add-to-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="0447c3b5-507a-47fd-86ec-29b674f6ee92">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -2087,9 +2103,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="257"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#55">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#62">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#36">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#43">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -2098,7 +2114,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-items/{product}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ca3a5684-7384-4d2f-92da-d892808791f0">
+    <flow SubFlow="false" name="post:/top-items/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="95a39be3-5eee-4efc-8aed-7a40c2a25dd8">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -2107,9 +2123,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="259"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#56">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#63">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#37">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#44">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -2118,7 +2134,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/top-items/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="9b5625fb-db35-4a7f-83d9-d8cac5afb4fc">
+    <flow SubFlow="false" name="post:/returns/{return}/fulfill:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="426377fe-99bf-4db2-b9ec-a881fe768a4a">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -2127,9 +2143,9 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="261"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#57">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#64">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#38">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#45">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
@@ -2138,7 +2154,7 @@
             </pattern>
         </lane>
     </flow>
-    <flow SubFlow="false" name="get:/returns/{return}:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="566d942d-997b-4e18-afa0-20d182b42c4d">
+    <flow SubFlow="false" name="put:/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="aa8cbda4-dd8b-4813-bf9a-8bf48d52fa1e">
         <properties>
             <property name="initialState"/>
             <property name="processingStrategy2"/>
@@ -2147,183 +2163,13 @@
             <property name="tracking:enable-default-events"/>
             <property name="auxiliary;index" value="263"/>
         </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#58">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#65">
             <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#39">
+            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#46">
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="value" value="#[NullPayload.getInstance()]"/>
                     <property name="auxiliary;index" value="264"/>
-                </properties>
-            </pattern>
-        </lane>
-    </flow>
-    <flow SubFlow="false" name="post:/returns" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="432d61b6-1a92-4f9e-bcc6-60c99e003ef9">
-        <properties>
-            <property name="initialState"/>
-            <property name="processingStrategy2"/>
-            <property name="processingStrategy"/>
-            <property name="bussinessEventsLabel"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="265"/>
-        </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#59">
-            <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Property" type="http://www.mulesoft.org/schema/mule/core/properties-transformer" entity-id="Property#6">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="propertyName" value="*"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/core/copy-properties"/>
-                    <property name="auxiliary;index" value="266"/>
-                </properties>
-            </pattern>
-            <endpoint direction="Outbound" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#1">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="port"/>
-                    <property name="host"/>
-                    <property name="businessEventsLabel"/>
-                    <property name="followRedirects"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
-                    <property name="keepAlive"/>
-                    <property name="contentType"/>
-                    <property name="disableTransportTransformer"/>
-                    <property name="password"/>
-                    <property name="exchange-pattern" value="request-response"/>
-                    <property name="tracking:enable-default-events"/>
-                    <property name="ref"/>
-                    <property name="transformer-refs"/>
-                    <property name="httpLabel"/>
-                    <property name="address" value="http://alainn-api-stg.stg.cloudhub.io/access-token"/>
-                    <property name="path"/>
-                    <property name="encoding"/>
-                    <property name="responseTransformer-refs"/>
-                    <property name="method" value="POST"/>
-                    <property name="user"/>
-                    <property name="auxiliary;index" value="267"/>
-                    <property name="responseTimeout"/>
-                    <property name="mimeType"/>
-                    <property name="connector-ref"/>
-                </properties>
-            </endpoint>
-        </lane>
-    </flow>
-    <flow SubFlow="false" name="post:/top-brands/{brand}/top-items/{product}/add-to-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="b38c7039-533d-4e4f-8aca-1667825b6973">
-        <properties>
-            <property name="initialState"/>
-            <property name="processingStrategy2"/>
-            <property name="processingStrategy"/>
-            <property name="bussinessEventsLabel"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="268"/>
-        </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#60">
-            <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#40">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="value" value="#[NullPayload.getInstance()]"/>
-                    <property name="auxiliary;index" value="269"/>
-                </properties>
-            </pattern>
-        </lane>
-    </flow>
-    <flow SubFlow="false" name="post:/top-brands/{brand}/top-items/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ea46bad7-f667-4084-81d2-68e6b65f8f0e">
-        <properties>
-            <property name="initialState"/>
-            <property name="processingStrategy2"/>
-            <property name="processingStrategy"/>
-            <property name="bussinessEventsLabel"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="270"/>
-        </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#61">
-            <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#41">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="value" value="#[NullPayload.getInstance()]"/>
-                    <property name="auxiliary;index" value="271"/>
-                </properties>
-            </pattern>
-        </lane>
-    </flow>
-    <flow SubFlow="false" name="post:/top-items/{product}/add-to-wish-list:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="7b6442a8-a1c8-453d-af17-eaea66615206">
-        <properties>
-            <property name="initialState"/>
-            <property name="processingStrategy2"/>
-            <property name="processingStrategy"/>
-            <property name="bussinessEventsLabel"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="272"/>
-        </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#62">
-            <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#42">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="value" value="#[NullPayload.getInstance()]"/>
-                    <property name="auxiliary;index" value="273"/>
-                </properties>
-            </pattern>
-        </lane>
-    </flow>
-    <flow SubFlow="false" name="post:/top-items/{product}/reviews:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="adb3ac90-72c0-49fc-94c0-0f0e47f140d2">
-        <properties>
-            <property name="initialState"/>
-            <property name="processingStrategy2"/>
-            <property name="processingStrategy"/>
-            <property name="bussinessEventsLabel"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="274"/>
-        </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#63">
-            <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#43">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="value" value="#[NullPayload.getInstance()]"/>
-                    <property name="auxiliary;index" value="275"/>
-                </properties>
-            </pattern>
-        </lane>
-    </flow>
-    <flow SubFlow="false" name="post:/returns/{return}/fulfill:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="e9d5a0ec-49a6-4d63-a487-b636b6e759a9">
-        <properties>
-            <property name="initialState"/>
-            <property name="processingStrategy2"/>
-            <property name="processingStrategy"/>
-            <property name="bussinessEventsLabel"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="276"/>
-        </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#64">
-            <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#44">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="value" value="#[NullPayload.getInstance()]"/>
-                    <property name="auxiliary;index" value="277"/>
-                </properties>
-            </pattern>
-        </lane>
-    </flow>
-    <flow SubFlow="false" name="put:/mobile-tokens:alainn-config" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="ceb19260-228d-4a21-9013-2898a4537f4a">
-        <properties>
-            <property name="initialState"/>
-            <property name="processingStrategy2"/>
-            <property name="processingStrategy"/>
-            <property name="bussinessEventsLabel"/>
-            <property name="tracking:enable-default-events"/>
-            <property name="auxiliary;index" value="278"/>
-        </properties>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#65">
-            <graphicalData x="0" y="0" width="0" height="0"/>
-            <pattern name="Set Payload" type="http://www.mulesoft.org/schema/mule/core/set-payload" entity-id="Set Payload#45">
-                <graphicalData x="0" y="0" width="0" height="0"/>
-                <properties>
-                    <property name="value" value="#[NullPayload.getInstance()]"/>
-                    <property name="auxiliary;index" value="279"/>
                 </properties>
             </pattern>
         </lane>
