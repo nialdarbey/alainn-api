@@ -24,9 +24,9 @@ Though the API does not implement any authentication / authorisation logic itsel
 
 The usual form of each response is to include a links array with a number of objects of the form:
 
-* href: the url
-* rel:  the meaning of the url (Image, prev, next, self, etc.)
-* label: UI label
+	**href**: the url
+	**rel**:  the meaning of the url (Image, prev, next, self, etc.)
+	**label**: UI label
 
 ```json
 	  "links": [
@@ -83,28 +83,28 @@ Registered both as a Service with the OAuth 2.0 Access Token Enforcement policy 
 
 # Technical Points of Note
 
-* Access to the security Context:
+## Access to the security Context:
 
-** Note that this can only be executed in the expression-component Message Processor. The **set-session-variable** Message Processor has no access to the securityContext.
+	Note that this can only be executed in the expression-component Message Processor. The **set-session-variable** Message Processor has no access to the securityContext.
 
 ```xml
 	<expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
 ``` 
 
 
-* 2 APIkit Configs on 1 RAML definition:
+## 2 APIkit Configs on 1 RAML definition:
 	
-	I have done this in order to facilitate access to public resources without obliging an OAuth validation. This is done by having two Main flows with Jetty inbound and passing through APIkit routers which refer to the different configs. When a resource must be shared between both endpoints, then we need to remove the config name from the end of the flow name:
+	I have done this in order to facilitate access to public resources without obliging an OAuth validation.This is done by having two Main flows with Jetty inbound and passing through APIkit routers which refer to the different configs. When a resource must be shared between both endpoints, then we need to remove the config name from the end of the flow name:
 
 ```xml
 	<flow name="get:/items/{item}" doc:name="get:/items/{item}">
 ```
 
-* Jetty Inbound:
+## Jetty Inbound:
 
 	Much faster than Http inbound.
 
-* Transformations:
+## Transformations:
 
 	Usually, where the incoming payload is empty (GET requests), I use <parse-template /> with expressions to invoke the relevant SOAP Service. On the way back, given the complexity of the message structure, I was forced to use XSLT.
 
