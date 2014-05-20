@@ -6,13 +6,13 @@ Web API facade on to Alainn's SOA Architecture. Designed to be the central point
 
 The resources are in part independent of the user browsing them
 
-	* /items
-	* /brands
+* /items
+* /brands
 
 Others are personal to the authenticated User: 
 
-	* /basket
-	* /wish-list
+* /basket
+* /wish-list
 
 All return application/json as Response media-type and all accept only application/json as request media-type.
 
@@ -24,9 +24,9 @@ Though the API does not implement any authentication / authorisation logic itsel
 
 The usual form of each response is to include a links array with a number of objects of the form:
 
-	* href: the url
-	* rel:  the meaning of the url (Image, prev, next, self, etc.)
-	* label: UI label
+* href: the url
+* rel:  the meaning of the url (Image, prev, next, self, etc.)
+* label: UI label
 
 If the response is a collection object, it will have a links array at the root and for each item in the items array.
 
@@ -34,11 +34,11 @@ If the response is a collection object, it will have a links array at the root a
 
 Registered both as a Service with the OAuth 2.0 Access Token Enforcement policy applied, and also as a Consumer of 
 
-	* Item Service
-	* Basket Service
-	* WishList Service
-	* OrderFulfillment Service
-	* Registration Service 
+* Item Service
+* Basket Service
+* WishList Service
+* OrderFulfillment Service
+* Registration Service 
 
 # Contact
 
