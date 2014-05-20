@@ -47,6 +47,30 @@ The usual form of each response is to include a links array with a number of obj
 
 If the response is a collection object, it will have a links array at the root and for each item in the items array.
 
+```json
+	"collection": {
+		"size": 7,
+		"items": [
+		  {
+		      "id": "B003Y60XCC",
+		      "type": "Chemical Hair Dyes",
+		      "name": "L'Oreal Oreor 30 Volume Creme Developer",
+		      "summary": "Fully stabilized formula - Freshness assured",
+		      "brand": "L'Oreal Paris",
+		      "links": [
+		          {
+		              "href": "https://localhost:8082/omni-channel-api/v1.0/items/B003Y60XCC",
+		              "rel": "self"
+		          },
+		          {
+		              "href": "http://ecx.images-amazon.com/images/I/41MWX6KNAuL._SL75_.jpg",
+		              "rel": "SmallImage"
+		          }
+		      ]
+		  },
+		  { ...
+```
+
 # API Manager
 
 Registered both as a Service with the OAuth 2.0 Access Token Enforcement policy applied, and also as a Consumer of 
@@ -61,17 +85,12 @@ Registered both as a Service with the OAuth 2.0 Access Token Enforcement policy 
 
 * Access to the security Context:
 
+** Note that this can only be executed in the expression-component Message Processor. The **set-session-variable** Message Processor has no access to the securityContext.
+
 ```xml
 	<expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-```
+``` 
 
-	**Note:** This can only be executed in the expression-component Message Processor. The 
-
-```xml
-	<set-session-variable /> 
-```
-
-	Message Processor has no access to securityContext.
 
 * 2 APIkit Configs on 1 RAML definition:
 	
