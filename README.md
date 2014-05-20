@@ -28,6 +28,23 @@ The usual form of each response is to include a links array with a number of obj
 * rel:  the meaning of the url (Image, prev, next, self, etc.)
 * label: UI label
 
+```json
+	  "links": [
+	      {
+	          "href": "https://alainn-api.cloudhub.io/omni-channel-api/v1.0?pageIndex=28&pageSize=7",
+	          "rel": "next"
+	      },
+	      {
+	          "href": "https://alainn-api.cloudhub.io/omni-channel-api/v1.0?pageIndex=14&pageSize=7",
+	          "rel": "prev"
+	      },
+	      {
+	          "href": "https://alainn-api.cloudhub.io/omni-channel-api/v1.0/items",
+	          "rel": "self"
+	      }
+	  ]
+```
+
 If the response is a collection object, it will have a links array at the root and for each item in the items array.
 
 # API Manager
