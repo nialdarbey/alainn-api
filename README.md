@@ -25,7 +25,9 @@ Though the API does not implement any authentication / authorisation logic itsel
 The usual form of each response is to include a links array with a number of objects of the form:
 
 **href**: the url
+
 **rel**:  the meaning of the url (Image, prev, next, self, etc.)
+
 **label**: UI label
 
 ```json
@@ -76,19 +78,25 @@ If the response is a collection object, it will have a links array at the root a
 Registered both as a Service with the OAuth 2.0 Access Token Enforcement policy applied, and also as a Consumer of 
 
 * Item Service
+* Customer Service
 * Basket Service
 * WishList Service
-* OrderFulfillment Service
+* Order-fulfillment Service
 * Registration Service 
+* Point-of-Sale Service
 
 # Technical Points of Note
 
 ## Access to the security Context:
 
-Note that this can only be executed in the expression-component Message Processor. The **set-session-variable** Message Processor has no access to the securityContext.
+Note that this can only be executed in the expression-component Message Processor. The `<set-session-variable>` Message Processor **has no access to the securityContext**.
 
 ```xml
-	<expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
+	<expression-component doc:name="set userId">
+		<![CDATA[
+			sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username
+		]]>
+	</expression-component>
 ``` 
 
 
@@ -106,7 +114,7 @@ Much faster than Http inbound.
 
 ## Transformations:
 
-Usually, where the incoming payload is empty (GET requests), I use <parse-template /> with expressions to invoke the relevant SOAP Service. On the way back, given the complexity of the message structure, I was forced to use XSLT.
+Usually, where the incoming payload is empty (GET requests), I use `<parse-template />` with expressions to invoke the relevant SOAP Service. On the way back, given the complexity of the message structure, I was forced to use XSLT.
 
 
 # Contact
