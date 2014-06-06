@@ -8,6 +8,6 @@
         "email",
         "sms",
         "web",
-        "mobile-push"
+        "apple-push"
     ]
 }

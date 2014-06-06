@@ -194,16 +194,16 @@
 		</complexType>
 	</element>
 
-	<element name="getOrderDetails">
+	<element name="getOrder">
 		<complexType>
 			<sequence>
 				<element ref="mod:CustomerId" />
-				<element ref="mod:Order" />
+				<element ref="mod:OrderId" />
 			</sequence>
 		</complexType>
 	</element>
 
-	<element name="getOrderDetailsResponse">
+	<element name="getOrderResponse">
 		<complexType>
 			<sequence>
 				<element ref="mod:Order" />

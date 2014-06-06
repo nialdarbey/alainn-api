@@ -157,6 +157,9 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 				'https://' + sessionVars.props.Host.substring(0, sessionVars.props.Host.length() - 5)
 				+ sessionVars.props.'http.request';
 				}
+				def hostUrl() {
+					'https://' + sessionVars.props.Host.substring(0, sessionVars.props.Host.length() - 5);
+				}
 			</global-functions>
 		</expression-language>
 	</configuration>
@@ -178,25 +181,14 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 		<jetty-ssl:tls-key-store path="keystore.jks"
 			keyPassword="changeit" storePassword="changeit" />
 	</jetty-ssl:connector>
+    <data-mapper:config name="XML_To_JSON" transformationGraphPath="xml_to_json.grf" doc:name="XML_To_JSON"/>
+    <ws:consumer-config name="Web_Service_Consumer" wsdlLocation="service/OrderService.wsdl" service="OrderService" port="OrderPort" serviceAddress="${url.orderService}" doc:name="Web Service Consumer"/>
 	<flow name="console" doc:name="console">
 		<jetty-ssl:inbound-endpoint
 			exchange-pattern="request-response" doc:name="Jetty"
 			address="https://localhost:${https.port}/omni-channel-api-v1.0-console"
 			connector-ref="Jetty" />
 		<apikit:console config-ref="alainn-config" doc:name="APIkit Console" />
-	</flow>
-	<flow name="secure-alainn-main" doc:name="secure-alainn-main">
-		<jetty-ssl:inbound-endpoint
-			exchange-pattern="request-response" doc:name="Jetty"
-			address="https://localhost:${https.port}/omni-channel-api/v1.0"
-			connector-ref="Jetty" />
-		<cors:validate publicResource="true" doc:name="Cors" />
-        <set-session-variable variableName="props"
-			value="#[message.inboundProperties]" doc:name="props" />
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-		<apikit:router config-ref="alainn-config" doc:name="Secure" />
-		<exception-strategy ref="alainn-apiKitGlobalExceptionMapping"
-			doc:name="Reference Exception Strategy" />
 	</flow>
 	<flow name="alainnFlow1" doc:name="alainnFlow1">
 		<jetty-ssl:inbound-endpoint
@@ -208,6 +200,19 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 			value="#[message.inboundProperties]" doc:name="props" />
         <set-session-variable variableName="userId" value="#[message.inboundProperties['x-user-id']]" doc:name="userId"/>
 		<apikit:router config-ref="non-secure-config" doc:name="Non Secure" />
+		<exception-strategy ref="alainn-apiKitGlobalExceptionMapping"
+			doc:name="Reference Exception Strategy" />
+	</flow>
+	<flow name="secure-alainn-main" doc:name="secure-alainn-main">
+		<jetty-ssl:inbound-endpoint
+			exchange-pattern="request-response" doc:name="Jetty"
+			address="https://localhost:${https.port}/omni-channel-api/v1.0"
+			connector-ref="Jetty" />
+		<cors:validate publicResource="true" doc:name="Cors" />
+        <set-session-variable variableName="props"
+			value="#[message.inboundProperties]" doc:name="props" />
+        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
+		<apikit:router config-ref="alainn-config" doc:name="Secure" />
 		<exception-strategy ref="alainn-apiKitGlobalExceptionMapping"
 			doc:name="Reference Exception Strategy" />
 	</flow>
@@ -223,7 +228,7 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 		<ws:consumer config-ref="OrderFulfillmentServiceConsumer"
 			doc:name="process Order" operation="processOrder" />
 		<set-property propertyName="Location"
-			value="#[baseUrl() + '/orders/' + xpath('/mes:processOrderResponse/mod:OrderId/text()').text]"
+			value="#[hostUrl() + '/pending-orders/' + xpath('/mes:processOrderResponse/mod:OrderId/text()').text]"
 			doc:name="Location" />
 	</flow>
 	<flow name="post:/basket" doc:name="post:/basket">
@@ -392,6 +397,11 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 		<ws:consumer config-ref="BasketServiceConsumer" doc:name="remove From Basket"
 			operation="removeFromBasket" />
 	</flow>
+	<flow name="get:/pending-orders/{order}" doc:name="get:/pending-orders/{order}">
+		<parse-template location="template/getOrder.xml" doc:name="getOrder.xml"/>
+        <ws:consumer config-ref="Web_Service_Consumer" doc:name="get Order" operation="getOrder"/>
+        <data-mapper:transform doc:name="XML To JSON" config-ref="XML_To_JSON" returnClass="java.lang.String" />
+	</flow>
 	<flow name="delete:/wish-list/{wish}" doc:name="delete:/wish-list/{wish}">
 		<parse-template location="template/removeWish.xml"
 			doc:name="removeWish.xml" />
@@ -440,15 +450,15 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 		<set-payload value="#[NullPayload.getInstance()]"
 			doc:name="Set Payload" />
 	</flow>
+	<flow name="get:/pending-orders" doc:name="get:/pending-orders">
+		<set-payload value="#[NullPayload.getInstance()]"
+			doc:name="Set Payload" />    
+	</flow>
 	<flow name="get:/items/{item}/reviews" doc:name="get:/items/{item}/reviews">
 		<set-payload value="#[NullPayload.getInstance()]"
 			doc:name="Set Payload" />
 	</flow>
-	<flow name="get:/orders/{order}" doc:name="get:/orders/{order}">
-		<set-payload
-			value="{&#xA;  &quot;date&quot; : 1243214,&#xA;  &quot;total&quot; : 123.02,&#xA;  &quot;discount&quot; : 12.00,&#xA;  &quot;pickupLocation&quot; : &quot;Buenos Aires&quot;,&#xA;  &quot;items&quot; : [&#xA;    {&#xA;      &quot;sku&quot; : &quot;abc&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 1.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    },&#xA;    {&#xA;      &quot;sku&quot; : &quot;xyz&quot;,&#xA;      &quot;name&quot; : &quot;&quot;,&#xA;      &quot;price&quot; : 5.0,&#xA;      &quot;quantity&quot; : 2,&#xA;      &quot;status&quot; : &quot;Delivered&quot;&#xA;    }&#xA;  ]&#xA;}"
-			doc:name="Set Payload" />
-	</flow>
+
 	<flow name="get:/top-products/{product}" doc:name="get:/top-products/{product}">
 		<set-payload value="#[NullPayload.getInstance()]"
 			doc:name="Set Payload" />
@@ -564,10 +574,7 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 		<set-payload value="#[NullPayload.getInstance()]"
 			doc:name="Set Payload" />
 	</flow>
-	<flow name="get:/pending-orders" doc:name="get:/pending-orders">
-		<set-payload value="#[NullPayload.getInstance()]"
-			doc:name="Set Payload" />
-	</flow>
+
 	<flow name="get:/basket/{basketItem}" doc:name="get:/basket/{basketItem}">
 		<set-payload value="#[NullPayload.getInstance()]"
 			doc:name="Set Payload" />
@@ -596,10 +603,6 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<flow name="get:/items/{item}/skus/{sku}" doc:name="get:/items/{item}/skus/{sku}">
 		<set-payload
 			value="{&#xA;  &quot;links&quot; : [&#xA;    { &quot;rel&quot; : &quot;image&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;self&quot;, &quot;href&quot; : &quot;&quot; },&#xA;    { &quot;rel&quot; : &quot;parent&quot;, &quot;href&quot; : &quot;&quot; }&#xA;  ],&#xA;  &quot;id&quot; : &quot;12343214&quot;,&#xA;  &quot;sku&quot; : &quot;12344&quot;,&#xA;  &quot;price&quot; : 1.00,&#xA;  &quot;stockQuantity&quot; : 1,&#xA;  &quot;characteristics&quot; : [&#xA;    { &quot;name&quot; : &quot;size&quot;, &quot;value&quot; : &quot;large&quot; },&#xA;    { &quot;name&quot; : &quot;color&quot;, &quot;value&quot; : &quot;blue&quot; }&#xA;  ]&#xA;}"
-			doc:name="Set Payload" />
-	</flow>
-	<flow name="get:/pending-orders/{order}" doc:name="get:/pending-orders/{order}">
-		<set-payload value="#[NullPayload.getInstance()]"
 			doc:name="Set Payload" />
 	</flow>
 	<flow name="get:/top-items/{product}" doc:name="get:/top-items/{product}">

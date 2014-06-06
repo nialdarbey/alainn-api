@@ -3087,7 +3087,198 @@
          <ns1:Sku>?</ns1:Sku>
       </ns:removeFromBasket>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.alainn.com/SOA/service/Basket/1.0/removeFromBasket"/></con:call></con:operation></con:interface><con:testSuite name="WishListSoap TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addWish TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="addWish"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WishListSoap</con:interface><con:operation>addWish</con:operation><con:request name="addWish"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:8082/wish-list-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.alainn.com/SOA/message/1.0" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.alainn.com/SOA/service/Basket/1.0/removeFromBasket"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="OrderSoap" type="wsdl" bindingName="{http://fazio.loc/soap/service/Order/1.0}OrderSoap" soapVersion="1_1" anonymous="optional" definition="http://localhost:8081/order-service?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8081/order-service?wsdl"><con:part><con:url>http://localhost:8081/order-service?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Order" targetNamespace="http://fazio.loc/soap/service/Order/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://fazio.loc/soap/service/Order/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mes="http://fazio.loc/soap/message/1.0">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://fazio.loc/soap/message/1.0" schemaLocation="http://localhost:8081/order-service?xsd=message.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="cancelOrderResponse">
+    <wsdl:part element="mes:cancelOrderResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderStatus">
+    <wsdl:part element="mes:getOrderStatus" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelOrder">
+    <wsdl:part element="mes:cancelOrder" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderStatusResponse">
+    <wsdl:part element="mes:getOrderStatusResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitOrderResponse">
+    <wsdl:part element="mes:submitOrderResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitOrder">
+    <wsdl:part element="mes:submitOrder" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Order">
+    <wsdl:operation name="cancelOrder">
+      <wsdl:input message="tns:cancelOrder"></wsdl:input>
+      <wsdl:output message="tns:cancelOrderResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="submitOrder">
+      <wsdl:input message="tns:submitOrder"></wsdl:input>
+      <wsdl:output message="tns:submitOrderResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrderStatus">
+      <wsdl:input message="tns:getOrderStatus"></wsdl:input>
+      <wsdl:output message="tns:getOrderStatusResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OrderSoap" type="tns:Order">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submitOrder">
+      <soap:operation soapAction="http://www.alainn.com/SOA/service/Order/1.0/submitOrder"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelOrder">
+      <soap:operation soapAction="http://www.alainn.com/SOA/service/Order/1.0/cancelOrder"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOrderStatus">
+      <soap:operation soapAction="http://www.alainn.com/SOA/service/Order/1.0/getOrderStatus"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderService">
+    <wsdl:port binding="tns:OrderSoap" name="OrderPort">
+      <soap:address location="http://localhost:8081/order-service"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8081/order-service?xsd=message.xsd</con:url><con:content><![CDATA[<schema elementFormDefault="unqualified" targetNamespace="http://fazio.loc/soap/message/1.0" xmlns:tns="http://fazio.loc/soap/message/1.0" xmlns:mod="http://fazio.loc/soap/model/1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://fazio.loc/soap/model/1.0" schemaLocation="http://localhost:8081/order-service?xsd=model.xsd"/>
+  <element name="submitOrder">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="submitOrderResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getOrderStatus">
+    <complexType>
+      <sequence>
+        <element ref="mod:OrderId"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="getOrderStatusResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:Order"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="cancelOrder">
+    <complexType>
+      <sequence>
+        <element ref="mod:OrderId"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="cancelOrderResponse">
+    <complexType>
+      <sequence>
+        <element ref="mod:CancelationCode"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8081/order-service?xsd=model.xsd</con:url><con:content><![CDATA[<schema elementFormDefault="unqualified" targetNamespace="http://fazio.loc/soap/model/1.0" xmlns:tns="http://fazio.loc/soap/model/1.0" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="Order">
+    <complexType>
+      <sequence>
+        <element minOccurs="0" name="id" type="string"/>
+        <element minOccurs="0" name="date" type="float"/>
+        <element name="status">
+          <simpleType>
+            <restriction base="string">
+              <enumeration value="Pending"/>
+              <enumeration value="Ready for Distribution"/>
+              <enumeration value="Ready for Pickup"/>
+              <enumeration value="Closed"/>
+            </restriction>
+          </simpleType>
+        </element>
+        <element name="customerName" type="string"/>
+        <element minOccurs="0" name="items">
+          <complexType>
+            <sequence>
+              <element maxOccurs="unbounded" name="item">
+                <complexType>
+                  <sequence>
+                    <element name="quantity" type="integer"/>
+                    <element name="id" type="string"/>
+                    <element name="price" type="float"/>
+                  </sequence>
+                </complexType>
+              </element>
+            </sequence>
+          </complexType>
+        </element>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="CancelationCode" type="string"/>
+  <element name="OrderId" type="string"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8081/order-service</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.alainn.com/SOA/service/Order/1.0/cancelOrder" name="cancelOrder" bindingOperationName="cancelOrder" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/order-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://fazio.loc/soap/message/1.0" xmlns:ns1="http://fazio.loc/soap/model/1.0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:cancelOrder>
+         <ns1:OrderId>?</ns1:OrderId>
+      </ns:cancelOrder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.alainn.com/SOA/service/Order/1.0/cancelOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.alainn.com/SOA/service/Order/1.0/getOrderStatus" name="getOrderStatus" bindingOperationName="getOrderStatus" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/order-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://fazio.loc/soap/message/1.0" xmlns:ns1="http://fazio.loc/soap/model/1.0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:getOrderStatus>
+         <ns1:OrderId>?</ns1:OrderId>
+      </ns:getOrderStatus>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.alainn.com/SOA/service/Order/1.0/getOrderStatus"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.alainn.com/SOA/service/Order/1.0/submitOrder" name="submitOrder" bindingOperationName="submitOrder" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8081/order-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://fazio.loc/soap/message/1.0" xmlns:ns1="http://fazio.loc/soap/model/1.0">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:submitOrder>
+         <ns1:Order>
+            <!--Optional:-->
+            <id>?</id>
+            <!--Optional:-->
+            <date>?</date>
+            <status>?</status>
+            <customerName>?</customerName>
+            <!--Optional:-->
+            <items>
+               <!--1 or more repetitions:-->
+               <item>
+                  <quantity>?</quantity>
+                  <id>?</id>
+                  <price>?</price>
+               </item>
+            </items>
+         </ns1:Order>
+      </ns:submitOrder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.alainn.com/SOA/service/Order/1.0/submitOrder"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="WishListSoap TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="addWish TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="addWish"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WishListSoap</con:interface><con:operation>addWish</con:operation><con:request name="addWish"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:8082/wish-list-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://www.alainn.com/SOA/message/1.0" xmlns:ns1="http://www.alainn.com/SOA/model/1.0">
    <soapenv:Header/>
    <soapenv:Body>
       <ns:addWish>
