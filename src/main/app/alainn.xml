@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:pattern="http://www.mulesoft.org/schema/mule/pattern"
+<mule xmlns:secure-property-placeholder="http://www.mulesoft.org/schema/mule/secure-property-placeholder" xmlns:pattern="http://www.mulesoft.org/schema/mule/pattern"
 	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
 	xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -26,8 +26,9 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/jetty http://www.mulesoft.org/schema/mule/jetty/current/mule-jetty.xsd
-http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mule/jetty-ssl/current/mule-jetty-ssl.xsd"
-	version="EE-3.5.0">
+http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mule/jetty-ssl/current/mule-jetty-ssl.xsd
+http://www.mulesoft.org/schema/mule/secure-property-placeholder http://www.mulesoft.org/schema/mule/secure-property-placeholder/current/mule-secure-property-placeholder.xsd"
+	version="EE-3.5.1">
 
 
 
@@ -42,49 +43,48 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<apikit:config name="alainn-config" raml="alainn.raml"
 		consoleEnabled="false" doc:name="Router" />
 	<apikit:mapping-exception-strategy
-		name="alainn-apiKitGlobalExceptionMapping">
+		name="alainn-apiKitGlobalExceptionMapping" doc:name="Mapping Exception Strategy">
 		<apikit:mapping statusCode="404">
 			<apikit:exception
 				value="org.mule.module.apikit.exception.NotFoundException" />
-			<set-property propertyName="Content-Type" value="application/json" />
+			<set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
 			<set-payload
-				value="{ &quot;message&quot;: &quot;Resource not found&quot; }" />
+				value="{ &quot;message&quot;: &quot;Resource not found&quot; }" doc:name="Set Payload"/>
 		</apikit:mapping>
 		<apikit:mapping statusCode="405">
 			<apikit:exception
 				value="org.mule.module.apikit.exception.MethodNotAllowedException" />
-			<set-property propertyName="Content-Type" value="application/json" />
+			<set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
 			<set-payload
-				value="{ &quot;message&quot;: &quot;Method not allowed&quot; }" />
+				value="{ &quot;message&quot;: &quot;Method not allowed&quot; }" doc:name="Set Payload"/>
 		</apikit:mapping>
 		<apikit:mapping statusCode="415">
 			<apikit:exception
 				value="org.mule.module.apikit.exception.UnsupportedMediaTypeException" />
-			<set-property propertyName="Content-Type" value="application/json" />
+			<set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
 			<set-payload
-				value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }" />
+				value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }" doc:name="Set Payload"/>
 		</apikit:mapping>
 		<apikit:mapping statusCode="406">
 			<apikit:exception
 				value="org.mule.module.apikit.exception.NotAcceptableException" />
-			<set-property propertyName="Content-Type" value="application/json" />
-			<set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }" />
+			<set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+			<set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }" doc:name="Set Payload"/>
 		</apikit:mapping>
 		<apikit:mapping statusCode="400">
 			<apikit:exception
 				value="org.mule.module.apikit.exception.BadRequestException" />
-			<set-property propertyName="Content-Type" value="application/json" />
+			<set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
 			<set-payload
-				value="{ &quot;message&quot;: &quot;Bad request: #[exception.cause.message]&quot; }" />
+				value="{ &quot;message&quot;: &quot;Bad request: #[exception.cause.message]&quot; }" doc:name="Set Payload"/>
 		</apikit:mapping>
 		<apikit:mapping statusCode="409">
 			<apikit:exception value="org.mule.module.ws.consumer.SoapFaultException" />
 			<set-payload
-				value="{ &quot;message&quot;: &quot;#[exception.message]&quot; }" />
-			<set-property propertyName="Content-Type" value="application/json" />
+				value="{ &quot;message&quot;: &quot;#[exception.message]&quot; }" doc:name="Set Payload"/>
+			<set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
 		</apikit:mapping>
 	</apikit:mapping-exception-strategy>
-	<context:property-placeholder location="config.${env}.properties" />
 	<ws:consumer-config name="PointOfSaleServiceConsumer"
 		wsdlLocation="service/PointOfSaleService.wsdl" service="PointOfSaleService"
 		port="PointOfSalePort" serviceAddress="${url.pointOfSaleService}"
@@ -166,8 +166,6 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<data-mapper:config name="JSON_To_Xml_processRegistration_"
 		transformationGraphPath="json_to_xml_processregistration_.grf"
 		doc:name="JSON_To_Xml_processRegistration_" />
-	<apikit:config name="non-secure-config" raml="alainn.raml"
-		consoleEnabled="true" doc:name="Router" />
 	<https:connector name="httpsConnector" cookieSpec="netscape"
 		validateConnections="true" sendBufferSize="0" receiveBufferSize="0"
 		receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000"
@@ -183,36 +181,26 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	</jetty-ssl:connector>
     <data-mapper:config name="XML_To_JSON" transformationGraphPath="xml_to_json.grf" doc:name="XML_To_JSON"/>
     <ws:consumer-config name="Web_Service_Consumer" wsdlLocation="service/OrderService.wsdl" service="OrderService" port="OrderPort" serviceAddress="${url.orderService}" doc:name="Web Service Consumer"/>
+    <secure-property-placeholder:config name="Secure_Property_Placeholder" key="${vault.key}" location="config.${env}.properties" doc:name="Secure Property Placeholder"/>
 	<flow name="console" doc:name="console">
-		<jetty-ssl:inbound-endpoint
-			exchange-pattern="request-response" doc:name="Jetty"
-			address="https://localhost:${https.port}/omni-channel-api-v1.0-console"
-			connector-ref="Jetty" />
+		<http:inbound-endpoint
+			exchange-pattern="request-response" doc:name="Https"
+			address="http://localhost:${http.port}/omni-channel-api-v1.0-console" />
 		<apikit:console config-ref="alainn-config" doc:name="APIkit Console" />
 	</flow>
-	<flow name="alainnFlow1" doc:name="alainnFlow1">
+	
+	<flow name="main" doc:name="main">
 		<jetty-ssl:inbound-endpoint
-			exchange-pattern="request-response" doc:name="Jetty"
-			address="https://localhost:${https.port}/open/omni-channel-api/v1.0"
-			connector-ref="Jetty" />
-		<cors:validate publicResource="true" doc:name="Cors" />
+			exchange-pattern="request-response" doc:name="https://.../omni-channel-api/v1.0"
+			address="https://localhost:${https.port}/omni-channel-api/v1.0" connector-ref="Jetty" >
+			<not-filter>
+                <wildcard-filter pattern="/favicon.ico"/>
+            </not-filter>
+		</jetty-ssl:inbound-endpoint>
         <set-session-variable variableName="props"
 			value="#[message.inboundProperties]" doc:name="props" />
-        <set-session-variable variableName="userId" value="#[message.inboundProperties['x-user-id']]" doc:name="userId"/>
-		<apikit:router config-ref="non-secure-config" doc:name="Non Secure" />
-		<exception-strategy ref="alainn-apiKitGlobalExceptionMapping"
-			doc:name="Reference Exception Strategy" />
-	</flow>
-	<flow name="secure-alainn-main" doc:name="secure-alainn-main">
-		<jetty-ssl:inbound-endpoint
-			exchange-pattern="request-response" doc:name="Jetty"
-			address="https://localhost:${https.port}/omni-channel-api/v1.0"
-			connector-ref="Jetty" />
-		<cors:validate publicResource="true" doc:name="Cors" />
-        <set-session-variable variableName="props"
-			value="#[message.inboundProperties]" doc:name="props" />
-        <expression-component doc:name="set userId"><![CDATA[sessionVars.userId = _muleEvent.session.securityContext.authentication.principal.username]]></expression-component>
-		<apikit:router config-ref="alainn-config" doc:name="Secure" />
+        <expression-component doc:name="set userId"><![CDATA[username = _muleEvent.session.?securityContext.?authentication.?principal.?username; sessionVars.userId = (username == empty) ? 'NONE' : username]]></expression-component>
+		<apikit:router config-ref="alainn-config" doc:name="Route to Resources" />
 		<exception-strategy ref="alainn-apiKitGlobalExceptionMapping"
 			doc:name="Reference Exception Strategy" />
 	</flow>
@@ -225,6 +213,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 				<data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
 			</data-mapper:input-arguments>
 		</data-mapper:transform>
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="OrderFulfillmentServiceConsumer"
 			doc:name="process Order" operation="processOrder" />
 		<set-property propertyName="Location"
@@ -240,6 +232,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 				<data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
 			</data-mapper:input-arguments>
 		</data-mapper:transform>
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="BasketServiceConsumer" doc:name="add to Basket"
 			operation="addToBasket" />
 		<set-property propertyName="Location" value="#[fullUrl() + '/' + sku]"
@@ -254,6 +250,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 				<data-mapper:input-argument key="customerId">#[userId]</data-mapper:input-argument>
 			</data-mapper:input-arguments>
 		</data-mapper:transform>
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="WishListServiceConsumer"
 			doc:name="add Wish" operation="addWish" />
 		<set-property propertyName="Location"
@@ -262,6 +262,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<flow name="get:/basket" doc:name="get:/basket">
 		<parse-template location="template/getBasket.xml"
 			doc:name="getBasket.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="BasketServiceConsumer" operation="getBasket"
 			doc:name="get Basket" />
 		<mulexml:xslt-transformer
@@ -276,6 +280,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<flow name="get:/wish-list" doc:name="get:/wish-list">
 		<parse-template location="template/getWishList.xml"
 			doc:name="getWishList.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="WishListServiceConsumer"
 			doc:name="get Wish List" operation="getWishList" />
 		<mulexml:xslt-transformer
@@ -297,6 +305,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<flow name="get:/my-profile" doc:name="get:/my-profile">
 		<parse-template location="template/getCustomerByEmail.xml"
 			doc:name="getCustomerByEmail.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="CustomerServiceConsumer"
 			operation="getCustomer" doc:name="get Customer" />
 		<data-mapper:transform config-ref="xml_getcustomerresponse__to_json"
@@ -305,6 +317,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<flow name="get:/items" doc:name="get:/items">
 		<parse-template location="template/getItems.xml"
 			doc:name="getItems.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="ItemServiceConsumer" doc:name="get Items"
 			operation="getItems" />
 		<mulexml:xslt-transformer
@@ -326,6 +342,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<flow name="get:/items/{item}" doc:name="get:/items/{item}">
 		<parse-template location="template/getItem.xml"
 			doc:name="getItem.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="ItemServiceConsumer" doc:name="get Item"
 			operation="getItem" />
 		<mulexml:xslt-transformer
@@ -342,6 +362,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 		doc:name="head:/registrations/{email}:non-secure-config">
 		<parse-template location="template/checkRegistrationEmail.xml"
 			doc:name="checkRegistrationEmail.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="RegistrationServiceConsumer"
 			doc:name="check Registration Email" operation="checkRegistrationEmail" />
 		<expression-transformer
@@ -363,6 +387,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 				<data-mapper:input-argument key="email">#[email]</data-mapper:input-argument>
 			</data-mapper:input-arguments>
 		</data-mapper:transform>
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="RegistrationServiceConsumer"
 			doc:name="process Registration" operation="processRegistration" />
 		<!-- <choice-exception-strategy doc:name="Choice Exception Strategy"> <catch-exception-strategy 
@@ -379,12 +407,20 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
                 <data-mapper:input-argument key="mobileType">#[mobileType]</data-mapper:input-argument>
 			</data-mapper:input-arguments>
 		</data-mapper:transform>
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="CustomerServiceConsumer"
 			doc:name="add Mobile Token" operation="addMobileToken" />
 	</flow>
 	<flow name="post:/sales" doc:name="post:/sales">
 		<data-mapper:transform config-ref="JSON_To_Xml_processSale_"
 			doc:name="JSON To Xml&lt;processSale&gt;" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="PointOfSaleServiceConsumer"
 			doc:name="process Sale" operation="processSale" />
 		<set-property propertyName="Location"
@@ -394,23 +430,39 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<flow name="delete:/basket/{item}" doc:name="delete:/basket/{item}">
 		<parse-template location="template/removeFromBasket.xml"
 			doc:name="removeFromBasket.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="BasketServiceConsumer" doc:name="remove From Basket"
 			operation="removeFromBasket" />
 	</flow>
 	<flow name="get:/pending-orders/{order}" doc:name="get:/pending-orders/{order}">
 		<parse-template location="template/getOrder.xml" doc:name="getOrder.xml"/>
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
         <ws:consumer config-ref="Web_Service_Consumer" doc:name="get Order" operation="getOrder"/>
         <data-mapper:transform doc:name="XML To JSON" config-ref="XML_To_JSON" returnClass="java.lang.String" />
 	</flow>
 	<flow name="delete:/wish-list/{wish}" doc:name="delete:/wish-list/{wish}">
 		<parse-template location="template/removeWish.xml"
 			doc:name="removeWish.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="WishListServiceConsumer"
 			doc:name="remove Wish" operation="removeWish" />
 	</flow>
 	<flow name="get:/categories" doc:name="get:/categories">
 		<parse-template location="template/getTypes.xml"
 			doc:name="getTypes.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="ItemServiceConsumer" operation="getTypes"
 			doc:name="get Types" />
 		<mulexml:xslt-transformer
@@ -428,6 +480,10 @@ http://www.mulesoft.org/schema/mule/jetty-ssl http://www.mulesoft.org/schema/mul
 	<flow name="get:/brands" doc:name="get:/brands">
 		<parse-template location="template/getBrands.xml"
 			doc:name="getBrands.xml" />
+        <message-properties-transformer doc:name="Set Client id and secret">
+            <add-message-property key="client_secret" value="${client.secret}"/>
+            <add-message-property key="client_id" value="${client.id}"/>
+        </message-properties-transformer>
 		<ws:consumer config-ref="ItemServiceConsumer" operation="getBrands"
 			doc:name="get Brands" />
 		<mulexml:xslt-transformer

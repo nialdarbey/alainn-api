@@ -5,7 +5,7 @@ version: v1.0
 #baseUri: https://alainn-cosmetics.cloudhub.io/api/{version}
 baseUri: http://mocksvc.mulesoft.com/mocks/365635b1-1817-4450-ab23-ee6421fc6102/api/{version}
 securitySchemes:
-    - oauth_2_0:
+     - oauth_2_0:
         description: |
             Dropbox supports OAuth 2.0 for authenticating all API requests.
         type: OAuth 2.0
@@ -27,8 +27,8 @@ securitySchemes:
                         Bad OAuth request (wrong consumer key, bad nonce, expired
                         timestamp...). Unfortunately, re-authenticating the user won't help here.
         settings:
-          authorizationUri: https://alainn-cosmetics.cloudhub.io/api/{version}/authorize
-          accessTokenUri: https://alainn-cosmetics.cloudhub.io/api/{version}/access-token
+          authorizationUri: http://test-alainn-cosmetics.cloudhub.io/authorize
+          accessTokenUri: http://test-alainn-cosmetics.cloudhub.io/access-token
           authorizationGrants: [ code, token ]
 
 schemas:
@@ -477,6 +477,7 @@ traits:
           example: TinyImage,SwatchImage,SmallImage,MediumImage,LargeImage
 resourceTypes: 
   - document:
+      securedBy: [ oauth_2_0 ]
       get:
         responses:
           200:
